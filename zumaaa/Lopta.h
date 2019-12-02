@@ -1,0 +1,25 @@
+#ifndef LOPTA_H
+#define LOPTA_H
+
+#include <QGraphicsEllipseItem>
+#include <QGraphicsItem>
+#include <QObject>
+#include <QList>  //omogucen lista<<element za ubacanje
+#include <QPointF>
+
+class Lopta: public QObject, public QGraphicsEllipseItem{
+    Q_OBJECT
+public:
+    Lopta(QGraphicsItem * parent=0);
+    void rotateToPoint(QPointF p);
+public slots:
+    void move();
+private:
+    QList<QPointF> tacke;
+    QPointF krajnja;
+    int index; //indeks tacke u listi ka kojoj trenutno idemo
+
+};
+
+
+#endif // LOPTA_H
