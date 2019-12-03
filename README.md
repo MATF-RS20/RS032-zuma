@@ -2,8 +2,8 @@
 ---
 # Zuma
 ## Članovi:
-* Sandra Radojević - mi16261@alas.matf.bg.ac.rs
-* Katarina Savičić - mi16030@alas.matf.bg.ac.rs
+* Sandra Radojević - mi16030@alas.matf.bg.ac.rs
+* Katarina Savičić - mi16261@alas.matf.bg.ac.rs
 * Dimitrije Sekulić - sekulic_dimitrije@yahoo.com
 
 ## Opis:
