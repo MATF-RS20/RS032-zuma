@@ -8,7 +8,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsLineItem>
 
-class Putanja: public QObject, QGraphicsLineItem{
+class Putanja: public QObject,public QGraphicsLineItem{
     Q_OBJECT
 public:
     Putanja(QGraphicsItem *parent = 0);

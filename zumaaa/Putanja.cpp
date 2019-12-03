@@ -3,5 +3,6 @@
 
 
 Putanja::Putanja(QGraphicsItem *parent) {
-    tacke << QPoint();
+    Q_UNUSED(parent);
+    tacke << QPointF(200, 200) << QPointF(400, 200);
 }

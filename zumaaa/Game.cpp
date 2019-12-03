@@ -34,9 +34,11 @@ Game::Game(QWidget *parent)
     zabica->setFocus();
    // zabica->rotiraj();
     scene->addItem(zabica);
+
+
     Lopta * lopta = new Lopta();
-    lopta->setRect(0, 0, 100, 100);
-    lopta->setPos(100, 0);
+//    lopta->setRect(0, 0, 50, 50);
+//    lopta->setPos(300, 0);
     scene->addItem(lopta);
     /*
     Lopta * lopta2 = new Lopta();
