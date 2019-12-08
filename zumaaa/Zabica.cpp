@@ -42,7 +42,6 @@ void Zabica::rotiraj(QMouseEvent* event)
     this->setTransformOriginPoint(pom_x, pom_y);
     this->setRotation(angle);
     this->show();*/
-
     QLineF ln(pos(),event->pos());
     setTransformOriginPoint(center.x(), center.y());
     setRotation(-1 * ln.angle());

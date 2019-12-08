@@ -2,26 +2,43 @@
 #include <QTimer>
 #include <QtMath>
 #include <QDebug>
-
+// Stari konstruktor
 Lopta::Lopta(QGraphicsItem *parent)
 {
     Q_UNUSED(parent);
-
     setRect(0, 0, 50, 50); // dimenzije lopte na 50x50
     setPos(500,100); // pocetna tacka nase lopte
-
-    // lista tacaka ka kojima se lopta krece
-    tacke << QPointF(500, 300) << QPointF(100, 300) << QPointF(100, 100) << QPointF(300, 100) << QPointF(300, 200);
-    // bitno! svo kretanje i rotacije su postavljene na centar lopte
+    tacke << QPointF(0,0);
     setTransformOriginPoint(25, 25);
-    // inicijalizacija elemenata
     index = 0;
     krajnja = tacke[0];
+    rotateToPoint(krajnja);
+    QTimer * timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
+    timer->start(200);
+}
+// Novi konstruktor, sa ovim kazem da svaka lopta ima svojstvo kretanja i ima listu tacaka kuda da se krece
+Lopta::Lopta(QList<QPointF> tacke_, QGraphicsItem *parent)
+{
+    Q_UNUSED(parent);
+    // inicijalizujemo tacke
+    tacke = tacke_;
+    index = 0;
+    ///TODO: posebna funkcija za postavljanje dimenzije i pozicije
+    /// mozda bi bilo dobro da je to neki konstruktor
+    setRect(0, 0, 50, 50); // dimenzije lopte na 50x50
+    setPos(tacke[0]); // pocetna tacka nase lopte je prva tacka iz liste tacke
+    index++;
+    krajnja = tacke[index]; // ovim samo kazemo da je destinacija naredna tacka
+
+    // inicijalizujemo da se sve transformacije odnose na centar lopte
+    setTransformOriginPoint(25, 25);
+
     // rotiramo da se krecemo ka prvoj tacki
-    //TODO: mozda bolje ime za krajnja, jer se odnosi na
     // trenutnu destinaciju, kao ciljnaTacka npr
     rotateToPoint(krajnja);
     // dodat timer
+    ///TODO: timer da bude privatna promenljiva, tako da mozemo da kazemo lopta->timer->stop()
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(200);
@@ -31,6 +48,10 @@ void Lopta::rotateToPoint(QPointF p)
 {
     QLineF ln(pos(), p);
     setRotation(-1*ln.angle());
+}
+//funkcija za dodavanje tacke
+void Lopta::postaviTacke(QList<QPointF> ps) {
+    tacke = ps;
 }
 // funkcija koja se poziva pri timeru
 void Lopta::move()

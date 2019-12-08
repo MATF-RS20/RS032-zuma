@@ -7,14 +7,21 @@
 #include <QGraphicsEllipseItem>
 #include <QGraphicsItem>
 #include <QGraphicsLineItem>
+#include <QTimer>
+#include "Lopta.h"
 
 class Putanja: public QObject,public QGraphicsLineItem{
     Q_OBJECT
 public:
     Putanja(QGraphicsItem *parent = 0);
+public slots:
+    void create();
 private:
     QList<QPointF> tacke;
     QPointF krajnja;
+    QList<Lopta*> lopte;
+    QTimer *timer;
+    int maxSize;
 };
 
 #endif // PUTANJA_H

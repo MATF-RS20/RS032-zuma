@@ -10,6 +10,7 @@
 
 Game::Game(QWidget *parent)
 {
+    Q_UNUSED(parent);
     //ova klasa je nas view
     QGraphicsScene * scene = new QGraphicsScene();
     //podesavamo da je view fiksne velicine u da je ta velicina ista za scenu i za view, i da je scena tamo gde je view
@@ -36,15 +37,22 @@ Game::Game(QWidget *parent)
     scene->addItem(zabica);
 
 
-    Lopta * lopta = new Lopta();
+//    Lopta * lopta = new Lopta();
 //    lopta->setRect(0, 0, 50, 50);
 //    lopta->setPos(300, 0);
-    scene->addItem(lopta);
-    /*
-    Lopta * lopta2 = new Lopta();
-    lopta2->setRect(0, 0, 50, 50);
-    lopta2->setPos(400, 400);*/
-    //scene->addItem(lopta2);
+//    scene->addItem(lopta);
+    Putanja *putanja = new Putanja();
+    scene->addItem(putanja);
+    emit putanja->create();
+
+    ///TODO: Treba nam metod koji ce na svakih n milisekundi da napravi novu Loptu
+    /// ta lopta ce takodje ici istom putanjom jer nam je za sada putanja zadata u klasi Lopta
+    ///TODO: Putanja bi trebala da se zada odavde, tj klasa Game bi trebala da ima putanje (mozda, ovo je samo ideja za sada)
+
+//    Lopta * lopta2 = new Lopta();
+//    lopta2->setRect(0, 0, 50, 50);
+//    lopta2->setPos(400, 400);
+//    scene->addItem(lopta2);
 
 //    Putanja * putanja = new Putanja();
 //    putanja->setLine(1,1,100,100);
