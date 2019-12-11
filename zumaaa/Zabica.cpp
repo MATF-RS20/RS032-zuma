@@ -9,18 +9,30 @@
 #include <QWidget>
 #include <QPoint>
 #include <QtMath>
+#include <QFont>
+#include <QGraphicsTextItem>
+#include <QPainter>
+#include <QTimer>
+#include <QSignalMapper>
+#include<iostream>
+
+
+extern QGraphicsScene * scene;
+
+
+
 
 
 void Zabica::rotiraj(QMouseEvent* event)
 {
-    QPoint p = event->pos();
+//    QPoint p = event->pos();
 //    qDebug()<<p;
 
     QPointF center = this->rect().center();
 //    qDebug()<<center.x();
-    QPointF kvadrat = this->pos();
-    double pom_x = center.x()+kvadrat.x();
-    double pom_y = center.y()+kvadrat.y();
+//    QPointF kvadrat = this->pos();
+//    double pom_x = center.x()+kvadrat.x();
+//    double pom_y = center.y()+kvadrat.y();
 /*
      qreal angle = (180/M_PI)*qAtan2(p.y()-pom_y ,p.x()-pom_x);
      qDebug()<<angle;
@@ -42,6 +54,7 @@ void Zabica::rotiraj(QMouseEvent* event)
     this->setTransformOriginPoint(pom_x, pom_y);
     this->setRotation(angle);
     this->show();*/
+
     QLineF ln(pos(),event->pos());
     setTransformOriginPoint(center.x(), center.y());
     setRotation(-1 * ln.angle());
@@ -57,7 +70,34 @@ void Zabica::klik(QMouseEvent * event)
         qDebug()<<"Promenio sam boju lopte";
     }else if(event->buttons() & Qt::LeftButton){
         qDebug()<<"Pucao sam i napravio novu loptu";
+        LoptaUUstima* lopta= new LoptaUUstima();
+       
+
+        QPointF p =event->pos();
+        double a = (( p.x()-215)/10);
+        double b = (( p.y()-265)/10);
+        std::cout<<a<<", "<<b<<"   ";
+
+
+        // Setujemo a i b
+        lopta->postaviAB(a, b);
+
+        QTimer* timer = new QTimer();
+
+      
+        QObject::connect(timer, SIGNAL(timeout()), lopta, SLOT(move())); 
+
+        timer->start(50);
+
+        scene()->addItem(lopta);
+
+
+
+
     }
     //scene()->addItem(lopta);
    // emit Mouse_Pressed();
+
+
 }
+
