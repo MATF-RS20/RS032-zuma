@@ -14,6 +14,7 @@ public:
     Lopta(QList<QPointF> tacke, QGraphicsItem * parent=0);
     void rotateToPoint(QPointF p);
     void postaviTacke(QList<QPointF> ps);
+    void kolizija_crna_rupa();
     ~Lopta() = default;
 public slots:
     void move();
@@ -21,7 +22,7 @@ private:
     QList<QPointF> tacke;
     QPointF krajnja;
     int index; //indeks tacke u listi ka kojoj trenutno idemo
-
+    double size;
 };
 
 

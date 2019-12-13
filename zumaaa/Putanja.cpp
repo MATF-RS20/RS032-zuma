@@ -1,6 +1,6 @@
 #include "Putanja.h"
 #include <QGraphicsScene>
-
+#include <QDebug>
 extern QGraphicsScene *scene;
 
 Putanja::Putanja(QGraphicsItem *parent) {
@@ -11,8 +11,7 @@ Putanja::Putanja(QGraphicsItem *parent) {
     maxSize = 10;
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(create()));
-
-    timer->start(2000);
+   timer->start(2000);
 }
 
 void Putanja::create() {

@@ -2,6 +2,7 @@
 #include <QTimer>
 #include <QtMath>
 #include <QDebug>
+#include "CrnaRupa.h"
 // Stari konstruktor
 Lopta::Lopta(QGraphicsItem *parent)
 {
@@ -30,12 +31,13 @@ Lopta::Lopta(QList<QPointF> tacke_, QGraphicsItem *parent)
     setPos(tacke[0]); // pocetna tacka nase lopte je prva tacka iz liste tacke
     index++;
     krajnja = tacke[index]; // ovim samo kazemo da je destinacija naredna tacka
+    size = 50; // velicina je je precnik ili u nasem slucaju visina = sirina = precnik
 
     // inicijalizujemo da se sve transformacije odnose na centar lopte
     setTransformOriginPoint(25, 25);
 
     // rotiramo da se krecemo ka prvoj tacki
-    // trenutnu destinaciju, kao ciljnaTacka npr
+    // trenutnu destinaciju, kao ciljnaTacka
     rotateToPoint(krajnja);
     // dodat timer
     ///TODO: timer da bude privatna promenljiva, tako da mozemo da kazemo lopta->timer->stop()
@@ -50,19 +52,46 @@ void Lopta::rotateToPoint(QPointF p)
     setRotation(-1*ln.angle());
 }
 //funkcija za dodavanje tacke
+/// jel mi ovo treba?
 void Lopta::postaviTacke(QList<QPointF> ps) {
     tacke = ps;
 }
+
+void Lopta::kolizija_crna_rupa()
+{
+    QList<QGraphicsItem *> items = collidingItems(); // kako da proverim da li je unutar a ne samo presek?
+    for(int i = 0; i < items.size(); ++i) {
+        if(typeid(*(items[i])) == typeid(CrnaRupa)) {
+            if(size > 35) { // vrednosti 35 i 50 zavise od velicine lopte i crne rupe. Mozda neki metod za to?
+                setScale(size/50); /// TODO pored scale mozda neki kontrast, da izgleda sve tamnije kako sve vise upada
+                size -= 1;
+            }
+            else {
+                delete this;
+            }
+        }
+    }
+}
 // funkcija koja se poziva pri timeru
 void Lopta::move()
-{   //ako smo blizu jedne tacke (5px), prelazimo na narednu
+{
+    // ako smo napravili loptu iz putanje onda imamo sigurno vise od 2 tacke
+    /// Mozda jeste los nacin da ovo proverimo ali radi ¯\_(ツ)_/¯
+    /// TODO: Da li treba ovakva provera
+    if(tacke.size() > 2)
+    {
+        kolizija_crna_rupa();
+    }
+    //ako smo blizu jedne tacke (5px), prelazimo na narednu
     QLineF ln(pos(), krajnja);
     if(ln.length()<5){
         index++;
         // ako vise nemamo tacaka stajemo
-        if (index >= tacke.size()){
-            return;
-        }
+        // S obzirom da je crna rupa na kraju putanje, tj na kraju indeksa tacaka
+        // i mi unistavamo loptu kad dodje do crne rupe ova provera nam vise ne treba :)
+//        if (index >= tacke.size()){
+//            return;
+//        }
         // postavljamo naredni cilj i rotiramo se ka njemu
         krajnja=tacke[index];
         rotateToPoint(krajnja);

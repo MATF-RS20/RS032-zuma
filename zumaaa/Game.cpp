@@ -35,6 +35,8 @@ Game::Game(QWidget *parent)
     zabica->setFocus();
    // zabica->rotiraj();
     scene->addItem(zabica);
+// iskljucio sam zabicu da se ne prikazuje za sada
+
 
 
 //    Lopta * lopta = new Lopta();
@@ -43,7 +45,10 @@ Game::Game(QWidget *parent)
 //    scene->addItem(lopta);
     Putanja *putanja = new Putanja();
     scene->addItem(putanja);
-    emit putanja->create();
+//    emit putanja->create();
+    // ne znam da li ovo da bude ukljuceno ili iskljuceno,
+    // jedina razika koju sam primetio je da li odmah krece putanja da se
+    // kreira ili 1s kasnije
 
     ///TODO: Treba nam metod koji ce na svakih n milisekundi da napravi novu Loptu
     /// ta lopta ce takodje ici istom putanjom jer nam je za sada putanja zadata u klasi Lopta
@@ -63,6 +68,8 @@ Game::Game(QWidget *parent)
     zivot =new Zivot();
     zivot->setPos(score->x(), score->y()+20);
     scene->addItem(zivot);
+
+
     connect(this, SIGNAL(mousePressEvent(QMouseEvent*)), zabica, SLOT(klik(QMouseEvent*)));
     connect(this, SIGNAL(mouseMoveEvent(QMouseEvent*)), zabica, SLOT(rotiraj(QMouseEvent*)));
 
