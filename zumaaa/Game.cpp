@@ -26,23 +26,25 @@ Game::Game(QWidget *parent)
     setFixedSize(800, 600);
 
     // Postavljanje zabice
-    /// TODO: promeni konstruktor da prima za argument gornji levi ugao x, y, visinu h i sirinu w
-    Zabica * zabica = new Zabica();
+    // Zabica(x, y, visina, sirina)
+    Zabica * zabica = new Zabica(200, 250, 100, 100);
 //    zabica->setRect(0, 0, 100, 100);
 //    zabica->setPos(200, 250);
     zabica->setFlag(QGraphicsItem::ItemIsFocusable);
     zabica->setFocus();
-   // zabica->rotiraj();
     scene->addItem(zabica);
 
+    // postavljamo precnik lopte, ovo bi trebalo da bude i kod lopte iz putanje i kod lopte iz usta
+    int precnik = 50;
+
     // Postavljanje putanje
-    /// TODO: promeni konstruktor da prima argument maxSize
-    Putanja *putanja = new Putanja();
+    // Putanja(precnik, brojLopti) precnik se odnosi na lopte koje putanja kreira
+    Putanja *putanja = new Putanja(precnik, 10);
     scene->addItem(putanja);
 
     // Postavljanje Crne Rupe
-    /// TODO: promeni konstuktor da prima koordinate visinu, sirinu...
-    CrnaRupa * crna_rupa = new CrnaRupa();
+    // CrnaRupa(x, y, visina, sirina)
+    CrnaRupa * crna_rupa = new CrnaRupa(200, 290, 70, 70);
     scene->addItem(crna_rupa);
 
     // Postavljanje Score

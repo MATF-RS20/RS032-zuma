@@ -11,7 +11,7 @@ class Lopta: public QObject, public QGraphicsEllipseItem{
     Q_OBJECT
 public:
     Lopta(QGraphicsItem * parent=0);
-    Lopta(QList<QPointF> tacke, QGraphicsItem * parent=0);
+    Lopta(int precnik, QList<QPointF> tacke, QGraphicsItem * parent=0);
     void rotateToPoint(QPointF p);
     void postaviTacke(QList<QPointF> ps);
     void kolizija_crna_rupa();

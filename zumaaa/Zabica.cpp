@@ -23,12 +23,17 @@ extern QGraphicsScene * scene;
 
 
 
-Zabica::Zabica(QGraphicsItem *parent)
+Zabica::Zabica(int x, int y, int height, int weight, QGraphicsItem *parent)
 {
     Q_UNUSED(parent);
-    setRect(0, 0, 100, 100);
-    setPos(200, 250);
+    setRect(x,y,weight,height);
+//    setRect(0, 0, 100, 100);
+//    setPos(200, 250);
 //    setTransformOriginPoint(50, 50);
+
+    // Ovo je centar zabice u odnosu na njenu poziciju
+    centar = QPointF(x + height/2, y + weight/2);
+//    qDebug() << centar;
 }
 
 void Zabica::rotiraj(QMouseEvent* event)
@@ -64,9 +69,9 @@ void Zabica::rotiraj(QMouseEvent* event)
     this->show();*/
 
 
-    // pos() vraca gornji levi ugao, nama treba centar zabice, \
-       ovakve stvari mi se cini najbolje preko konstruktora zadati
-    QLineF ln(QPointF(250,300),event->pos());
+    // pos() vraca gornji levi ugao, nama treba centar zabice,
+//       ovakve stvari mi se cini najbolje preko konstruktora zadati
+    QLineF ln(centar,event->pos());
     setTransformOriginPoint(center.x(), center.y());
     setRotation(-1 * ln.angle());
 
@@ -83,7 +88,8 @@ void Zabica::klik(QMouseEvent * event)
 //        qDebug()<<"Pucao sam i napravio novu loptu";
 
 
-        QPointF p =event->pos();
+        QPointF p =event->pos(); // pozicija klika
+
         LoptaUUstima* lopta= new LoptaUUstima(p);
 
         double a = (( p.x()-215)/10);

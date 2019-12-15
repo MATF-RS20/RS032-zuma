@@ -13,7 +13,7 @@
 class Putanja: public QObject,public QGraphicsLineItem{
     Q_OBJECT
 public:
-    Putanja(QGraphicsItem *parent = 0);
+    Putanja(int precnik, int brojLopti, QGraphicsItem *parent = 0);
 public slots:
     void create();
 private:
@@ -22,6 +22,7 @@ private:
     QList<Lopta*> lopte;
     QTimer *timer;
     int maxSize;
+    int precnik;
 };
 
 #endif // PUTANJA_H

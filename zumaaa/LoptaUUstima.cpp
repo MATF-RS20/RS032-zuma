@@ -11,7 +11,7 @@ extern Game * game; //jer u game imamo nas skor i hocemo da mu pristupimo i menj
 
 LoptaUUstima::LoptaUUstima(QPointF p){
     setRect(0, 0, 70, 70);
-    setPos(235, 285);
+    setPos(250, 300);
     setTransformOriginPoint(35, 35);
     QLineF ln(QPointF(200, 250), p);
     setRotation(-1*ln.angle());
@@ -43,8 +43,8 @@ void LoptaUUstima::move()
 
     // Postavljamo poziciju na koju treba da ode lopta
     double theta = rotation();
-    double dy = 10 * qSin(qDegreesToRadians(theta));
-    double dx = 10 * qCos(qDegreesToRadians(theta));
+    double dy = 1 * qSin(qDegreesToRadians(theta));
+    double dx = 1 * qCos(qDegreesToRadians(theta));
     setPos(x()+dx, y()+dy);
     //da ne bi trosili memoriju, oslobadjamo se onih loptica koje izadju van scene
     //+rect.height je da bi brisali tek kad skroz izadje iz scene

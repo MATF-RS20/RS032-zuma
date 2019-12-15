@@ -19,7 +19,7 @@ Lopta::Lopta(QGraphicsItem *parent)
     timer->start(200);
 }
 // Novi konstruktor, sa ovim kazem da svaka lopta ima svojstvo kretanja i ima listu tacaka kuda da se krece
-Lopta::Lopta(QList<QPointF> tacke_, QGraphicsItem *parent)
+Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
 {
     Q_UNUSED(parent);
     // inicijalizujemo tacke
@@ -27,7 +27,7 @@ Lopta::Lopta(QList<QPointF> tacke_, QGraphicsItem *parent)
     index = 0;
     ///TODO: posebna funkcija za postavljanje dimenzije i pozicije
     /// mozda bi bilo dobro da je to neki konstruktor
-    setRect(0, 0, 50, 50); // dimenzije lopte na 50x50
+    setRect(0, 0, precnik, precnik); // dimenzije lopte na 50x50
     setPos(tacke[0]); // pocetna tacka nase lopte je prva tacka iz liste tacke
     index++;
     krajnja = tacke[index]; // ovim samo kazemo da je destinacija naredna tacka
@@ -51,11 +51,6 @@ void Lopta::rotateToPoint(QPointF p)
     QLineF ln(pos(), p);
     setRotation(-1*ln.angle());
 }
-//funkcija za dodavanje tacke
-/// jel mi ovo treba?
-void Lopta::postaviTacke(QList<QPointF> ps) {
-    tacke = ps;
-}
 
 void Lopta::kolizija_crna_rupa()
 {
@@ -76,12 +71,8 @@ void Lopta::kolizija_crna_rupa()
 void Lopta::move()
 {
     // ako smo napravili loptu iz putanje onda imamo sigurno vise od 2 tacke
-    /// Mozda jeste los nacin da ovo proverimo ali radi ¯\_(ツ)_/¯
-    /// TODO: Da li treba ovakva provera
-    if(tacke.size() > 2)
-    {
-        kolizija_crna_rupa();
-    }
+    kolizija_crna_rupa();
+
     //ako smo blizu jedne tacke (5px), prelazimo na narednu
     QLineF ln(pos(), krajnja);
     if(ln.length()<5){

@@ -13,9 +13,10 @@
 //i uklonili sve
 extern Game * game;
 
-CrnaRupa::CrnaRupa()
+CrnaRupa::CrnaRupa(int x, int y, int height, int weight)
 {
-    setRect(0, 0, 70, 70);
-    setPos(200,290);
+    setRect(x,y,weight,height);
+//    setRect(0, 0, 70, 70);
+//    setPos(200,290);
 }
 
