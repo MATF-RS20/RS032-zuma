@@ -5,12 +5,17 @@
 #include "Game.h"
 #include <QEvent>
 #include <QMouseEvent>
+#include <QtMath>
 
 extern Game * game; //jer u game imamo nas skor i hocemo da mu pristupimo i menjamo
 
-LoptaUUstima::LoptaUUstima(){
+LoptaUUstima::LoptaUUstima(QPointF p){
     setRect(0, 0, 70, 70);
-    setPos(215,265);
+    setPos(235, 285);
+    setTransformOriginPoint(35, 35);
+    QLineF ln(QPointF(200, 250), p);
+    setRotation(-1*ln.angle());
+
 }
 
 void LoptaUUstima::move()
@@ -35,8 +40,12 @@ void LoptaUUstima::move()
         }
     }*/
 
+
     // Postavljamo poziciju na koju treba da ode lopta
-    setPos(x()+a, y()+b);
+    double theta = rotation();
+    double dy = 10 * qSin(qDegreesToRadians(theta));
+    double dx = 10 * qCos(qDegreesToRadians(theta));
+    setPos(x()+dx, y()+dy);
     //da ne bi trosili memoriju, oslobadjamo se onih loptica koje izadju van scene
     //+rect.height je da bi brisali tek kad skroz izadje iz scene
     ///TODO uradi za sve strane scene

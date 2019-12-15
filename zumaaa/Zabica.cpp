@@ -23,6 +23,14 @@ extern QGraphicsScene * scene;
 
 
 
+Zabica::Zabica(QGraphicsItem *parent)
+{
+    Q_UNUSED(parent);
+    setRect(0, 0, 100, 100);
+    setPos(200, 250);
+//    setTransformOriginPoint(50, 50);
+}
+
 void Zabica::rotiraj(QMouseEvent* event)
 {
 //    QPoint p = event->pos();
@@ -55,7 +63,10 @@ void Zabica::rotiraj(QMouseEvent* event)
     this->setRotation(angle);
     this->show();*/
 
-    QLineF ln(pos(),event->pos());
+
+    // pos() vraca gornji levi ugao, nama treba centar zabice, \
+       ovakve stvari mi se cini najbolje preko konstruktora zadati
+    QLineF ln(QPointF(250,300),event->pos());
     setTransformOriginPoint(center.x(), center.y());
     setRotation(-1 * ln.angle());
 
@@ -69,27 +80,28 @@ void Zabica::klik(QMouseEvent * event)
     if(event->buttons() & Qt::RightButton){
         qDebug()<<"Promenio sam boju lopte";
     }else if(event->buttons() & Qt::LeftButton){
-        qDebug()<<"Pucao sam i napravio novu loptu";
-        LoptaUUstima* lopta= new LoptaUUstima();
-       
+//        qDebug()<<"Pucao sam i napravio novu loptu";
+
 
         QPointF p =event->pos();
+        LoptaUUstima* lopta= new LoptaUUstima(p);
+
         double a = (( p.x()-215)/10);
         double b = (( p.y()-265)/10);
-        std::cout<<a<<", "<<b<<"   ";
+//        std::cout<<a<<", "<<b<<"   ";
 
 
         // Setujemo a i b
-        lopta->postaviAB(a, b);
+        lopta->postaviAB(p.x(), p.y());
 
-        QTimer* timer = new QTimer();
+        QTimer* timer = new QTimer(this);
 
-      
+
+        scene()->addItem(lopta);
         QObject::connect(timer, SIGNAL(timeout()), lopta, SLOT(move())); 
 
         timer->start(50);
 
-        scene()->addItem(lopta);
 
 
 

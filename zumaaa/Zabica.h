@@ -11,6 +11,7 @@ class Zabica:public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
 //void mouseMoveEvent(QMouseEvent * event);  
+    Zabica(QGraphicsItem *parent = 0);
     int x, y;
 
 public slots:

@@ -25,50 +25,36 @@ Game::Game(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800, 600);
 
+    // Postavljanje zabice
+    /// TODO: promeni konstruktor da prima za argument gornji levi ugao x, y, visinu h i sirinu w
     Zabica * zabica = new Zabica();
-    CrnaRupa * crna_rupa = new CrnaRupa();
-    scene->addItem(crna_rupa);
-    //gornji levi ugao na (0, 0), pa sirina i visina
-    zabica->setRect(0, 0, 100, 100);
-    zabica->setPos(200, 250);
+//    zabica->setRect(0, 0, 100, 100);
+//    zabica->setPos(200, 250);
     zabica->setFlag(QGraphicsItem::ItemIsFocusable);
     zabica->setFocus();
    // zabica->rotiraj();
     scene->addItem(zabica);
-// iskljucio sam zabicu da se ne prikazuje za sada
 
-
-
-//    Lopta * lopta = new Lopta();
-//    lopta->setRect(0, 0, 50, 50);
-//    lopta->setPos(300, 0);
-//    scene->addItem(lopta);
+    // Postavljanje putanje
+    /// TODO: promeni konstruktor da prima argument maxSize
     Putanja *putanja = new Putanja();
     scene->addItem(putanja);
-//    emit putanja->create();
-    // ne znam da li ovo da bude ukljuceno ili iskljuceno,
-    // jedina razika koju sam primetio je da li odmah krece putanja da se
-    // kreira ili 1s kasnije
 
-    ///TODO: Treba nam metod koji ce na svakih n milisekundi da napravi novu Loptu
-    /// ta lopta ce takodje ici istom putanjom jer nam je za sada putanja zadata u klasi Lopta
-    ///TODO: Putanja bi trebala da se zada odavde, tj klasa Game bi trebala da ima putanje (mozda, ovo je samo ideja za sada)
+    // Postavljanje Crne Rupe
+    /// TODO: promeni konstuktor da prima koordinate visinu, sirinu...
+    CrnaRupa * crna_rupa = new CrnaRupa();
+    scene->addItem(crna_rupa);
 
-//    Lopta * lopta2 = new Lopta();
-//    lopta2->setRect(0, 0, 50, 50);
-//    lopta2->setPos(400, 400);
-//    scene->addItem(lopta2);
-
-//    Putanja * putanja = new Putanja();
-//    putanja->setLine(1,1,100,100);
-//    putanja->setParent(parent);
-//    scene->addItem(putanja);
+    // Postavljanje Score
     score = new Score();
     scene->addItem(score);
+
+    // Postavljanje Zivot
     zivot =new Zivot();
     zivot->setPos(score->x(), score->y()+20);
     scene->addItem(zivot);
 
+    //// FUN FACT: ako iskljucimo da se ne prikazuje zivot i score ne radi rotacija!!!
 
     connect(this, SIGNAL(mousePressEvent(QMouseEvent*)), zabica, SLOT(klik(QMouseEvent*)));
     connect(this, SIGNAL(mouseMoveEvent(QMouseEvent*)), zabica, SLOT(rotiraj(QMouseEvent*)));
