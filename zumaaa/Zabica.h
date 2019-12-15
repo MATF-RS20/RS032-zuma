@@ -12,7 +12,7 @@ class Zabica:public QObject, public QGraphicsRectItem{
 public:
 //void mouseMoveEvent(QMouseEvent * event);  
     Zabica(int x, int y, int height, int weight, QGraphicsItem *parent = 0);
-    int x, y;
+//    int x, y;
 
 public slots:
     void rotiraj(QMouseEvent*);

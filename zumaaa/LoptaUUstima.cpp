@@ -6,16 +6,15 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QtMath>
+#include <QDebug>
 
 extern Game * game; //jer u game imamo nas skor i hocemo da mu pristupimo i menjamo
 
-LoptaUUstima::LoptaUUstima(QPointF p){
-    setRect(0, 0, 70, 70);
-    setPos(250, 300);
-    setTransformOriginPoint(35, 35);
-    QLineF ln(QPointF(200, 250), p);
+LoptaUUstima::LoptaUUstima(int x, int y,  int precnik, QPointF p){
+    setRect(x, y, precnik, precnik);
+    setTransformOriginPoint(this->rect().center());
+    QLineF ln(this->rect().center(), p);
     setRotation(-1*ln.angle());
-
 }
 
 void LoptaUUstima::move()
@@ -43,28 +42,32 @@ void LoptaUUstima::move()
 
     // Postavljamo poziciju na koju treba da ode lopta
     double theta = rotation();
-    double dy = 1 * qSin(qDegreesToRadians(theta));
-    double dx = 1 * qCos(qDegreesToRadians(theta));
+    int korak = 10;
+    double dy = korak * qSin(qDegreesToRadians(theta));
+    double dx = korak * qCos(qDegreesToRadians(theta));
     setPos(x()+dx, y()+dy);
     //da ne bi trosili memoriju, oslobadjamo se onih loptica koje izadju van scene
     //+rect.height je da bi brisali tek kad skroz izadje iz scene
     ///TODO uradi za sve strane scene
-    if(pos().y()+rect().height()<0){
-        scene()->removeItem(this);
-        delete this;
-    }
-    if(pos().x()+rect().width()<0){
-        scene() -> removeItem(this);
-        delete this;
-    }
-    if(pos().x()<0){
-        scene() -> removeItem(this);
-        delete this;
-    }
-    if(pos().y()<0){
-        scene() -> removeItem(this);
-        delete this;
-    }
+    ///
+    ///
+    /// FATAL ERROR:
+//    if(pos().y()+rect().height()<0){
+//        scene()->removeItem(this);
+//        delete this;
+//    }
+//    if(pos().x()+rect().width()<0){
+//        scene() -> removeItem(this);
+//        delete this;
+//    }
+//    if(pos().x()<0){
+//        scene() -> removeItem(this);
+//        delete this;
+//    }
+//    if(pos().y()<0){
+//        scene() -> removeItem(this);
+//        delete this;
+//    }
 
 
 }

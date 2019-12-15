@@ -10,7 +10,7 @@
 class LoptaUUstima: public QObject, public QGraphicsEllipseItem{
         Q_OBJECT
 public:
-    LoptaUUstima(QPointF p);
+    LoptaUUstima(int x, int y, int precnik, QPointF p);
 
     // Seter za a i b
     void postaviAB(double a, double b);

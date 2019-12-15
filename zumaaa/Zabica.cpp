@@ -89,8 +89,13 @@ void Zabica::klik(QMouseEvent * event)
 
 
         QPointF p =event->pos(); // pozicija klika
-
-        LoptaUUstima* lopta= new LoptaUUstima(p);
+        int precnik = 50; // precnik lopte
+        /// TODO: napraviti da se zadati precnik iz Game.cpp prenese ovde
+        auto x_ = centar.x() - precnik/2;
+        auto y_ = centar.y() - precnik/2;
+        // x_ i y_ su koordinate koje postavljaju loptu u centar zabice
+        // oduzimam precnik/2 da ne bi postavio gornji levi ugao u centar zabice
+        LoptaUUstima* lopta= new LoptaUUstima(x_, y_, precnik, p);
 
         double a = (( p.x()-215)/10);
         double b = (( p.y()-265)/10);
