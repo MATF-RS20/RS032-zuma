@@ -9,6 +9,7 @@
 #include "Zivot.h"
 #include "Putanja.h"
 #include "Lopta.h"
+#include "CrnaRupa.h"
 
 class Game: public QGraphicsView{
     Q_OBJECT
@@ -20,6 +21,7 @@ public:
     Zivot * zivot;
     Putanja * putanja;
     Lopta * lopta;
+    CrnaRupa * crna_rupa;
 
 
 signals:

@@ -1,13 +1,16 @@
 #include "Lopta.h"
 #include <QTimer>
 #include <QtMath>
+#include <random>
+#include <iterator>
 #include <QDebug>
 #include "CrnaRupa.h"
 // Stari konstruktor
+
 Lopta::Lopta(QGraphicsItem *parent)
+: QGraphicsObject(parent)
 {
-    Q_UNUSED(parent);
-    setRect(0, 0, 50, 50); // dimenzije lopte na 50x50
+   // Q_UNUSED(parent);
     setPos(500,100); // pocetna tacka nase lopte
     tacke << QPointF(0,0);
     setTransformOriginPoint(25, 25);
@@ -20,19 +23,22 @@ Lopta::Lopta(QGraphicsItem *parent)
 }
 // Novi konstruktor, sa ovim kazem da svaka lopta ima svojstvo kretanja i ima listu tacaka kuda da se krece
 Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
+: QGraphicsObject(parent)
+,size(precnik)
 {
-    Q_UNUSED(parent);
+    //Q_UNUSED(parent);
+    generisi_boju();
     // inicijalizujemo tacke
     tacke = tacke_;
     index = 0;
     ///TODO: posebna funkcija za postavljanje dimenzije i pozicije
     /// mozda bi bilo dobro da je to neki konstruktor
-    setRect(0, 0, precnik, precnik); // dimenzije lopte na 50x50
+    //setRect(0, 0, precnik, precnik); // dimenzije lopte na 50x50               /////OVO MOZDA NE TREBA ZAKOMENTARISANO, ali ne moze zbog novog nasledjivanja
     setPos(tacke[0]); // pocetna tacka nase lopte je prva tacka iz liste tacke
     index++;
     krajnja = tacke[index]; // ovim samo kazemo da je destinacija naredna tacka
-    size = 50; // velicina je je precnik ili u nasem slucaju visina = sirina = precnik
-
+    //size = 50; // velicina je je precnik ili u nasem slucaju visina = sirina = precnik
+    //boja = QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
     // inicijalizujemo da se sve transformacije odnose na centar lopte
     setTransformOriginPoint(25, 25);
 
@@ -80,9 +86,9 @@ void Lopta::move()
         // ako vise nemamo tacaka stajemo
         // S obzirom da je crna rupa na kraju putanje, tj na kraju indeksa tacaka
         // i mi unistavamo loptu kad dodje do crne rupe ova provera nam vise ne treba :)
-//        if (index >= tacke.size()){
-//            return;
-//        }
+        if (index >= tacke.size()){
+            return;
+        }
         // postavljamo naredni cilj i rotiramo se ka njemu
         krajnja=tacke[index];
         rotateToPoint(krajnja);
@@ -93,4 +99,26 @@ void Lopta::move()
     double dy = korak * qSin(qDegreesToRadians(theta));
     double dx = korak * qCos(qDegreesToRadians(theta));
     setPos(x()+dx, y()+dy);
+}
+
+void Lopta::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+    painter->drawPixmap(0, 0, size, size, boja);
+}
+
+QRectF Lopta::boundingRect() const
+{
+    return QRectF(0, 0, size, size);
+}
+
+void Lopta::generisi_boju()
+{
+    QVector <QPixmap> niz_slika;
+    niz_slika.resize(4);
+    niz_slika[0]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
+    niz_slika[1]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/plava.png");
+    niz_slika[2]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/zelena.png");
+    niz_slika[3]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/ljubicasta.png");
+    int indeks = rand() % 4;
+    boja=niz_slika[indeks];
 }

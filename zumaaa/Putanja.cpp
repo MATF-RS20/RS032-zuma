@@ -3,14 +3,28 @@
 #include <QDebug>
 extern QGraphicsScene *scene;
 
-Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent) : maxSize(brojLopti), precnik(precnik) {
-    Q_UNUSED(parent);
+Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
+    : QGraphicsObject(parent)
+    , maxSize(brojLopti)
+    , precnik(precnik)
+{
     //zadajemo listu tacaka
     tacke << QPointF(500, 100) << QPointF(500, 300) << QPointF(100, 300) << QPointF(100, 100) << QPointF(300, 100) << QPointF(300, 200);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(create()));
-   timer->start(2000);
+
+    timer->start(2000);
+}
+
+QRectF Putanja::boundingRect() const
+{
+    return QRectF(x(), y(), 800, 600);
+}
+
+void Putanja::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+
 }
 
 void Putanja::create() {
@@ -23,4 +37,13 @@ void Putanja::create() {
     Lopta *lopta = new Lopta(precnik, tacke);
     lopte.append(lopta);
     scene()->addItem(lopta);
+}
+
+void Putanja::dodaj_loptu(QPointF tacka)
+{
+    //qDebug()<<tacka;
+    foreach (auto x, lopte) {
+        qDebug()<<(x)->pos();
+    }
+    timer = new QTimer(this);
 }

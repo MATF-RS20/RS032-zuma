@@ -6,12 +6,13 @@
 #include <QDebug>
 #include <QWidget>
 #include <QEvent>
+#include "LoptaUUstima.h"
 
 class Zabica:public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
 //void mouseMoveEvent(QMouseEvent * event);  
-    Zabica(int x, int y, int height, int weight, QGraphicsItem *parent = 0);
+    Zabica(int x, int y, int height, int weight, int precnik, QGraphicsItem *parent = 0);
 //    int x, y;
 
 public slots:
@@ -23,7 +24,10 @@ signals:
     void Mouse_Pos();
     void Mouse_Left();
 private:
+     int precnik=50;
     QPointF centar;
+   // LoptaUUstima* lopta;
+
 };
 
 #endif // ZABICA_H

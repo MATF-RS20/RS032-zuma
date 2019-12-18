@@ -14,6 +14,8 @@ Zabica.cpp
 Zabica.h
 Zivot.cpp
 Zivot.h
+images.qrc
 main.cpp
 mainwindow.cpp
 mainwindow.h
+slike.qrc

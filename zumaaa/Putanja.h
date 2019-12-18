@@ -6,16 +6,20 @@
 #include <QPointF>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsItem>
-#include <QGraphicsLineItem>
+#include <QGraphicsObject>
 #include <QTimer>
+#include <QPainter>
 #include "Lopta.h"
 
-class Putanja: public QObject,public QGraphicsLineItem{
+class Putanja: public QGraphicsObject {
     Q_OBJECT
 public:
-    Putanja(int precnik, int brojLopti, QGraphicsItem *parent = 0);
+    Putanja(int precnik, int brojLopti, QGraphicsItem *parent=0);
+    QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 public slots:
     void create();
+    void dodaj_loptu(QPointF tacka);
 private:
     QList<QPointF> tacke;
     QPointF krajnja;
