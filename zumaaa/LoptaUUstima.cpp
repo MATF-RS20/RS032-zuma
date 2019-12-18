@@ -77,25 +77,44 @@ void LoptaUUstima::move()
     //da ne bi trosili memoriju, oslobadjamo se onih loptica koje izadju van scene
     //+rect.height je da bi brisali tek kad skroz izadje iz scene
     ///TODO uradi za sve strane scene
-    ///
-    ///
-    /// FATAL ERROR:
-//    if(pos().y()+rect().height()+game->zabica->pos().y()<0){
-//        scene()->removeItem(this);
-//       delete this;
-//    }
-//    if(pos().x()+rect().width()<0){
-//        scene() -> removeItem(this);
-//        delete this;
-//    }
-//    if(pos().x()<0){
-//        scene() -> removeItem(this);
-//        delete this;
-//    }
-//    if(pos().y()<0){
-//        scene() -> removeItem(this);
-//        delete this;
-//    }
+        ///
+        ///
+        /// FATAL ERROR:
+    //    if(pos().y()+rect().height()<0){
+    //        scene()->removeItem(this);
+    //        delete this;
+    //    }
+    //    if(pos().x()+rect().width()<0){
+    //        scene() -> removeItem(this);
+    //        delete this;
+    //    }
+    //    if(pos().x()<0){
+    //        scene() -> removeItem(this);
+    //        delete this;
+    //    }
+    //    if(pos().y()<0){
+    //        scene() -> removeItem(this);
+    //        delete this;
+    //    }
+
+        if(pos().y()>game->rect().height()-250-25){
+            scene()->removeItem(this);
+            delete this;
+        }
+        else if(pos().x()>game->rect().width()-200-25){
+            scene() -> removeItem(this);
+            delete this;
+        }
+        else if(pos().x()<-200-75){
+            scene() -> removeItem(this);
+            delete this;
+        }
+        else if(pos().y()<-250-75){
+            scene() -> removeItem(this);
+            delete this;
+        }
+
+
 
 
 }
