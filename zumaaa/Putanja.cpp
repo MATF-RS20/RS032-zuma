@@ -37,6 +37,7 @@ void Putanja::create() {
     Lopta *lopta = new Lopta(precnik, tacke);
     lopte.append(lopta);
     scene()->addItem(lopta);
+    connect(this, SIGNAL(pomeri_se(QPointF)), lopta, SLOT(move_back(QPointF)));
 }
 
 void Putanja::dodaj_loptu(QPointF tacka)
@@ -44,6 +45,7 @@ void Putanja::dodaj_loptu(QPointF tacka)
     //qDebug()<<tacka;
     foreach (auto x, lopte) {
         qDebug()<<(x)->pos();
+        emit pomeri_se(tacka);
     }
     timer = new QTimer(this);
 }

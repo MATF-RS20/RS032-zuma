@@ -17,6 +17,8 @@ public:
     Putanja(int precnik, int brojLopti, QGraphicsItem *parent=0);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+signals:
+    void pomeri_se(QPointF);
 public slots:
     void create();
     void dodaj_loptu(QPointF tacka);

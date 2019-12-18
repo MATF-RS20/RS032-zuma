@@ -94,11 +94,19 @@ void Lopta::move()
         rotateToPoint(krajnja);
     }
     // krecemo se za broj koraka u odnosu na trenutnu rotaciju
-    int korak = 5;
+
     double theta = rotation();
     double dy = korak * qSin(qDegreesToRadians(theta));
     double dx = korak * qCos(qDegreesToRadians(theta));
-    setPos(x()+dx, y()+dy);
+    setPos(x()+id1*dx, y()+id2*dy);
+}
+
+void Lopta::move_back(QPointF tacka)
+{
+    qDebug()<<"sad mi je id -1"<<tacka;
+    tacka.x() > this->x() ? id1= -1 : 1;
+    tacka.y() > this->y() ? id2= -1 : 1;
+
 }
 
 void Lopta::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

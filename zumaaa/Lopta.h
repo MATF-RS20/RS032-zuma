@@ -25,6 +25,7 @@ public:
 
 public slots:
     void move();
+    void move_back(QPointF tacka);
 private:
     QList<QPointF> tacke;
     QPointF krajnja;
@@ -32,6 +33,9 @@ private:
     int index; //indeks tacke u listi ka kojoj trenutno idemo
     double size;
     void generisi_boju();
+    int korak=5;
+    int id1=1;
+    int id2=1;
 
 };
 
