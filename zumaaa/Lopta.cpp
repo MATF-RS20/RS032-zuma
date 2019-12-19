@@ -5,6 +5,7 @@
 #include <iterator>
 #include <QDebug>
 #include "CrnaRupa.h"
+#include <QDir>
 // Stari konstruktor
 
 Lopta::Lopta(QGraphicsItem *parent)
@@ -123,10 +124,11 @@ void Lopta::generisi_boju()
 {
     QVector <QPixmap> niz_slika;
     niz_slika.resize(4);
-    niz_slika[0]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
-    niz_slika[1]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/plava.png");
-    niz_slika[2]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/zelena.png");
-    niz_slika[3]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/ljubicasta.png");
+//    qDebug() << QDir::currentPath();
+    niz_slika[0]=QPixmap(":/images/roze.png");
+    niz_slika[1]=QPixmap(":/images/plava.png");
+    niz_slika[2]=QPixmap(":/images/zelena.png");
+    niz_slika[3]=QPixmap(":/images/ljubicasta.png");
     int indeks = rand() % 4;
     boja=niz_slika[indeks];
 }

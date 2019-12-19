@@ -24,7 +24,7 @@ LoptaUUstima::LoptaUUstima(int x, int y,  int precnik, QPointF p)
 
    // QPointF center = QPointF(this->pos().x()+precnik/2, this->pos().y()-precnik/2);  ////
 
-
+    promeni_boju();
     setTransformOriginPoint(boundingRect().center());
     QLineF ln(boundingRect().center(), p);
     setRotation(-1*ln.angle());
@@ -139,10 +139,10 @@ void LoptaUUstima::promeni_boju(){
 
         QVector <QPixmap> niz_slika;
         niz_slika.resize(4);
-        niz_slika[0]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
-        niz_slika[1]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/plava.png");
-        niz_slika[2]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/zelena.png");
-        niz_slika[3]=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/ljubicasta.png");
+        niz_slika[0]=QPixmap(":/images/roze.png");
+        niz_slika[1]=QPixmap(":/images/plava.png");
+        niz_slika[2]=QPixmap(":/images/zelena.png");
+        niz_slika[3]=QPixmap(":/images/ljubicasta.png");
         int indeks = rand() % 4;
         boja= niz_slika[indeks];
 

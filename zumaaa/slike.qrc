@@ -1,8 +1,0 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource prefix="/images">
-    <file alias="roze.png">images/roze.png</file>
-    <file alias="plava.png">images/plava.png</file>
-    <file alias="zelena.png">images/zelena.png</file>
-    <file alias="ljubicasta.png">images/ljubicasta.png</file>
-</qresource>
-</RCC>

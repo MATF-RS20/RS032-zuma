@@ -70,11 +70,11 @@ void Zabica::klik(QMouseEvent * event)
         // oduzimam precnik/2 da ne bi postavio gornji levi ugao u centar zabice
 
         LoptaUUstima* lopta2= new LoptaUUstima(x_, y_, precnik, p);
-        double a = (( p.x()-215)/10);
-        double b = (( p.y()-265)/10);
+//        double a = (( p.x()-215)/10);
+//        double b = (( p.y()-265)/10);
 //        std::cout<<a<<", "<<b<<"   ";
         // Setujemo a i b
-        lopta2->postaviAB(p.x(), p.y());
+//        lopta2->postaviAB(p.x(), p.y());
         QTimer* timer = new QTimer(this);
         scene()->addItem(lopta2);
         QObject::connect(timer, SIGNAL(timeout()), lopta2, SLOT(move()));
