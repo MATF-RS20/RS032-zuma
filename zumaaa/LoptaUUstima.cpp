@@ -121,18 +121,7 @@ void LoptaUUstima :: setBoja(int indeks)
 }
 
 
-/*void LoptaUUstima::promeni_boju(){
 
-        QVector <QPixmap> niz_slika;
-        niz_slika.resize(4);
-        niz_slika[0]=QPixmap(":/images/roze.png");
-        niz_slika[1]=QPixmap(":/images/plava.png");
-        niz_slika[2]=QPixmap(":/images/zelena.png");
-        niz_slika[3]=QPixmap(":/images/ljubicasta.png");
-        int indeks = rand() % 4;
-        boja= niz_slika[indeks];
-
-}*/
 
 
 
