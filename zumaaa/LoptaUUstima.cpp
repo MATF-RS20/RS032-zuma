@@ -24,7 +24,7 @@ LoptaUUstima::LoptaUUstima(int x, int y,  int precnik, QPointF p)
 
    // QPointF center = QPointF(this->pos().x()+precnik/2, this->pos().y()-precnik/2);  ////
 
-    promeni_boju();
+    //promeni_boju();
     setTransformOriginPoint(boundingRect().center());
     QLineF ln(boundingRect().center(), p);
     setRotation(-1*ln.angle());
@@ -76,54 +76,28 @@ void LoptaUUstima::move()
     setPos(x()+dx, y()+dy);
     //da ne bi trosili memoriju, oslobadjamo se onih loptica koje izadju van scene
     //+rect.height je da bi brisali tek kad skroz izadje iz scene
-    ///TODO uradi za sve strane scene
-        ///
-        ///
-        /// FATAL ERROR:
-    //    if(pos().y()+rect().height()<0){
-    //        scene()->removeItem(this);
-    //        delete this;
-    //    }
-    //    if(pos().x()+rect().width()<0){
-    //        scene() -> removeItem(this);
-    //        delete this;
-    //    }
-    //    if(pos().x()<0){
-    //        scene() -> removeItem(this);
-    //        delete this;
-    //    }
-    //    if(pos().y()<0){
-    //        scene() -> removeItem(this);
-    //        delete this;
-    //    }
 
-        if(pos().y()>game->rect().height()-250-25){
-            scene()->removeItem(this);
-            delete this;
-        }
-        else if(pos().x()>game->rect().width()-200-25){
-            scene() -> removeItem(this);
-            delete this;
-        }
-        else if(pos().x()<-200-75){
-            scene() -> removeItem(this);
-            delete this;
-        }
-        else if(pos().y()<-250-75){
-            scene() -> removeItem(this);
-            delete this;
-        }
+    if(pos().y()>game->rect().height()-game->zabica->y-25){
+        scene()->removeItem(this);
+        delete this;
+    }
+    else if(pos().x()>game->rect().width()-game->zabica->x-25){
+        scene() -> removeItem(this);
+        delete this;
+    }
+    else if(pos().x()<-game->zabica->x-75){
+        scene() -> removeItem(this);
+        delete this;
+    }
+    else if(pos().y()<-game->zabica->y-75){
+        scene() -> removeItem(this);
+        delete this;
+    }
 
 
 
 
 }
-// Implementacija setera
-void LoptaUUstima::postaviAB(double a_, double b_) {
-    a = a_;
-    b = b_;
-}
-
 void LoptaUUstima::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     //QPixmap pixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
@@ -135,7 +109,19 @@ QRectF LoptaUUstima::boundingRect() const
     return QRectF(250, 300, size, size);
 }
 
-void LoptaUUstima::promeni_boju(){
+void LoptaUUstima :: setBoja(int indeks)
+{
+    QVector <QPixmap> niz_slika;
+    niz_slika.resize(4);
+    niz_slika[0]=QPixmap(":/images/roze.png");
+    niz_slika[1]=QPixmap(":/images/plava.png");
+    niz_slika[2]=QPixmap(":/images/zelena.png");
+    niz_slika[3]=QPixmap(":/images/ljubicasta.png");
+    boja= niz_slika[indeks];
+}
+
+
+/*void LoptaUUstima::promeni_boju(){
 
         QVector <QPixmap> niz_slika;
         niz_slika.resize(4);
@@ -146,7 +132,7 @@ void LoptaUUstima::promeni_boju(){
         int indeks = rand() % 4;
         boja= niz_slika[indeks];
 
-}
+}*/
 
 
 

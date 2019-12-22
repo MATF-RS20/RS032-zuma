@@ -4,5 +4,9 @@
         <file alias="plava.png">images/plava.png</file>
         <file alias="zelena.png">images/zelena.png</file>
         <file alias="roze.png">images/roze.png</file>
+        <file>images/zabica_ljubicasta.png</file>
+        <file>images/zabica_plava.png</file>
+        <file>images/zabica_roze.png</file>
+        <file>images/zabica_zelena.png</file>
     </qresource>
 </RCC>

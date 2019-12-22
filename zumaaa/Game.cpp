@@ -20,15 +20,12 @@ Game::Game(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800, 600);
 
-    // postavljamo precnik lopte, ovo bi trebalo da bude i kod lopte iz putanje i kod lopte iz usta
-    int precnik = 50;
-
     // Postavljanje putanje
     // Putanja(precnik, brojLopti) precnik se odnosi na lopte koje putanja kreira
-    putanja = new Putanja(precnik, 10);
+    putanja = new Putanja(this->precnik, 10);
     scene->addItem(putanja);
 
-    zabica = new Zabica(200, 250, 100, 100, 50);
+    zabica = new Zabica(200, 250, 100, 100, this->precnik);
     zabica->setFlag(QGraphicsItem::ItemIsFocusable);
     zabica->setFocus();
     scene->addItem(zabica);

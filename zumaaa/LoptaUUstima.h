@@ -16,7 +16,7 @@ public:
     void postaviAB(double a, double b);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
-    void promeni_boju();
+    void setBoja(int indeks);
 signals:
     void sudar(QPointF); //ispali ovaj signal kad kliknem, a ne kad se sudare..
 public slots:
@@ -25,7 +25,9 @@ private:
     // Privatne promenljive za pomeranje lopte
     double a, b;
     qreal size=50;
-    QPixmap boja=QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
+    QPixmap boja;
+
+
 };
 
 #endif // LOPTAUUSTIMA_H

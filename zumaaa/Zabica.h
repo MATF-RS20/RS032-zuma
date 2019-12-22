@@ -11,7 +11,7 @@
 class Zabica:public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
-//void mouseMoveEvent(QMouseEvent * event);  
+//void mouseMoveEvent(QMouseEvent * event);
     Zabica(int x, int y, int height, int weight, int precnik, QGraphicsItem *parent = 0);
 //    int x, y;
 
@@ -24,9 +24,18 @@ signals:
     void Mouse_Pos();
     void Mouse_Left();
 private:
-     int precnik=50;
+    int precnik;
     QPointF centar;
-   // LoptaUUstima* lopta;
+    QPixmap boja = QPixmap(":/images/images/zabica_roze.png");
+    qreal size=200;
+    int index;
+    //LoptaUUstima* lopta;
+public:
+    int x;
+    int y;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void promeni_boju();
+    QRectF boundingRect() const override;
 
 };
 
