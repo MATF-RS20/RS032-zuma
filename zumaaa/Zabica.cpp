@@ -39,8 +39,7 @@ Zabica::Zabica(int x, int y, int height, int weight, int precnik, QGraphicsItem 
 //    setPos(200, 250);
 //    setTransformOriginPoint(50, 50);
 
-
-
+    promeni_boju();
 
 //    qDebug() << centar;
 }
@@ -56,6 +55,8 @@ QRectF Zabica::boundingRect() const
 }
 
 void Zabica::promeni_boju(){
+
+
 
         QVector <QPixmap> niz_slika;
         niz_slika.resize(4);

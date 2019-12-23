@@ -26,9 +26,9 @@ signals:
 private:
     int precnik;
     QPointF centar;
-    QPixmap boja = QPixmap(":/images/images/zabica_roze.png");
+    QPixmap boja;
     qreal size=200;
-    int index;
+    int index = 0;
     //LoptaUUstima* lopta;
 public:
     int x;

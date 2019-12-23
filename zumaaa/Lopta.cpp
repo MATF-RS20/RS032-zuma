@@ -124,7 +124,6 @@ void Lopta::generisi_boju()
 {
     QVector <QPixmap> niz_slika;
     niz_slika.resize(4);
-//    qDebug() << QDir::currentPath();
     niz_slika[0]=QPixmap(":/images/roze.png");
     niz_slika[1]=QPixmap(":/images/plava.png");
     niz_slika[2]=QPixmap(":/images/zelena.png");

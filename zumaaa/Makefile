@@ -59,7 +59,8 @@ SOURCES       = CrnaRupa.cpp \
 		Zabica.cpp \
 		Zivot.cpp \
 		main.cpp \
-		mainwindow.cpp moc_CrnaRupa.cpp \
+		mainwindow.cpp qrc_images.cpp \
+		moc_CrnaRupa.cpp \
 		moc_Game.cpp \
 		moc_Lopta.cpp \
 		moc_LoptaUUstima.cpp \
@@ -76,6 +77,7 @@ OBJECTS       = CrnaRupa.o \
 		Zivot.o \
 		main.o \
 		mainwindow.o \
+		qrc_images.o \
 		moc_CrnaRupa.o \
 		moc_Game.o \
 		moc_Lopta.o \
@@ -137,6 +139,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -239,6 +242,7 @@ Makefile: zumaaa.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -259,6 +263,7 @@ Makefile: zumaaa.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		zumaaa.pro \
+		images.qrc \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
@@ -317,6 +322,7 @@ Makefile: zumaaa.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -337,6 +343,7 @@ Makefile: zumaaa.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 zumaaa.pro:
+images.qrc:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
@@ -354,6 +361,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents CrnaRupa.h Game.h Lopta.h LoptaUUstima.h Putanja.h Score.h Zabica.h Zivot.h mainwindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents CrnaRupa.cpp Game.cpp Lopta.cpp LoptaUUstima.cpp Putanja.cpp Score.cpp Zabica.cpp Zivot.cpp main.cpp mainwindow.cpp $(DISTDIR)/
@@ -381,8 +389,21 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_images.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_images.cpp
+qrc_images.cpp: images.qrc \
+		/usr/lib/qt5/bin/rcc \
+		images/roze.png \
+		images/plava.png \
+		images/zelena.png \
+		images/ljubicasta.png \
+		images/zabica_ljubicasta.png \
+		images/zabica_plava.png \
+		images/zabica_zelena.png \
+		images/zabica_roze.png
+	/usr/lib/qt5/bin/rcc -name images images.qrc -o qrc_images.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -451,7 +472,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -497,7 +518,13 @@ Score.o: Score.cpp Score.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Score.o Score.cpp
 
 Zabica.o: Zabica.cpp Zabica.h \
-		LoptaUUstima.h
+		LoptaUUstima.h \
+		Game.h \
+		Score.h \
+		Zivot.h \
+		Putanja.h \
+		Lopta.h \
+		CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Zabica.o Zabica.cpp
 
 Zivot.o: Zivot.cpp Zivot.h
@@ -517,6 +544,9 @@ main.o: main.cpp mainwindow.h \
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+qrc_images.o: qrc_images.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp
 
 moc_CrnaRupa.o: moc_CrnaRupa.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CrnaRupa.o moc_CrnaRupa.cpp
