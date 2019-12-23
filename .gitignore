@@ -31,4 +31,9 @@
 *.out
 *.app
 
-*.user*
+zumaaa/zumaaa.pro.user
+*.pro.user
+*.pro.user.*
+*.moc
+moc_*.cpp
+moc_*.h
