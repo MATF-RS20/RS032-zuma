@@ -66,7 +66,7 @@ void Zabica::promeni_boju(){
         niz_slika[3]=QPixmap(":/images/images/zabica_ljubicasta.png");
         index = rand() % 4;
         boja= niz_slika[index];
-
+        update(this->boundingRect());
 
 }
 
