@@ -397,7 +397,11 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 		../zumaaa/images/roze.png \
 		../zumaaa/images/plava.png \
 		../zumaaa/images/zelena.png \
-		../zumaaa/images/ljubicasta.png
+		../zumaaa/images/ljubicasta.png \
+		../zumaaa/images/zabica_ljubicasta.png \
+		../zumaaa/images/zabica_plava.png \
+		../zumaaa/images/zabica_zelena.png \
+		../zumaaa/images/zabica_roze.png
 	/usr/lib/qt5/bin/rcc -name images ../zumaaa/images.qrc -o qrc_images.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -514,7 +518,13 @@ Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Score.o ../zumaaa/Score.cpp
 
 Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
-		../zumaaa/LoptaUUstima.h
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Game.h \
+		../zumaaa/Score.h \
+		../zumaaa/Zivot.h \
+		../zumaaa/Putanja.h \
+		../zumaaa/Lopta.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Zabica.o ../zumaaa/Zabica.cpp
 
 Zivot.o: ../zumaaa/Zivot.cpp ../zumaaa/Zivot.h

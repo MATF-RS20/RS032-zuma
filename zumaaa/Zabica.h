@@ -6,9 +6,10 @@
 #include <QDebug>
 #include <QWidget>
 #include <QEvent>
+#include <QGraphicsObject>
 #include "LoptaUUstima.h"
 
-class Zabica:public QObject, public QGraphicsRectItem{
+class Zabica : public QGraphicsObject {
     Q_OBJECT
 public:
 //void mouseMoveEvent(QMouseEvent * event);

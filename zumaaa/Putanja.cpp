@@ -9,7 +9,7 @@ Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
     , precnik(precnik)
 {
     //zadajemo listu tacaka
-    tacke << QPointF(500, 100) << QPointF(500, 300) << QPointF(100, 300) << QPointF(100, 100) << QPointF(300, 100) << QPointF(300, 200);
+    tacke << QPointF(500, 100) << QPointF(500, 400) << QPointF(100, 400) << QPointF(100, 100) << QPointF(300, 100) << QPointF(300, 200);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(create()));
