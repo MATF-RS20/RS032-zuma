@@ -12,8 +12,7 @@ class LoptaUUstima: public QGraphicsObject{
         Q_OBJECT
 public:
     LoptaUUstima(int x, int y, int precnik, QPointF p);
-    // Seter za a i b
-    void postaviAB(double a, double b);
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
     void setBoja(int indeks);
@@ -23,10 +22,10 @@ public slots:
     void move();
 private:
     // Privatne promenljive za pomeranje lopte
-    double a, b;
     qreal size=50;
     QPixmap boja;
-
+    int x;
+    int y;
 
 };
 

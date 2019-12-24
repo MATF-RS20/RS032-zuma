@@ -5,23 +5,22 @@
 #include <iterator>
 #include <QDebug>
 #include "CrnaRupa.h"
-#include <QDir>
 // Stari konstruktor
 
-Lopta::Lopta(QGraphicsItem *parent)
-: QGraphicsObject(parent)
-{
-   // Q_UNUSED(parent);
-    setPos(500,100); // pocetna tacka nase lopte
-    tacke << QPointF(0,0);
-    setTransformOriginPoint(25, 25);
-    index = 0;
-    krajnja = tacke[0];
-    rotateToPoint(krajnja);
-    QTimer * timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(200);
-}
+//Lopta::Lopta(QGraphicsItem *parent)
+//: QGraphicsObject(parent)
+//{
+//   // Q_UNUSED(parent);
+//    setPos(500,100); // pocetna tacka nase lopte
+//    tacke << QPointF(0,0);
+//    setTransformOriginPoint(25, 25);
+//    index = 0;
+//    krajnja = tacke[0];
+//    rotateToPoint(krajnja);
+//    QTimer * timer = new QTimer(this);
+//    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
+//    timer->start(200);
+//}
 // Novi konstruktor, sa ovim kazem da svaka lopta ima svojstvo kretanja i ima listu tacaka kuda da se krece
 Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
 : QGraphicsObject(parent)

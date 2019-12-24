@@ -25,7 +25,7 @@ Game::Game(QWidget *parent)
     putanja = new Putanja(this->precnik, 10);
     scene->addItem(putanja);
 
-    zabica = new Zabica(200, 250, 120, 120, this->precnik);
+    zabica = new Zabica(200, 250, 120, this->precnik);
     zabica->setFlag(QGraphicsItem::ItemIsFocusable);
     zabica->setFocus();
     scene->addItem(zabica);

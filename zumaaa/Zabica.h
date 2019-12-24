@@ -13,9 +13,10 @@ class Zabica : public QGraphicsObject {
     Q_OBJECT
 public:
 //void mouseMoveEvent(QMouseEvent * event);
-    Zabica(int x, int y, int height, int weight, int precnik, QGraphicsItem *parent = 0);
-//    int x, y;
-
+    Zabica(int x, int y, int size, int precnik, QGraphicsItem *parent = 0);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void promeni_boju();
+    QRectF boundingRect() const override;
 public slots:
     void rotiraj(QMouseEvent*);
     void klik(QMouseEvent*);
@@ -25,18 +26,14 @@ signals:
     void Mouse_Pos();
     void Mouse_Left();
 private:
+    int x;
+    int y;
+    int size;
     int precnik;
     QPointF centar;
     QPixmap boja;
-    qreal size=200;
     int index = 0;
     //LoptaUUstima* lopta;
-public:
-    int x;
-    int y;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void promeni_boju();
-    QRectF boundingRect() const override;
 
 };
 

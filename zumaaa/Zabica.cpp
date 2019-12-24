@@ -21,13 +21,12 @@ extern QGraphicsScene * scene;
 //extern Game * game;
 
 
-Zabica::Zabica(int x, int y, int height, int weight, int precnik, QGraphicsItem *parent)
-:QGraphicsObject(parent)
-,precnik(precnik)
-,centar(QPointF(x + height/2, y + weight/2))
-,x(x)
+Zabica::Zabica(int x, int y, int size, int precnik, QGraphicsItem *parent)
+:x(x)
 ,y(y)
-,size(height)
+,size(size)
+,precnik(precnik)
+,centar(QPointF(x + size/2, y + size/2))
 //,lopta(new LoptaUUstima(x + height/2-precnik/2, y+weight/2-precnik/2, 25, pos()))
 {
     Q_UNUSED(parent);
@@ -39,6 +38,8 @@ Zabica::Zabica(int x, int y, int height, int weight, int precnik, QGraphicsItem 
 
 void Zabica:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
     painter->drawPixmap(x, y, size, size, boja);
 }
 
