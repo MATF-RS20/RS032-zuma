@@ -13,6 +13,7 @@ Game::Game(QWidget *parent)
     Q_UNUSED(parent);
 
     QGraphicsScene * scene = new QGraphicsScene();
+    scene->setBackgroundBrush(QBrush(QPixmap(":/images/level1").scaledToHeight(600)));
 
     scene->setSceneRect(0, 0, 800, 600);
     setScene(scene);
@@ -25,13 +26,13 @@ Game::Game(QWidget *parent)
     putanja = new Putanja(this->precnik, 10);
     scene->addItem(putanja);
 
-    zabica = new Zabica(200, 250, 120, this->precnik);
+    zabica = new Zabica(350, 300, 120, this->precnik);
     zabica->setFlag(QGraphicsItem::ItemIsFocusable);
     zabica->setFocus();
     scene->addItem(zabica);
 
     // CrnaRupa(x, y, visina, sirina)
-    crna_rupa = new CrnaRupa(200, 390, 70, 70);
+    crna_rupa = new CrnaRupa(110, 250, 70, 70);
     scene->addItem(crna_rupa);
 
     // Postavljanje Score

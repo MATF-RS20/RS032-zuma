@@ -396,6 +396,7 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 		/usr/lib/qt5/bin/rcc \
 		../zumaaa/images/roze.png \
 		../zumaaa/images/plava.png \
+		../zumaaa/images/square.jpg \
 		../zumaaa/images/zelena.png \
 		../zumaaa/images/ljubicasta.png \
 		../zumaaa/images/zabica_ljubicasta.png \

@@ -8,5 +8,6 @@
         <file>images/zabica_plava.png</file>
         <file>images/zabica_roze.png</file>
         <file>images/zabica_zelena.png</file>
+        <file alias="level1">images/square.jpg</file>
     </qresource>
 </RCC>

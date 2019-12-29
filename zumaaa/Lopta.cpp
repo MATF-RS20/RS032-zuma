@@ -49,7 +49,7 @@ Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
     ///TODO: timer da bude privatna promenljiva, tako da mozemo da kazemo lopta->timer->stop()
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(200);
+    timer->start(50);
 }
 // funkcija rotacije ka ciljnoj tacki
 void Lopta::rotateToPoint(QPointF p)

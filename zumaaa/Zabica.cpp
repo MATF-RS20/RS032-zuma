@@ -98,6 +98,9 @@ void Zabica::klik(QMouseEvent * event)
         timer->start(50);
 
         promeni_boju();
+
+        //isipisujem tacku gde sam kliknuo
+        qInfo() << p;
     }
 }
 

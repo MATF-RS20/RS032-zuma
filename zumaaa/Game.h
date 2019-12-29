@@ -22,7 +22,7 @@ public:
     Putanja * putanja;
     Lopta * lopta;
     CrnaRupa * crna_rupa;
-    int precnik = 50;
+    int precnik = 35;
 
 
 signals:
