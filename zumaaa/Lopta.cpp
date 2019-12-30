@@ -40,7 +40,7 @@ Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
     //size = 50; // velicina je je precnik ili u nasem slucaju visina = sirina = precnik
     //boja = QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
     // inicijalizujemo da se sve transformacije odnose na centar lopte
-    setTransformOriginPoint(25, 25);
+    setTransformOriginPoint(precnik/2, precnik/2);
 
     // rotiramo da se krecemo ka prvoj tacki
     // trenutnu destinaciju, kao ciljnaTacka
