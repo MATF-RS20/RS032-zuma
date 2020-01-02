@@ -28,10 +28,14 @@ public slots:
     void move_back(QPointF tacka);
 private:
     QList<QPointF> tacke;
+    QTimer * timer;
     QPointF krajnja;
     QPixmap boja;
     int index; //indeks tacke u listi ka kojoj trenutno idemo
+    int index_u_nizu;
     double size;
+    char smer='v';
+    char orij;
     void generisi_boju();
     int korak=2;
     int id1=1;

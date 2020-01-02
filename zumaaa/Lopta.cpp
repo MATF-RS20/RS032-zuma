@@ -47,7 +47,7 @@ Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
     rotateToPoint(krajnja);
     // dodat timer
     ///TODO: timer da bude privatna promenljiva, tako da mozemo da kazemo lopta->timer->stop()
-    QTimer * timer = new QTimer(this);
+    timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(50);
 }
@@ -93,19 +93,51 @@ void Lopta::move()
         krajnja=tacke[index];
         rotateToPoint(krajnja);
     }
+
     // krecemo se za broj koraka u odnosu na trenutnu rotaciju
 
     double theta = rotation();
     double dy = korak * qSin(qDegreesToRadians(theta));
     double dx = korak * qCos(qDegreesToRadians(theta));
+
+    if(abs(x()-krajnja.x())<=size/2){
+        smer = 'v';
+        if(krajnja.y()-y()>=0)
+            orij='d';
+        else
+            orij='g';
+    }
+    if(abs(y()-krajnja.y())<=size/2){
+        smer='h';
+        if(x()-krajnja.x()>=0)
+            orij='l';
+        else
+            orij='d';
+    }
     setPos(x()+id1*dx, y()+id2*dy);
 }
 
 void Lopta::move_back(QPointF tacka)
 {
-    qDebug()<<"sad mi je id -1"<<tacka;
-    tacka.x() > this->x() ? id1= -1 : 1;
-    tacka.y() > this->y() ? id2= -1 : 1;
+    qDebug()<<"smer je"<<smer<<orij<<tacka;
+
+    if(smer=='h'){
+
+        if(tacka.x()-x()<=0 && orij=='l'){
+            timer->stop();
+         }else if(tacka.x()-x()>=0 && orij=='d'){
+            timer->stop();
+          }
+    }else if(smer=='v'){
+        if(tacka.x()-x()<=0 && orij=='g'){
+            timer->stop();
+         }else if(tacka.x()-x()>=0 && orij=='d'){
+            timer->stop();
+          }
+    }
+
+    //tacka.x() > this->x() ? id1= -1 : 1;
+    //tacka.y() > this->y() ? id2= -1 : 1;
 
 }
 

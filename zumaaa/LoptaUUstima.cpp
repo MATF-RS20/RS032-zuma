@@ -44,7 +44,6 @@ void LoptaUUstima::move()
     foreach(auto &x ,colliding_items){
         if(typeid(*x)==typeid(Lopta)){
             emit sudar(x->pos());
-            //connect(this, SIGNAL(sudar(QPointF)), game->putanja , SLOT((&dodaj_loptu(QPointF))));
             korak=0;
             //delete this;
             //return;
