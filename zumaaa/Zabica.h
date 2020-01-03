@@ -32,8 +32,10 @@ private:
     int precnik;
     QPointF centar;
     QPixmap boja;
-    int index = 0;
     //LoptaUUstima* lopta;
+
+public:
+   int indexBoje = 0;
 
 };
 

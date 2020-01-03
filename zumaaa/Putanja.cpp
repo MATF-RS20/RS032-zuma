@@ -48,4 +48,26 @@ void Putanja::dodaj_loptu(QPointF tacka)
         emit pomeri_se(tacka);
     }
     timer = new QTimer(this);
+
+
+}
+//ubrzavanje loptica kada treba da ulete u rupu
+void Putanja:: ubrzaj(int k)
+{
+    foreach(auto lopta, lopte)
+    {
+        lopta->setKrak(k);
+    }
+}
+
+void Putanja:: zaustaviLopte()
+{
+    foreach(auto lopta, lopte)
+        lopta->setKrak(0);
+}
+
+
+int Putanja:: getIndeksLopte(Lopta* lopta)
+{
+    return lopte.indexOf(lopta);
 }

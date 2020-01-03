@@ -141,7 +141,7 @@ void *Zabica::qt_metacast(const char *_clname)
     if (!strcmp(_clname, qt_meta_stringdata_Zabica.stringdata0))
         return static_cast<void*>(this);
     if (!strcmp(_clname, "QGraphicsRectItem"))
-        return static_cast< QGraphicsRectItem*>(this);
+        return static_cast< QGraphicsItem*>(this);
     return QObject::qt_metacast(_clname);
 }
 

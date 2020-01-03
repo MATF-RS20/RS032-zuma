@@ -22,6 +22,8 @@ public:
     ~Lopta() override = default;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
+    //seter za korak kao bi mogle da se ubrzaju loptice
+    void setKrak(int k);
 
 public slots:
     void move();
@@ -40,6 +42,11 @@ private:
     int korak=2;
     int id1=1;
     int id2=1;
+public:
+    //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
+
+    int indexBoje=0;
+
 
 };
 

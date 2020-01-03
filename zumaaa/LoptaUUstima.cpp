@@ -7,8 +7,8 @@
 #include <QMouseEvent>
 #include <QtMath>
 #include <QDebug>
-//#include "Game.h"
 #include "Putanja.h"
+#include "Lopta.h"
 
 extern Game * game ; //jer u game imamo nas skor i hocemo da mu pristupimo i menjamo
 
@@ -38,11 +38,26 @@ void LoptaUUstima::move()
 
     int korak=10;
     QList<QGraphicsItem *> colliding_items= collidingItems();
-//    int n = colliding_items.size();
+    //int n = colliding_items.size();
    // qDebug() <<n;
+
 
     foreach(auto &x ,colliding_items){
         if(typeid(*x)==typeid(Lopta)){
+            //zaustavlja lopte kada pogodi neku od njih kako bi mogao da da pomeri levi deo loptica napred i ubaci loptu koja je ispaljena
+            //game->putanja->zaustaviLopte();
+
+            //trebalo bi da vrati indeks lopte koju je pogodio ali vraca vide rezultata, kao za boje
+            //Lopta* lopta = static_cast<Lopta*>(x);
+            //qDebug()<<game->putanja->getIndeksLopte(lopta);
+
+            //proverava da li su iste bojelpti koje su se sudarile
+            //ali iz nekog razloga vraca vise rezultata za jednu loptu
+            /*if(indexBoje==static_cast<Lopta*>(x)->indexBoje)
+                qDebug()<<"iste su boje";
+            else if(indexBoje!=static_cast<Lopta*>(x)->indexBoje)
+                qDebug()<<"nisu iste boje";*/
+
             emit sudar(x->pos());
             korak=0;
             //delete this;
@@ -117,4 +132,5 @@ void LoptaUUstima :: setBoja(int indeks)
     niz_slika[2]=QPixmap(":/images/zelena.png");
     niz_slika[3]=QPixmap(":/images/ljubicasta.png");
     boja= niz_slika[indeks];
+    indexBoje=indeks;
 }

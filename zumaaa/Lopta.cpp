@@ -6,6 +6,10 @@
 #include <QDebug>
 #include "CrnaRupa.h"
 // Stari konstruktor
+#include "Putanja.h"
+#include "Game.h"
+
+extern Game * game;
 
 //Lopta::Lopta(QGraphicsItem *parent)
 //: QGraphicsObject(parent)
@@ -63,6 +67,10 @@ void Lopta::kolizija_crna_rupa()
     QList<QGraphicsItem *> items = collidingItems(); // kako da proverim da li je unutar a ne samo presek?
     for(int i = 0; i < items.size(); ++i) {
         if(typeid(*(items[i])) == typeid(CrnaRupa)) {
+
+            //smanjujemo broj zivota za svaku lopticu kojs udje u rupu
+            game->zivot->decrease();
+
             if(size > 35) { // vrednosti 35 i 50 zavise od velicine lopte i crne rupe. Mozda neki metod za to?
                 setScale(size/50); /// TODO pored scale mozda neki kontrast, da izgleda sve tamnije kako sve vise upada
                 size -= 1;
@@ -119,6 +127,7 @@ void Lopta::move()
 
 void Lopta::move_back(QPointF tacka)
 {
+
     qDebug()<<"smer je"<<smer<<orij<<tacka;
 
     if(smer=='h'){
@@ -138,6 +147,7 @@ void Lopta::move_back(QPointF tacka)
 
     //tacka.x() > this->x() ? id1= -1 : 1;
     //tacka.y() > this->y() ? id2= -1 : 1;
+
 
 }
 
@@ -159,6 +169,8 @@ void Lopta::generisi_boju()
     niz_slika[1]=QPixmap(":/images/plava.png");
     niz_slika[2]=QPixmap(":/images/zelena.png");
     niz_slika[3]=QPixmap(":/images/ljubicasta.png");
-    int indeks = rand() % 4;
-    boja=niz_slika[indeks];
+    indexBoje = rand() % 4;
+    boja=niz_slika[indexBoje];
 }
+
+void Lopta:: setKrak(int k){ korak=k; }

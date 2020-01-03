@@ -17,6 +17,11 @@ public:
     Putanja(int precnik, int brojLopti, QGraphicsItem *parent=0);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+    void ubrzaj(int k);
+    void zaustaviLopte();
+    int getIndeksLopte(Lopta* lopta);
+
+
 signals:
     void pomeri_se(QPointF);
 public slots:
@@ -30,5 +35,7 @@ private:
     int maxSize;
     int precnik;
 };
+
+
 
 #endif // PUTANJA_H

@@ -1,5 +1,8 @@
 #include "Zivot.h"
 #include <QFont>
+#include "Game.h"
+
+extern Game* game;
 
 //ovo znaci da je QGraphicsTextItem bazicna klasa za nasu klasu score, nad njom se gradi, ona i dodeli roditelja ako prosledimo
 Zivot::Zivot(QGraphicsItem *parent): QGraphicsTextItem(parent){
@@ -13,13 +16,18 @@ Zivot::Zivot(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
 void Zivot::increase()
 {
-    zivot++;   //i ovo treba izmeniti da u zavisnosti od broj aloptica i ulancanih kolizija daje veci skor
+    zivot++;  //igrac dobija novi zivot ako se njegov skor dovoljno uvecao
     setPlainText(QString("Zivot: ")+QString::number(zivot));
 
 }
 void Zivot::decrease()
 {
-    zivot--;   //i ovo treba izmeniti da u zavisnosti od broj aloptica i ulancanih kolizija daje veci skor
+    zivot--;
+    if(zivot==0)
+        game->putanja->ubrzaj(15);
+    //prekinuti igru, npr postaviti da loptice ulete brzo u rupu
+    //mogao bi npr da se smannji zivot za svaku lopticu koja upadne u rupu
+
     setPlainText(QString("Zivot: ")+QString::number(zivot));
 
 }

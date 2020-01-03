@@ -10,7 +10,10 @@ public:
     void increase();
     int getScore();
 private:
-    int score;
+    int score; //ukupan score korisnika
+    int scoreIncrease =0; //za koliko uvecavamo scorekada ga uvecavamo
+    int newScore=0; //pomocni score za uvecavanje broja zivota
+    int newLifeScore=0; //koliki treba da bude score da bi korisnik dobio novi zivot
 };
 
 #endif // SCORE_H

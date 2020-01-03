@@ -18,7 +18,8 @@
 
 
 extern QGraphicsScene * scene;
-//extern Game * game;
+extern Game * game;
+
 
 
 Zabica::Zabica(int x, int y, int size, int precnik, QGraphicsItem *parent)
@@ -40,12 +41,12 @@ void Zabica:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    painter->drawPixmap(x, y, size, size, boja);
+    painter->drawPixmap(x, y, size, size-15, boja);
 }
 
 QRectF Zabica::boundingRect() const
 {
-    return QRectF(x, y, size, size);
+    return QRectF(x, y, size, size-15);
 }
 
 void Zabica::promeni_boju(){
@@ -56,8 +57,8 @@ void Zabica::promeni_boju(){
     niz_slika[1]=QPixmap(":/images/images/zabica_plava.png");
     niz_slika[2]=QPixmap(":/images/images/zabica_zelena.png");
     niz_slika[3]=QPixmap(":/images/images/zabica_ljubicasta.png");
-    index = rand() % 4;
-    boja= niz_slika[index];
+    indexBoje = rand() % 4;
+    boja= niz_slika[indexBoje];
     update(this->boundingRect());
 }
 
@@ -75,6 +76,7 @@ void Zabica::klik(QMouseEvent * event)
     if(event->buttons() & Qt::RightButton){
         promeni_boju();
         qDebug()<<"Promenio sam boju lopte";
+
         //auto x_ = centar.x() - precnik/2;
         //auto y_ = centar.y() - precnik/2;
         //lopta= new LoptaUUstima(centar.x(), centar.y(), precnik, pos());
@@ -91,7 +93,8 @@ void Zabica::klik(QMouseEvent * event)
         // oduzimam precnik/2 da ne bi postavio gornji levi ugao u centar zabice
 
         LoptaUUstima* lopta2= new LoptaUUstima(x_,y_, precnik, p);
-        lopta2->setBoja(index);
+        lopta2->setBoja(indexBoje);
+
         QTimer* timer = new QTimer(this);
         scene()->addItem(lopta2);
         QObject::connect(timer, SIGNAL(timeout()), lopta2, SLOT(move()));
