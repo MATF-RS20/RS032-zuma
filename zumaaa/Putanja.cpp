@@ -98,8 +98,10 @@ Lopta* Putanja::susedne(Lopta *lopta)
     int broj_obrisanih=indeksi.size();
     qDebug()<<indeks_posle_poslednje;
 
-    if(broj_obrisanih<2)
+    if(broj_obrisanih<2) {
+        indeksi.clear();
         return lopta;
+    }
 
    /* auto pocetak = lopte.mid(0, indeks_prve);
     auto kraj = lopte.mid(indeks_posle_poslednje);
@@ -113,6 +115,8 @@ Lopta* Putanja::susedne(Lopta *lopta)
 
      foreach(auto &j, indeksi)
         delete lopte[j];
+
+     indeksi.clear();
 
  /*   foreach(auto &j, indeksi){
         if(j+broj_obrisanih>=n){

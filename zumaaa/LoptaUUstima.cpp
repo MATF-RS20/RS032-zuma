@@ -101,7 +101,6 @@ void LoptaUUstima::move()
     if(pos().y() > game->rect().height() - game->zabica->boundingRect().y()){
         scene()->removeItem(this);
         delete this;
-        qDebug() << "izbrisan";
     }
     else if(pos().x() > game->rect().width() - game->zabica->boundingRect().x()){
         scene() -> removeItem(this);
@@ -136,6 +135,6 @@ void LoptaUUstima :: setBoja(int indeks)
     niz_slika[1]=QPixmap(":/images/plava.png");
    // niz_slika[2]=QPixmap(":/images/zelena.png");
    // niz_slika[3]=QPixmap(":/images/ljubicasta.png");
-    boja= niz_slika[indeks];
+    boja= niz_slika[indeks%2]; /// TODO skoliniti %2 kada se vrati na staro prikazivanje svih boja
     indexBoje=indeks;
 }
