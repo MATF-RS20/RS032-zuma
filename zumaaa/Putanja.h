@@ -20,8 +20,8 @@ public:
     void ubrzaj(int k);
     void zaustaviLopte();
     int getIndeksLopte(Lopta* lopta);
-
-
+    QVector<int> indeksi;
+    Lopta* susedne(Lopta * lopta);
 signals:
     void pomeri_se(QPointF);
 public slots:
@@ -30,7 +30,7 @@ public slots:
 private:
     QList<QPointF> tacke;
     QPointF krajnja;
-    QList<Lopta*> lopte;
+    QVector<Lopta*> lopte;
     QTimer *timer;
     int maxSize;
     int precnik;

@@ -38,11 +38,13 @@ void LoptaUUstima::move()
 
     int korak=10;
     QList<QGraphicsItem *> colliding_items= collidingItems();
-    //int n = colliding_items.size();
+    int n = colliding_items.size();
    // qDebug() <<n;
 
 
     foreach(auto &x ,colliding_items){
+
+        //ovde ima greska, tj pukne program kad udari u dve umesto samo u jednu, vrv jer nesto obrise, pa posle hocemo da pristupimo
         if(typeid(*x)==typeid(Lopta)){
             //zaustavlja lopte kada pogodi neku od njih kako bi mogao da da pomeri levi deo loptica napred i ubaci loptu koja je ispaljena
             //game->putanja->zaustaviLopte();
@@ -51,12 +53,15 @@ void LoptaUUstima::move()
             //Lopta* lopta = static_cast<Lopta*>(x);
             //qDebug()<<game->putanja->getIndeksLopte(lopta);
 
-            //proverava da li su iste bojelpti koje su se sudarile
-            //ali iz nekog razloga vraca vise rezultata za jednu loptu
-            /*if(indexBoje==static_cast<Lopta*>(x)->indexBoje)
+            if(indexBoje==static_cast<Lopta*>(x)->indexBoje){
                 qDebug()<<"iste su boje";
+                Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
+                //delete x;
+                delete this;
+                continue;
+            }
             else if(indexBoje!=static_cast<Lopta*>(x)->indexBoje)
-                qDebug()<<"nisu iste boje";*/
+                qDebug()<<"nisu iste boje";
 
             emit sudar(x->pos());
             korak=0;
@@ -129,8 +134,8 @@ void LoptaUUstima :: setBoja(int indeks)
     niz_slika.resize(4);
     niz_slika[0]=QPixmap(":/images/roze.png");
     niz_slika[1]=QPixmap(":/images/plava.png");
-    niz_slika[2]=QPixmap(":/images/zelena.png");
-    niz_slika[3]=QPixmap(":/images/ljubicasta.png");
+   // niz_slika[2]=QPixmap(":/images/zelena.png");
+   // niz_slika[3]=QPixmap(":/images/ljubicasta.png");
     boja= niz_slika[indeks];
     indexBoje=indeks;
 }

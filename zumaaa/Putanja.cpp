@@ -1,6 +1,7 @@
 #include "Putanja.h"
 #include <QGraphicsScene>
 #include <QDebug>
+#include <algorithm>
 extern QGraphicsScene *scene;
 
 Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
@@ -44,7 +45,7 @@ void Putanja::dodaj_loptu(QPointF tacka)
 {
     //qDebug()<<tacka;
     foreach (auto x, lopte) {
-        qDebug()<<(x)->pos();
+        //qDebug()<<(x)->pos();
         emit pomeri_se(tacka);
     }
     timer = new QTimer(this);
@@ -70,4 +71,68 @@ void Putanja:: zaustaviLopte()
 int Putanja:: getIndeksLopte(Lopta* lopta)
 {
     return lopte.indexOf(lopta);
+}
+
+Lopta* Putanja::susedne(Lopta *lopta)
+{
+    int n=lopte.size();
+    int indeks = lopte.indexOf(lopta);
+    qDebug()<<indeks;
+    int i=indeks;
+    Lopta* poslednja;
+
+    while(i>=0 && lopte[indeks]->indexBoje==lopte[i]->indexBoje){
+        indeksi.append(i);
+        i--;
+    }
+    i=indeks+1;
+    while(i<n && lopte[indeks]->indexBoje==lopte[i]->indexBoje){
+        indeksi.append(i);
+        i++;
+    }
+    qDebug()<<indeksi;
+    int indeks_prve=(*std::min_element(indeksi.begin(), indeksi.end()));
+    int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()))+1;
+    //vracamo se ka onoj koja je najdalja u nizu, tj onoj koja ima najveci indeks
+    poslednja=lopte[indeks_posle_poslednje];
+    int broj_obrisanih=indeksi.size();
+    qDebug()<<indeks_posle_poslednje;
+
+    if(broj_obrisanih<2)
+        return lopta;
+
+   /* auto pocetak = lopte.mid(0, indeks_prve);
+    auto kraj = lopte.mid(indeks_posle_poslednje);
+    qDebug()<<pocetak;
+    qDebug()<<kraj;
+    lopte.erase(lopte.begin(), lopte.end());
+    lopte.reserve(pocetak.size()+kraj.size());
+    lopte.insert(lopte.end(), pocetak.begin(), pocetak.end());
+    lopte.insert(lopte.end(), kraj.begin(), kraj.end());*/
+
+
+     foreach(auto &j, indeksi)
+        delete lopte[j];
+
+ /*   foreach(auto &j, indeksi){
+        if(j+broj_obrisanih>=n){
+            delete lopte[j];
+        }
+        lopte.move(j, j+broj_obrisanih);
+    }
+    for(int j =n-indeks_prve; j<=n; j++)
+        delete lopte[j];*/
+
+    //lopte.delete(lopte.end()-broj_obrisanih, lopte.end());
+
+    //  qDebug()<<lopte;
+   //  for(int j=indeks_prve; j<lopte.size(); j++){
+     //   lopte.replace(j, lopte[j+broj_obrisanih]);
+     //}
+    // vector<Lopta*>::const_iterator first = lopte.begin()+indeks_posle_poslednje;
+    // vector<Lopta*>::const_iterator last = lopte.end();
+    //lopte.reserve(n-broj_obrisanih);
+
+    return poslednja;
+
 }

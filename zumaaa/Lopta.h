@@ -11,11 +11,14 @@
 #include <QVector>
 #include <QGraphicsObject>
 
+//struktura za reverse????
+
 class Lopta: public QGraphicsObject{
     Q_OBJECT
 public:
     Lopta(QGraphicsItem * parent=0);
     Lopta(int precnik, QList<QPointF> tacke, QGraphicsItem * parent=0);
+    Lopta(const Lopta &l2);
     void rotateToPoint(QPointF p);
     void postaviTacke(QList<QPointF> ps);
     void kolizija_crna_rupa();
@@ -24,7 +27,13 @@ public:
     QRectF boundingRect() const override;
     //seter za korak kao bi mogle da se ubrzaju loptice
     void setKrak(int k);
-
+    bool ideUnatrag,pocetniStop,doUdara; //indikatori koji odredjuju kretanje
+    float ostaloVremena=0;
+    float ostaloDuzine=0;
+    void setIndex(int novi_indeks);
+    void setReverse();
+    void setReverse(float distance);
+    bool poredi(const Lopta *other);
 public slots:
     void move();
     void move_back(QPointF tacka);
@@ -44,7 +53,6 @@ private:
     int id2=1;
 public:
     //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
-
     int indexBoje=0;
 
 

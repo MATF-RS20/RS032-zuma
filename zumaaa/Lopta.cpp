@@ -29,6 +29,9 @@ extern Game * game;
 Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
 : QGraphicsObject(parent)
 ,size(precnik)
+,ideUnatrag(false)
+,pocetniStop(false)
+,doUdara(false)
 {
     //Q_UNUSED(parent);
     generisi_boju();
@@ -55,6 +58,15 @@ Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(50);
 }
+/*
+Lopta::Lopta(const Lopta &l2)
+{
+    size=l2.size;
+    tacke=l2.tacke;
+    index=l2.index;
+    krajnja=l2.krajnja;
+    setPos(l2.pos());
+}*/
 // funkcija rotacije ka ciljnoj tacki
 void Lopta::rotateToPoint(QPointF p)
 {
@@ -90,7 +102,11 @@ void Lopta::move()
     //ako smo blizu jedne tacke (5px), prelazimo na narednu
     QLineF ln(pos(), krajnja);
     if(ln.length()<5){
-        index++;
+
+        if(!ideUnatrag)  //ako idemo unatrag, vracammo se na prethodnu ciljnu tacku
+            index++;
+        else
+            index--;
         // ako vise nemamo tacaka stajemo
         // S obzirom da je crna rupa na kraju putanje, tj na kraju indeksa tacaka
         // i mi unistavamo loptu kad dodje do crne rupe ova provera nam vise ne treba :)
@@ -128,12 +144,12 @@ void Lopta::move()
 void Lopta::move_back(QPointF tacka)
 {
 
-    qDebug()<<"smer je"<<smer<<orij<<tacka;
+    //qDebug()<<"smer je"<<smer<<orij<<indexBoje<<tacka;
 
     if(smer=='h'){
 
         if(tacka.x()-x()<=0 && orij=='l'){
-            timer->stop();
+            ideUnatrag=true;
          }else if(tacka.x()-x()>=0 && orij=='d'){
             timer->stop();
           }
@@ -167,10 +183,39 @@ void Lopta::generisi_boju()
     niz_slika.resize(4);
     niz_slika[0]=QPixmap(":/images/roze.png");
     niz_slika[1]=QPixmap(":/images/plava.png");
-    niz_slika[2]=QPixmap(":/images/zelena.png");
-    niz_slika[3]=QPixmap(":/images/ljubicasta.png");
-    indexBoje = rand() % 4;
+   // niz_slika[2]=QPixmap(":/images/zelena.png");
+  //  niz_slika[3]=QPixmap(":/images/ljubicasta.png");
+    indexBoje = rand() % 2;
     boja=niz_slika[indexBoje];
 }
 
 void Lopta:: setKrak(int k){ korak=k; }
+
+//nisam jos sigurna dal ce nam trebati ovaj metod..
+void Lopta::setIndex(int novi_indeks)
+{
+    index_u_nizu=novi_indeks;
+}
+
+void Lopta::setReverse()
+{
+    ideUnatrag=true;
+    doUdara=true;
+    pocetniStop=true;
+    ostaloVremena=500; //u milisendama hocu
+    ostaloDuzine=0;
+}
+void Lopta::setReverse(float distance)  ///preko rastojanja do prethodne lopte vidimo koliko ce dugo da ide unatrag
+{
+    ideUnatrag=true;
+    doUdara=true;
+    pocetniStop=true;
+    ostaloVremena=0; //u milisendama hocu
+    ostaloDuzine=distance;
+}
+
+bool Lopta::poredi(const Lopta *other)
+{
+    if(this->indexBoje==other->indexBoje)
+        return true;
+}
