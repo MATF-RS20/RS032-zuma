@@ -26,7 +26,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
     //seter za korak kao bi mogle da se ubrzaju loptice
-    void setKrak(int k);
+    void setKorak(int k);
     bool ideUnatrag,pocetniStop,doUdara; //indikatori koji odredjuju kretanje
     float ostaloVremena=0;
     float ostaloDuzine=0;
@@ -34,6 +34,8 @@ public:
     void setReverse();
     void setReverse(float distance);
     bool poredi(const Lopta *other);
+
+
 public slots:
     void move();
     void move_back(QPointF tacka);

@@ -23,6 +23,7 @@ public:
     QVector<int> indeksi;
     Lopta* susedne(Lopta * lopta);
     void resetuj_kolizije_lopti();
+    void unisti_loptu(Lopta*lopta);
 signals:
     void pomeri_se(QPointF);
 public slots:

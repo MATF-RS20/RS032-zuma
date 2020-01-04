@@ -18,6 +18,8 @@ void Zivot::increase()
 {
     zivot++;  //igrac dobija novi zivot ako se njegov skor dovoljno uvecao
     setPlainText(QString("Zivot: ")+QString::number(zivot));
+    setDefaultTextColor(Qt::red);
+    setFont(QFont("times", 16));
 
 }
 void Zivot::decrease()

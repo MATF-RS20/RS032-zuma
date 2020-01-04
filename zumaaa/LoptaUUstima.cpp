@@ -61,6 +61,7 @@ void LoptaUUstima::move()
                 qDebug()<<"iste su boje";
                 Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
                 //delete x;
+                game->score->increase();
                 delete this;
                 continue;
             }

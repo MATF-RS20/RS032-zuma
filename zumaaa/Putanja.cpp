@@ -3,8 +3,10 @@
 #include <QDebug>
 #include <algorithm>
 #include <QFile>
+#include "Game.h"
 
 extern QGraphicsScene *scene;
+extern Game* game;
 
 Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
     : QGraphicsObject(parent)
@@ -75,14 +77,14 @@ void Putanja:: ubrzaj(int k)
 {
     foreach(auto lopta, lopte)
     {
-        lopta->setKrak(k);
+        lopta->setKorak(k);
     }
 }
 
 void Putanja:: zaustaviLopte()
 {
     foreach(auto lopta, lopte)
-        lopta->setKrak(0);
+        lopta->setKorak(0);
 }
 
 
@@ -134,7 +136,7 @@ Lopta* Putanja::susedne(Lopta *lopta)
 
 
      foreach(auto &j, indeksi)
-        delete lopte[j];
+        unisti_loptu(lopte[j]);
 
      indeksi.clear();
 
@@ -165,4 +167,10 @@ void Putanja::resetuj_kolizije_lopti()
 {
     for(auto &l: lopte)
         static_cast<Lopta*>(l)->u_koliziji = false;
+}
+
+void Putanja:: unisti_loptu(Lopta* lopta )
+{
+    delete lopta;
+    game->score->increase();
 }

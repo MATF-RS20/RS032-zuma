@@ -189,7 +189,7 @@ void Lopta::generisi_boju()
     boja=niz_slika[indexBoje];
 }
 
-void Lopta:: setKrak(int k){ korak=k; }
+void Lopta:: setKorak(int k){ korak=k; }
 
 //nisam jos sigurna dal ce nam trebati ovaj metod..
 void Lopta::setIndex(int novi_indeks)
@@ -219,3 +219,6 @@ bool Lopta::poredi(const Lopta *other)
     if(this->indexBoje==other->indexBoje)
         return true;
 }
+
+
+

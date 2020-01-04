@@ -28,6 +28,9 @@ void Score::increase()
         newScore=0;
         game->zivot->increase();
     }
+    setPlainText(QString("Score: ")+QString::number(score));
+    setDefaultTextColor(Qt::blue);
+    setFont(QFont("times", 16));
 
 
 }
