@@ -2,6 +2,8 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <algorithm>
+#include <QFile>
+
 extern QGraphicsScene *scene;
 
 Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
@@ -10,7 +12,23 @@ Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
     , precnik(precnik)
 {
     //zadajemo listu tacaka
-    tacke << QPointF(800+precnik, 60) << QPointF(80, 60) << QPointF(55, 75) << QPointF(40, 90) << QPointF(55, 120) << QPointF(80, 130) << QPointF(700, 130) << QPointF(705, 500) << QPointF(690, 550) << QPointF(70, 550) << QPointF(45, 535) << QPointF(45, 205) << QPointF(55, 190) << QPointF(620, 190) << QPointF(625, 200) << QPointF(630, 490) << QPointF(125, 490) << QPointF(125, 260);
+//    tacke << QPointF(800+precnik, 60) << QPointF(80, 60) << QPointF(55, 75) << QPointF(40, 90) << QPointF(55, 120) << QPointF(80, 130) << QPointF(700, 130) << QPointF(705, 500) << QPointF(690, 550) << QPointF(70, 550) << QPointF(45, 535) << QPointF(45, 205) << QPointF(55, 190) << QPointF(620, 190) << QPointF(625, 200) << QPointF(630, 490) << QPointF(125, 490) << QPointF(125, 260);
+    // citamo tacke iz datoteke
+    QFile inputFile(":/images/images/level1.txt");
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       while (!in.atEnd())
+       {
+          QStringList koordinate = in.readLine().split(" ");
+
+          tacke << QPointF(koordinate[0].toInt(), koordinate[1].toInt());
+       }
+       inputFile.close();
+    }
+    else {
+        qDebug() << "Bad input file error!";
+    }
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(create()));

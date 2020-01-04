@@ -402,7 +402,8 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 		../zumaaa/images/zabica_ljubicasta.png \
 		../zumaaa/images/zabica_plava.png \
 		../zumaaa/images/zabica_zelena.png \
-		../zumaaa/images/zabica_roze.png
+		../zumaaa/images/zabica_roze.png \
+		../zumaaa/images/level1.txt
 	/usr/lib/qt5/bin/rcc -name images ../zumaaa/images.qrc -o qrc_images.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -498,7 +499,13 @@ Game.o: ../zumaaa/Game.cpp ../zumaaa/Game.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Game.o ../zumaaa/Game.cpp
 
 Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
-		../zumaaa/CrnaRupa.h
+		../zumaaa/CrnaRupa.h \
+		../zumaaa/Putanja.h \
+		../zumaaa/Game.h \
+		../zumaaa/Zabica.h \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		../zumaaa/Zivot.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Lopta.o ../zumaaa/Lopta.cpp
 
 LoptaUUstima.o: ../zumaaa/LoptaUUstima.cpp ../zumaaa/LoptaUUstima.h \
@@ -515,7 +522,14 @@ Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		../zumaaa/Lopta.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Putanja.o ../zumaaa/Putanja.cpp
 
-Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h
+Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h \
+		../zumaaa/Game.h \
+		../zumaaa/Zabica.h \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Zivot.h \
+		../zumaaa/Putanja.h \
+		../zumaaa/Lopta.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Score.o ../zumaaa/Score.cpp
 
 Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
@@ -528,7 +542,14 @@ Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
 		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Zabica.o ../zumaaa/Zabica.cpp
 
-Zivot.o: ../zumaaa/Zivot.cpp ../zumaaa/Zivot.h
+Zivot.o: ../zumaaa/Zivot.cpp ../zumaaa/Zivot.h \
+		../zumaaa/Game.h \
+		../zumaaa/Zabica.h \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		../zumaaa/Putanja.h \
+		../zumaaa/Lopta.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Zivot.o ../zumaaa/Zivot.cpp
 
 main.o: ../zumaaa/main.cpp ../zumaaa/mainwindow.h \
