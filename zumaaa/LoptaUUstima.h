@@ -16,6 +16,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
     void setBoja(int indeks);
+    ~LoptaUUstima();
 signals:
     void sudar(QPointF); //ispali ovaj signal kad kliknem, a ne kad se sudare..
 public slots:

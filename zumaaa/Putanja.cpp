@@ -94,6 +94,8 @@ Lopta* Putanja::susedne(Lopta *lopta)
     int indeks_prve=(*std::min_element(indeksi.begin(), indeksi.end()));
     int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()))+1;
     //vracamo se ka onoj koja je najdalja u nizu, tj onoj koja ima najveci indeks
+    if (indeks == *std::max_element(indeksi.begin(), indeksi.end()))
+        indeks_posle_poslednje = indeks;
     poslednja=lopte[indeks_posle_poslednje];
     int broj_obrisanih=indeksi.size();
     qDebug()<<indeks_posle_poslednje;
@@ -139,4 +141,10 @@ Lopta* Putanja::susedne(Lopta *lopta)
 
     return poslednja;
 
+}
+
+void Putanja::resetuj_kolizije_lopti()
+{
+    for(auto &l: lopte)
+        static_cast<Lopta*>(l)->u_koliziji = false;
 }

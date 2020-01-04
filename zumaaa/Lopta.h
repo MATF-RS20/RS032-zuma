@@ -54,7 +54,7 @@ private:
 public:
     //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
     int indexBoje=0;
-
+    bool u_koliziji = false;
 
 };
 

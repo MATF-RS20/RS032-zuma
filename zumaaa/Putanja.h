@@ -22,6 +22,7 @@ public:
     int getIndeksLopte(Lopta* lopta);
     QVector<int> indeksi;
     Lopta* susedne(Lopta * lopta);
+    void resetuj_kolizije_lopti();
 signals:
     void pomeri_se(QPointF);
 public slots:

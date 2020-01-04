@@ -92,6 +92,11 @@ void Zabica::klik(QMouseEvent * event)
         // x_ i y_ su koordinate koje postavljaju loptu u centar zabice
         // oduzimam precnik/2 da ne bi postavio gornji levi ugao u centar zabice
 
+        // dodat deo da se lopta crta iz usta u zavisnosti od rotacije
+        double theta = rotation();
+        y_ += precnik * qSin(qDegreesToRadians(theta+90));
+        x_ += precnik * qCos(qDegreesToRadians(theta+90));
+
         LoptaUUstima* lopta2= new LoptaUUstima(x_,y_, precnik, p);
         lopta2->setBoja(indexBoje);
 

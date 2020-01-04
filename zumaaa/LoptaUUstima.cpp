@@ -44,8 +44,12 @@ void LoptaUUstima::move()
 
     foreach(auto &x ,colliding_items){
 
+
         //ovde ima greska, tj pukne program kad udari u dve umesto samo u jednu, vrv jer nesto obrise, pa posle hocemo da pristupimo
         if(typeid(*x)==typeid(Lopta)){
+            if(static_cast<Lopta*>(x)->u_koliziji) break;
+
+            static_cast<Lopta*>(x)->u_koliziji = true;
             //zaustavlja lopte kada pogodi neku od njih kako bi mogao da da pomeri levi deo loptica napred i ubaci loptu koja je ispaljena
             //game->putanja->zaustaviLopte();
 
@@ -60,8 +64,10 @@ void LoptaUUstima::move()
                 delete this;
                 continue;
             }
-            else if(indexBoje!=static_cast<Lopta*>(x)->indexBoje)
+            else if(indexBoje!=static_cast<Lopta*>(x)->indexBoje) {
                 qDebug()<<"nisu iste boje";
+                delete this;
+            }
 
             emit sudar(x->pos());
             korak=0;
@@ -137,4 +143,9 @@ void LoptaUUstima :: setBoja(int indeks)
    // niz_slika[3]=QPixmap(":/images/ljubicasta.png");
     boja= niz_slika[indeks%2]; /// TODO skoliniti %2 kada se vrati na staro prikazivanje svih boja
     indexBoje=indeks;
+}
+
+LoptaUUstima::~LoptaUUstima()
+{
+    game->putanja->resetuj_kolizije_lopti();
 }
