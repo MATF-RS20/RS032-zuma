@@ -13,10 +13,24 @@
 //i uklonili sve
 extern Game * game;
 
-CrnaRupa::CrnaRupa(int x, int y, int height, int weight)
+CrnaRupa::CrnaRupa(int x, int y, int size)
+    : x(x), y(y), size(size)
 {
-    setRect(x,y,weight,height);
+//    setRect(x,y,weight,height);
 //    setRect(0, 0, 70, 70);
-//    setPos(200,290);
+    //    setPos(200,290);
+}
+
+void CrnaRupa::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+
+    QPixmap boja = QPixmap(":/images/crna_rupa");
+
+    painter->drawPixmap(x, y, size, size, boja);
+}
+
+QRectF CrnaRupa::boundingRect() const
+{
+    return QRectF(x, y, size, size);
 }
 

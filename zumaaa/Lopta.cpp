@@ -38,9 +38,8 @@ Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
     // inicijalizujemo tacke
     tacke = tacke_;
     index = 0;
-    ///TODO: posebna funkcija za postavljanje dimenzije i pozicije
-    /// mozda bi bilo dobro da je to neki konstruktor
-    //setRect(0, 0, precnik, precnik); // dimenzije lopte na 50x50               /////OVO MOZDA NE TREBA ZAKOMENTARISANO, ali ne moze zbog novog nasledjivanja
+    pocetna_dim = size;
+
     setPos(tacke[0]); // pocetna tacka nase lopte je prva tacka iz liste tacke
     index++;
     krajnja = tacke[index]; // ovim samo kazemo da je destinacija naredna tacka
@@ -83,8 +82,8 @@ void Lopta::kolizija_crna_rupa()
             //smanjujemo broj zivota za svaku lopticu kojs udje u rupu
             game->zivot->decrease();
 
-            if(size > 35) { // vrednosti 35 i 50 zavise od velicine lopte i crne rupe. Mozda neki metod za to?
-                setScale(size/50); /// TODO pored scale mozda neki kontrast, da izgleda sve tamnije kako sve vise upada
+            if(size > pocetna_dim/4) {
+                setScale(size/pocetna_dim); /// TODO pored scale mozda neki kontrast, da izgleda sve tamnije kako sve vise upada
                 size -= 1;
             }
             else {

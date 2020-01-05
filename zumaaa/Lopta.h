@@ -47,6 +47,7 @@ private:
     int index; //indeks tacke u listi ka kojoj trenutno idemo
     int index_u_nizu;
     double size;
+    double pocetna_dim;
     char smer='v';
     char orij;
     void generisi_boju();

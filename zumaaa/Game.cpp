@@ -32,7 +32,7 @@ Game::Game(QWidget *parent)
     scene->addItem(zabica);
 
     // CrnaRupa(x, y, visina, sirina)
-    crna_rupa = new CrnaRupa(110, 250, 70, 70);
+    crna_rupa = new CrnaRupa(85, 230, 120);
     scene->addItem(crna_rupa);
 
     // Postavljanje Score

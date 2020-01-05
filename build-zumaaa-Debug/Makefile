@@ -397,6 +397,7 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 		../zumaaa/images/roze.png \
 		../zumaaa/images/plava.png \
 		../zumaaa/images/square.jpg \
+		../zumaaa/images/crna_rupa.png \
 		../zumaaa/images/zelena.png \
 		../zumaaa/images/ljubicasta.png \
 		../zumaaa/images/zabica_ljubicasta.png \
@@ -519,7 +520,13 @@ LoptaUUstima.o: ../zumaaa/LoptaUUstima.cpp ../zumaaa/LoptaUUstima.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LoptaUUstima.o ../zumaaa/LoptaUUstima.cpp
 
 Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
-		../zumaaa/Lopta.h
+		../zumaaa/Lopta.h \
+		../zumaaa/Game.h \
+		../zumaaa/Zabica.h \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		../zumaaa/Zivot.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Putanja.o ../zumaaa/Putanja.cpp
 
 Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h \

@@ -26,7 +26,7 @@ void Zivot::decrease()
 {
     zivot--;
     if(zivot==0)
-        game->putanja->ubrzaj(15);
+        game->putanja->ubrzaj(5);
     //prekinuti igru, npr postaviti da loptice ulete brzo u rupu
     //mogao bi npr da se smannji zivot za svaku lopticu koja upadne u rupu
 

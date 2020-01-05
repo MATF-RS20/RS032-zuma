@@ -10,5 +10,6 @@
         <file>images/zabica_zelena.png</file>
         <file alias="level1">images/square.jpg</file>
         <file>images/level1.txt</file>
+        <file alias="crna_rupa">images/crna_rupa.png</file>
     </qresource>
 </RCC>
