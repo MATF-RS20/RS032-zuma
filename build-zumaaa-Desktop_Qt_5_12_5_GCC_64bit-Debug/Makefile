@@ -261,6 +261,7 @@ DIST          = /opt/Qt/5.12.5/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/qt_config.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/spec_post.prf \
+		../zumaaa/.qmake.stash \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/toolchain.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/default_pre.prf \
@@ -483,6 +484,7 @@ Makefile: ../zumaaa/zumaaa.pro /opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.con
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/qt_config.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/toolchain.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/default_pre.prf \
@@ -679,6 +681,7 @@ Makefile: ../zumaaa/zumaaa.pro /opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.con
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/qt_config.prf:
 /opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.conf:
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/exclusive_builds.prf:
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/toolchain.prf:
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/default_pre.prf:
@@ -750,12 +753,14 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 		../zumaaa/images/roze.png \
 		../zumaaa/images/plava.png \
 		../zumaaa/images/square.jpg \
+		../zumaaa/images/crna_rupa.png \
 		../zumaaa/images/zelena.png \
 		../zumaaa/images/ljubicasta.png \
 		../zumaaa/images/zabica_ljubicasta.png \
 		../zumaaa/images/zabica_plava.png \
 		../zumaaa/images/zabica_zelena.png \
-		../zumaaa/images/zabica_roze.png
+		../zumaaa/images/zabica_roze.png \
+		../zumaaa/images/level1.txt
 	/opt/Qt/5.12.5/gcc_64/bin/rcc -name images ../zumaaa/images.qrc -o qrc_images.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -2002,7 +2007,29 @@ Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/qmath.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QDebug \
 		../zumaaa/CrnaRupa.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../zumaaa/Putanja.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QLine \
+		../zumaaa/Game.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsScene \
+		../zumaaa/Zabica.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsTextItem \
+		../zumaaa/Zivot.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Lopta.o ../zumaaa/Lopta.cpp
 
 LoptaUUstima.o: ../zumaaa/LoptaUUstima.cpp ../zumaaa/LoptaUUstima.h \
@@ -2268,7 +2295,28 @@ Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVector \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsScene \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/QDebug
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QDebug \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QFile \
+		../zumaaa/Game.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		../zumaaa/Zabica.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsTextItem \
+		../zumaaa/Zivot.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Putanja.o ../zumaaa/Putanja.cpp
 
 Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h \
@@ -2361,7 +2409,57 @@ Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpixelformat.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtransform.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QFont \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfont.h
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfont.h \
+		../zumaaa/Game.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpainter.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtextoption.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpen.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qbrush.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfontinfo.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfontmetrics.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qkeysequence.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qevent.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qurl.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qurlquery.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qfile.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qfiledevice.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qvector2d.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsScene \
+		../zumaaa/Zabica.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QDebug \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsObject \
+		../zumaaa/LoptaUUstima.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QObject \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPixmap \
+		../zumaaa/Zivot.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsItem \
+		../zumaaa/Putanja.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QLine \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QList \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QPointF \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsEllipseItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QTimer \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qtimer.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qbasictimer.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPainter \
+		../zumaaa/Lopta.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVector \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Score.o ../zumaaa/Score.cpp
 
 Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
@@ -2603,7 +2701,57 @@ Zivot.o: ../zumaaa/Zivot.cpp ../zumaaa/Zivot.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpixelformat.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtransform.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QFont \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfont.h
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfont.h \
+		../zumaaa/Game.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpainter.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtextoption.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpen.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qbrush.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfontinfo.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qfontmetrics.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qframe.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qkeysequence.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qevent.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qurl.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qurlquery.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qfile.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qfiledevice.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qvector2d.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsScene \
+		../zumaaa/Zabica.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QDebug \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsObject \
+		../zumaaa/LoptaUUstima.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QObject \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPixmap \
+		../zumaaa/Score.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsTextItem \
+		../zumaaa/Putanja.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QLine \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QList \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QPointF \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsEllipseItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QTimer \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qtimer.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qbasictimer.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPainter \
+		../zumaaa/Lopta.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVector \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Zivot.o ../zumaaa/Zivot.cpp
 
 main.o: ../zumaaa/main.cpp ../zumaaa/mainwindow.h \
@@ -2868,19 +3016,28 @@ mainwindow.o: ../zumaaa/mainwindow.cpp ../zumaaa/mainwindow.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QDesktopWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVariant \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QApplication \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qeventloop.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qinputmethod.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QMenuBar \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qmenubar.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qmenu.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qaction.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QStatusBar \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qstatusbar.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QDesktopWidget \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPalette \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPainter \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpainter.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtextoption.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpen.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QApplication \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qapplication.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/qeventloop.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/qguiapplication.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/qinputmethod.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QList \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QDialog \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qdialog.h \

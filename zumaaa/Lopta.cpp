@@ -98,11 +98,31 @@ void Lopta::move()
     // ako smo napravili loptu iz putanje onda imamo sigurno vise od 2 tacke
     kolizija_crna_rupa();
 
+    //ako lopta ide unatrag proveravamo dal je udarila u neku koja ide napred i resetujemo indikatore
+    if(ideUnatrag){
+        QList<QGraphicsItem *> colliding_items= collidingItems();
+       // qDebug()<<colliding_items.size();
+
+        foreach(auto &x ,colliding_items){
+           if(typeid(*x)==typeid(Lopta) && static_cast<Lopta*>(x)->ideUnatrag==false){
+               krajnja=tacke[index];
+               id1=1;
+               id2=1;
+               ideUnatrag=false;
+               if(static_cast<Lopta*>(x)->indexBoje==this->indexBoje){
+                   qDebug()<<"iste boje kasniji sudar";
+                   Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
+               }
+
+           }
+        }
+    }
+
     //ako smo blizu jedne tacke (5px), prelazimo na narednu
     QLineF ln(pos(), krajnja);
     if(ln.length()<5){
 
-        if(!ideUnatrag)  //ako idemo unatrag, vracammo se na prethodnu ciljnu tacku
+        if(!ideUnatrag)  //ako idemo unatrag, vracamo se na prethodnu ciljnu tacku
             index++;
         else
             index--;
@@ -123,45 +143,17 @@ void Lopta::move()
     double dy = korak * qSin(qDegreesToRadians(theta));
     double dx = korak * qCos(qDegreesToRadians(theta));
 
-    if(abs(x()-krajnja.x())<=size/2){
-        smer = 'v';
-        if(krajnja.y()-y()>=0)
-            orij='d';
-        else
-            orij='g';
-    }
-    if(abs(y()-krajnja.y())<=size/2){
-        smer='h';
-        if(x()-krajnja.x()>=0)
-            orij='l';
-        else
-            orij='d';
-    }
     setPos(x()+id1*dx, y()+id2*dy);
 }
 
 void Lopta::move_back(QPointF tacka)
 {
-
-    //qDebug()<<"smer je"<<smer<<orij<<indexBoje<<tacka;
-
-    if(smer=='h'){
-
-        if(tacka.x()-x()<=0 && orij=='l'){
-            ideUnatrag=true;
-         }else if(tacka.x()-x()>=0 && orij=='d'){
-            timer->stop();
-          }
-    }else if(smer=='v'){
-        if(tacka.x()-x()<=0 && orij=='g'){
-            timer->stop();
-         }else if(tacka.x()-x()>=0 && orij=='d'){
-            timer->stop();
-          }
-    }
-
-    //tacka.x() > this->x() ? id1= -1 : 1;
-    //tacka.y() > this->y() ? id2= -1 : 1;
+    //tacka koja ide unatrag vraca se ka prethodnoj tacki dok ne udari u lopte sa putanje
+    qDebug()<<tacka<<this;
+    ideUnatrag=true;
+    krajnja=tacke[index-1];
+    id1=-1;
+    id2=-1;
 
 
 }

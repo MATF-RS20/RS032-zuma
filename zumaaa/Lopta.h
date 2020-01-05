@@ -34,8 +34,8 @@ public:
     void setReverse();
     void setReverse(float distance);
     bool poredi(const Lopta *other);
-
-
+signals:
+    void sudar(QPointF);
 public slots:
     void move();
     void move_back(QPointF tacka);
@@ -58,6 +58,7 @@ public:
     //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
     int indexBoje=0;
     bool u_koliziji = false;
+
 
 };
 

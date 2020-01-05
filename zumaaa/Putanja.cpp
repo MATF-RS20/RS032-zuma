@@ -58,7 +58,7 @@ void Putanja::create() {
     Lopta *lopta = new Lopta(precnik, tacke);
     lopte.append(lopta);
     scene()->addItem(lopta);
-    connect(this, SIGNAL(pomeri_se(QPointF)), lopta, SLOT(move_back(QPointF)));
+    //connect(lopta, SIGNAL(sudar(QPointF)), this, SLOT(susedne(QPointF)));
 }
 
 void Putanja::dodaj_loptu(QPointF tacka)
@@ -139,6 +139,15 @@ Lopta* Putanja::susedne(Lopta *lopta)
         unisti_loptu(lopte[j]);
 
      indeksi.clear();
+
+     for(int j=0; j<lopte.size(); j++){
+        if(j<indeks_prve){
+            //lopte[j]->indeks_u_nizu=j-broj_obrisanih;
+            //emit pomeri_se(poslednja->pos());
+            lopte[j]->move_back(poslednja->pos());
+        }
+     }
+
 
  /*   foreach(auto &j, indeksi){
         if(j+broj_obrisanih>=n){
