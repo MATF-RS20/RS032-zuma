@@ -12,8 +12,7 @@ public:
 private:
     int score=0; //ukupan score korisnika
     int scoreIncrease =50; //za koliko uvecavamo scorekada ga uvecavamo
-    int newScore=0; //pomocni score za uvecavanje broja zivota
-    int newLifeScore=100; //koliki treba da bude score da bi korisnik dobio novi zivot
+
 };
 
 #endif // SCORE_H
