@@ -28,7 +28,7 @@ signals:
     void pomeri_se(QPointF);
 public slots:
     void create();
-    void dodaj_loptu(QPointF tacka);
+    void dodaj_loptu(Lopta*);
 private:
     QList<QPointF> tacke;
     QPointF krajnja;

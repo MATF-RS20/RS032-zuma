@@ -58,15 +58,31 @@ void Putanja::create() {
     Lopta *lopta = new Lopta(precnik, tacke);
     lopte.append(lopta);
     scene()->addItem(lopta);
-    //connect(lopta, SIGNAL(sudar(QPointF)), this, SLOT(susedne(QPointF)));
 }
 
-void Putanja::dodaj_loptu(QPointF tacka)
+void Putanja::dodaj_loptu(Lopta * l)
 {
     //qDebug()<<tacka;
-    foreach (auto x, lopte) {
+    int indeks=lopte.indexOf(l);
+
         //qDebug()<<(x)->pos();
-        emit pomeri_se(tacka);
+        //emit pomeri_se(tacka);
+        Lopta *lopta = new Lopta(precnik, tacke);
+       // int x_razlika =lopte[indeks]->x()-lopte[indeks]->krajnja.x();
+       // int y_razlika =lopte[indeks]->y()-lopte[indeks]->krajnja.y();
+        lopta->setPos((lopte[indeks]->pos()+lopte[indeks+1]->pos())/2);
+        qDebug()<<"pozicija nove"<<lopta->pos();
+        lopta->krajnja=l->krajnja;
+        lopte.insert(indeks, lopta);
+        scene()->addItem(lopta);
+
+    for(int j=0; j<lopte.size(); j++){
+         // QPointF poz = lopte[j]->pos();
+         if(j<indeks){
+             lopte[j]->move_back(-1);
+         }else{
+             lopte[j]->move_back(1);
+         }
     }
     timer = new QTimer(this);
 
@@ -143,7 +159,6 @@ Lopta* Putanja::susedne(Lopta *lopta)
      for(int j=0; j<lopte.size(); j++){
         if(j<indeks_prve){
             //lopte[j]->indeks_u_nizu=j-broj_obrisanih;
-            //emit pomeri_se(poslednja->pos());
             lopte[j]->move_back(poslednja->pos());
         }
      }

@@ -34,6 +34,8 @@ public:
     void setReverse();
     void setReverse(float distance);
     bool poredi(const Lopta *other);
+    QPointF krajnja;
+
 signals:
     void sudar(QPointF);
 public slots:
@@ -42,7 +44,6 @@ public slots:
 private:
     QList<QPointF> tacke;
     QTimer * timer;
-    QPointF krajnja;
     QPixmap boja;
     int index; //indeks tacke u listi ka kojoj trenutno idemo
     int index_u_nizu;
@@ -58,6 +59,7 @@ public:
     //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
     int indexBoje=0;
     bool u_koliziji = false;
+    void move_back(int id);
 
 
 };
