@@ -36,6 +36,7 @@ private:
 
 public:
    int indexBoje = 0;
+   LoptaUUstima* loptaUsta;
 
 };
 

@@ -97,12 +97,13 @@ void Zabica::klik(QMouseEvent * event)
         y_ += precnik * qSin(qDegreesToRadians(theta+90));
         x_ += precnik * qCos(qDegreesToRadians(theta+90));
 
-        LoptaUUstima* lopta2= new LoptaUUstima(x_,y_, precnik, p);
-        lopta2->setBoja(indexBoje);
+        loptaUsta= new LoptaUUstima(x_,y_, precnik, p);
+        loptaUsta->setBoja(indexBoje);
+
 
         QTimer* timer = new QTimer(this);
-        scene()->addItem(lopta2);
-        QObject::connect(timer, SIGNAL(timeout()), lopta2, SLOT(move()));
+        scene()->addItem(loptaUsta);
+        QObject::connect(timer, SIGNAL(timeout()), loptaUsta, SLOT(move()));
         timer->start(50);
 
         promeni_boju();
