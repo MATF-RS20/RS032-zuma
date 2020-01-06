@@ -102,18 +102,26 @@ Lopta* Putanja::susedne(Lopta *lopta)
     int i=indeks;
     Lopta* poslednja;
 
-    while(i>=0 && lopte[indeks]->indexBoje==lopte[i]->indexBoje){
-        indeksi.append(i);
-        i--;
+    while(i>=0 && (lopte[indeks]->indexBoje==lopte[i]->indexBoje || lopte[i]->isDeleted)){
+        if(lopte[i]->isDeleted)
+            i--;
+        else {
+            indeksi.append(i);
+            i--;
+        }
     }
     i=indeks+1;
-    while(i<n && lopte[indeks]->indexBoje==lopte[i]->indexBoje){
-        indeksi.append(i);
-        i++;
+    while(i<n && (lopte[indeks]->indexBoje==lopte[i]->indexBoje || lopte[i]->isDeleted)){
+        if(lopte[i]->isDeleted)
+            i++;
+        else {
+            indeksi.append(i);
+            i++;
+        }
     }
     qDebug()<<indeksi;
     int indeks_prve=(*std::min_element(indeksi.begin(), indeksi.end()));
-    int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()))+1;
+    int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()));
     //vracamo se ka onoj koja je najdalja u nizu, tj onoj koja ima najveci indeks
 
     poslednja=lopte[indeks_posle_poslednje];
@@ -149,7 +157,6 @@ Lopta* Putanja::susedne(Lopta *lopta)
             lopte[j]->move_back(poslednja->pos());
         }
      }
-     qDebug() << "Ovde sam";
 
 
  /*   foreach(auto &j, indeksi){

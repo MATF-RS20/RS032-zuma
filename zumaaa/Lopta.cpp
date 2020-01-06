@@ -150,14 +150,14 @@ void Lopta::move()
 void Lopta::move_back(QPointF tacka)
 {
     //tacka koja ide unatrag vraca se ka prethodnoj tacki dok ne udari u lopte sa putanje
-    qDebug()<<tacka<<this;
+//    qDebug()<<tacka<<this;
 //    qDebug() << index;
 
     ideUnatrag=true;
-    if(index > 0)
+//    if(index > 0)
         krajnja=tacke[index-1];
-    else
-        krajnja=tacke[0];
+//    else
+//        krajnja=tacke[0];
     id1=-1;
     id2=-1;
 
