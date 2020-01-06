@@ -23,7 +23,7 @@ Game::Game(QWidget *parent)
 
     // Postavljanje putanje
     // Putanja(precnik, brojLopti) precnik se odnosi na lopte koje putanja kreira
-    putanja = new Putanja(this->precnik, 10);
+    putanja = new Putanja(this->precnik, 20);
     scene->addItem(putanja);
 
     zabica = new Zabica(330, 280, 150, this->precnik);

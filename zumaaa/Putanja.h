@@ -34,6 +34,7 @@ private:
     QPointF krajnja;
     QVector<Lopta*> lopte;
     QTimer *timer;
+    int count = 0;
     int maxSize;
     int precnik;
 };

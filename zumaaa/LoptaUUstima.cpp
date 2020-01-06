@@ -66,6 +66,8 @@ void LoptaUUstima::move()
                 continue;
             }
             else if(indexBoje!=static_cast<Lopta*>(x)->indexBoje) {
+
+                static_cast<Lopta*>(x)->u_koliziji = false;
                 qDebug()<<"nisu iste boje";
                 delete this;
             }

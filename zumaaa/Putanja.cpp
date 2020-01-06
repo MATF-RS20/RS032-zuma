@@ -50,7 +50,7 @@ void Putanja::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget
 
 void Putanja::create() {
     // Ako nam je velicina jednaka maximalnoj velicini stajemo sa pravljenjem novih
-    if(lopte.size() >= maxSize) {
+    if(count >= maxSize) {
         timer->stop();
         return;
     }
@@ -59,6 +59,7 @@ void Putanja::create() {
     lopte.append(lopta);
     scene()->addItem(lopta);
     //connect(lopta, SIGNAL(sudar(QPointF)), this, SLOT(susedne(QPointF)));
+    count++;
 }
 
 void Putanja::dodaj_loptu(QPointF tacka)
@@ -114,14 +115,13 @@ Lopta* Putanja::susedne(Lopta *lopta)
     int indeks_prve=(*std::min_element(indeksi.begin(), indeksi.end()));
     int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()))+1;
     //vracamo se ka onoj koja je najdalja u nizu, tj onoj koja ima najveci indeks
-    if (indeks == *std::max_element(indeksi.begin(), indeksi.end()))
-        indeks_posle_poslednje = indeks;
+
     poslednja=lopte[indeks_posle_poslednje];
     int broj_obrisanih=indeksi.size();
     qDebug()<<indeks_posle_poslednje;
-
     if(broj_obrisanih<2) {
         indeksi.clear();
+        lopta->u_koliziji = false;
         return lopta;
     }
 
@@ -135,18 +135,21 @@ Lopta* Putanja::susedne(Lopta *lopta)
     lopte.insert(lopte.end(), kraj.begin(), kraj.end());*/
 
 
-     foreach(auto &j, indeksi)
-        unisti_loptu(lopte[j]);
+     foreach(auto &j, indeksi) {
+        if(!lopte[j]->isDeleted)
+            unisti_loptu(lopte[j]);
+     }
 
      indeksi.clear();
 
      for(int j=0; j<lopte.size(); j++){
-        if(j<indeks_prve){
+        if(j<indeks_prve && !lopte[j]->isDeleted){
             //lopte[j]->indeks_u_nizu=j-broj_obrisanih;
             //emit pomeri_se(poslednja->pos());
             lopte[j]->move_back(poslednja->pos());
         }
      }
+     qDebug() << "Ovde sam";
 
 
  /*   foreach(auto &j, indeksi){
@@ -180,6 +183,7 @@ void Putanja::resetuj_kolizije_lopti()
 
 void Putanja:: unisti_loptu(Lopta* lopta )
 {
+    lopta->isDeleted = true;
     delete lopta;
     game->score->increase();
 }
