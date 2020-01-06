@@ -58,11 +58,9 @@ void Putanja::create() {
     Lopta *lopta = new Lopta(precnik, tacke);
     lopte.append(lopta);
     scene()->addItem(lopta);
-<<<<<<< HEAD
-=======
     //connect(lopta, SIGNAL(sudar(QPointF)), this, SLOT(susedne(QPointF)));
     count++;
->>>>>>> d39dbb6df60dbc80261c32ce3bf48cbf2b8565e7
+
 }
 
 void Putanja::dodaj_loptu(Lopta * l)

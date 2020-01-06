@@ -59,11 +59,8 @@ public:
     //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
     int indexBoje=0;
     bool u_koliziji = false;
-<<<<<<< HEAD
     void move_back(int id);
-=======
     bool isDeleted = false;
->>>>>>> d39dbb6df60dbc80261c32ce3bf48cbf2b8565e7
 
 
 };
