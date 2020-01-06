@@ -30,7 +30,7 @@ LoptaUUstima::LoptaUUstima(int x, int y,  int precnik, QPointF p)
     setTransformOriginPoint(boundingRect().center());
     QLineF ln(boundingRect().center(), p);
     setRotation(-1*ln.angle());
-    connect(this, SIGNAL(sudar(QPointF)), game->putanja , SLOT(dodaj_loptu(QPointF)));
+    connect(this, SIGNAL(sudar(Lopta*)), game->putanja , SLOT(dodaj_loptu(Lopta*)));
 }
 
 void LoptaUUstima::move()
@@ -69,10 +69,13 @@ void LoptaUUstima::move()
 
                 static_cast<Lopta*>(x)->u_koliziji = false;
                 qDebug()<<"nisu iste boje";
-                delete this;
+                //static_cast<Lopta*>(x)->move_back();
+                emit sudar(static_cast<Lopta*>(x));
+               // delete this;
+                continue;
             }
 
-            emit sudar(x->pos());
+
             korak=0;
             //delete this;
             //return;

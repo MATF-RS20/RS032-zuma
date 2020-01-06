@@ -6,6 +6,7 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QPixmap>
+#include "Lopta.h"
 
 //da bi mogli slotovi da se koriste mora klasa da nasledjuje QObject i da ima ovaj Q_Object makro na pocetku klase
 class LoptaUUstima: public QGraphicsObject{
@@ -18,7 +19,7 @@ public:
     void setBoja(int indeks);
     ~LoptaUUstima();
 signals:
-    void sudar(QPointF); //ispali ovaj signal kad kliknem, a ne kad se sudare..
+    void sudar(Lopta*); //ispali ovaj signal kad kliknem, a ne kad se sudare..
 public slots:
     void move();
 private:

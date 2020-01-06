@@ -111,7 +111,7 @@ void Lopta::move()
                ideUnatrag=false;
                if(static_cast<Lopta*>(x)->indexBoje==this->indexBoje){
                    qDebug()<<"iste boje kasniji sudar";
-                   Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
+                   //Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
                }
 
            }
@@ -160,6 +160,25 @@ void Lopta::move_back(QPointF tacka)
 //        krajnja=tacke[0];
     id1=-1;
     id2=-1;
+
+
+}
+
+void Lopta::move_back(int id)
+{
+    //tacka koja ide unatrag vraca se ka prethodnoj tacki dok ne udari u lopte sa putanje
+    //qDebug()<<tacka<<this;
+    //QPointF transliraj(id*size/2, 0);
+    rotateToPoint(tacke[index-1]);
+    double theta = rotation();
+    double dy = size/2 * qSin(qDegreesToRadians(theta));
+    double dx = size/2 * qCos(qDegreesToRadians(theta));
+
+    setPos(x()+id*dx, y()+id*dy);
+    rotateToPoint(krajnja);
+    qDebug()<<"pre "<<pos();
+    //setPos(x()+id*size/2, y());
+    qDebug()<<"posle "<<pos();
 
 
 }
