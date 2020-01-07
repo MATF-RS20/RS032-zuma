@@ -181,7 +181,6 @@ Lopta* Putanja::susedne(Lopta *lopta)
      }
 
      indeksi.clear();
-
      for(int j=0; j<lopte.size(); j++){
         if(j<indeks_prve && !lopte[j]->isDeleted){
             //lopte[j]->indeks_u_nizu=j-broj_obrisanih;

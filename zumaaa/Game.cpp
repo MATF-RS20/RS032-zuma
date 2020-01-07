@@ -53,7 +53,7 @@ Game::Game(QWidget *parent)
    // connect(, SIGNAL(sudar), putanja, SLOT(dodaj_loptu()))
 
     QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl("https://raw.githubusercontent.com/MATF-RS20/RS032-zuma/master/zumaaa/sounds/Zuma.wav"));
+    player->setMedia(QUrl("qrc:/sounds/Zuma.wav"));
     player->setVolume(40);
     player->play();
 
