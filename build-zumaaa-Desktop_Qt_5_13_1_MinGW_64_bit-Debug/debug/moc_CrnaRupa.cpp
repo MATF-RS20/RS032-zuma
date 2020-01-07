@@ -64,7 +64,7 @@ void CrnaRupa::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
 }
 
 QT_INIT_METAOBJECT const QMetaObject CrnaRupa::staticMetaObject = { {
-    &QObject::staticMetaObject,
+    &QGraphicsObject::staticMetaObject,
     qt_meta_stringdata_CrnaRupa.data,
     qt_meta_data_CrnaRupa,
     qt_static_metacall,
@@ -83,14 +83,12 @@ void *CrnaRupa::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_CrnaRupa.stringdata0))
         return static_cast<void*>(this);
-    if (!strcmp(_clname, "QGraphicsRectItem"))
-        return static_cast< QGraphicsRectItem*>(this);
-    return QObject::qt_metacast(_clname);
+    return QGraphicsObject::qt_metacast(_clname);
 }
 
 int CrnaRupa::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QObject::qt_metacall(_c, _id, _a);
+    _id = QGraphicsObject::qt_metacall(_c, _id, _a);
     return _id;
 }
 QT_WARNING_POP

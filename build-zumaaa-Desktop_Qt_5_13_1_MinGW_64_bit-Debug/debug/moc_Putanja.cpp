@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Putanja_t {
     QByteArrayData data[6];
-    char stringdata0[44];
+    char stringdata0[45];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,11 +37,11 @@ QT_MOC_LITERAL(1, 8, 9), // "pomeri_se"
 QT_MOC_LITERAL(2, 18, 0), // ""
 QT_MOC_LITERAL(3, 19, 6), // "create"
 QT_MOC_LITERAL(4, 26, 11), // "dodaj_loptu"
-QT_MOC_LITERAL(5, 38, 5) // "tacka"
+QT_MOC_LITERAL(5, 38, 6) // "Lopta*"
 
     },
     "Putanja\0pomeri_se\0\0create\0dodaj_loptu\0"
-    "tacka"
+    "Lopta*"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +70,7 @@ static const uint qt_meta_data_Putanja[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPointF,    5,
+    QMetaType::Void, 0x80000000 | 5,    2,
 
        0        // eod
 };
@@ -83,8 +83,19 @@ void Putanja::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         switch (_id) {
         case 0: _t->pomeri_se((*reinterpret_cast< QPointF(*)>(_a[1]))); break;
         case 1: _t->create(); break;
-        case 2: _t->dodaj_loptu((*reinterpret_cast< QPointF(*)>(_a[1]))); break;
+        case 2: _t->dodaj_loptu((*reinterpret_cast< Lopta*(*)>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Lopta* >(); break;
+            }
+            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -132,7 +143,7 @@ int Putanja::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 3)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            qt_static_metacall(this, _c, _id, _a);
         _id -= 3;
     }
     return _id;

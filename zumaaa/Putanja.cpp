@@ -92,8 +92,14 @@ void Putanja::dodaj_loptu(Lopta * l)
              lopte[j]->move_back(-1);
              //lopte[j]->timer->stop();
          }else{
+<<<<<<< HEAD
              //lopte[j]->move_back(1);
+=======
+             lopte[j]->move_back(+1);
+>>>>>>> 765f7ff5b51b3e93844148c0817e8ce46123c244
          }
+
+
     }
 
     ind_udareno=false;

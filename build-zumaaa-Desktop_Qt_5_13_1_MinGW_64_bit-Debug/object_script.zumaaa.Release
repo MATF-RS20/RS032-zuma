@@ -9,6 +9,7 @@ release/Zivot.o
 release/main.o
 release/mainwindow.o
 release/qrc_images.o
+release/qrc_sounds.o
 release/moc_CrnaRupa.o
 release/moc_Game.o
 release/moc_Lopta.o

@@ -7,6 +7,8 @@
 #include <QPainter>
 #include "Lopta.h"
 #include "Putanja.h"
+#include <QtMultimedia/QMediaPlayer>
+
 
 Game::Game(QWidget *parent)
 {
@@ -49,6 +51,11 @@ Game::Game(QWidget *parent)
     connect(this, SIGNAL(mousePressEvent(QMouseEvent*)), zabica, SLOT(klik(QMouseEvent*)));
     connect(this, SIGNAL(mouseMoveEvent(QMouseEvent*)), zabica, SLOT(rotiraj(QMouseEvent*)));
    // connect(, SIGNAL(sudar), putanja, SLOT(dodaj_loptu()))
+
+    /*QMediaPlayer *player = new QMediaPlayer;
+    player->setMedia(QUrl::fromLocalFile("Users/katar/git_zabica/RS032-zuma/zumaaa/sounds/Zuma.mp3"));
+    player->setVolume(50);
+    player->play();*/
 
     show();
 
