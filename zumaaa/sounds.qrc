@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/sounds">
-        <file>sounds/Zuma.mp3</file>
+        <file>sounds/Zuma.wav</file>
     </qresource>
 </RCC>

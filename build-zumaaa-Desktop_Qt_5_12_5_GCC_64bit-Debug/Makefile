@@ -769,7 +769,7 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 
 qrc_sounds.cpp: ../zumaaa/sounds.qrc \
 		/opt/Qt/5.12.5/gcc_64/bin/rcc \
-		../zumaaa/sounds/Zuma.mp3
+		../zumaaa/sounds/Zuma.wav
 	/opt/Qt/5.12.5/gcc_64/bin/rcc -name sounds ../zumaaa/sounds.qrc -o qrc_sounds.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

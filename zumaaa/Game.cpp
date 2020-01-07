@@ -54,7 +54,7 @@ Game::Game(QWidget *parent)
 
     QMediaPlayer *player = new QMediaPlayer;
     player->setMedia(QUrl("https://raw.githubusercontent.com/MATF-RS20/RS032-zuma/master/zumaaa/sounds/Zuma.wav"));
-    player->setVolume(50);
+    player->setVolume(40);
     player->play();
 
     show();
