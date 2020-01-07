@@ -60,6 +60,9 @@ void LoptaUUstima::move()
             if(indexBoje==static_cast<Lopta*>(x)->indexBoje){
                 qDebug()<<"iste su boje";
                 Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
+                if(poslednja==static_cast<Lopta*>(x))
+                    emit sudar(static_cast<Lopta*>(x));
+
                 //delete x;
                 game->score->increase();
                 delete this;
@@ -71,8 +74,8 @@ void LoptaUUstima::move()
                 qDebug()<<"nisu iste boje";
                 //static_cast<Lopta*>(x)->move_back();
                 emit sudar(static_cast<Lopta*>(x));
-               // delete this;
-                continue;
+                delete this;
+                break;
             }
 
 

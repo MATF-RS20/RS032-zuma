@@ -56,6 +56,8 @@ void Putanja::create() {
     }
     // pravimo novu loptu i dodajemo je u listu i na scenu
     Lopta *lopta = new Lopta(precnik, tacke);
+    if(ind_udareno)
+        lopta->move_back(1);
     lopte.append(lopta);
     scene()->addItem(lopta);
     //connect(lopta, SIGNAL(sudar(QPointF)), this, SLOT(susedne(QPointF)));
@@ -68,25 +70,35 @@ void Putanja::dodaj_loptu(Lopta * l)
     //qDebug()<<tacka;
     int indeks=lopte.indexOf(l);
 
+    ind_udareno=true;
+
         //qDebug()<<(x)->pos();
         //emit pomeri_se(tacka);
         Lopta *lopta = new Lopta(precnik, tacke);
        // int x_razlika =lopte[indeks]->x()-lopte[indeks]->krajnja.x();
        // int y_razlika =lopte[indeks]->y()-lopte[indeks]->krajnja.y();
-        lopta->setPos((lopte[indeks]->pos()+lopte[indeks+1]->pos())/2);
+        lopta->setPos(lopte[indeks]->pos());
+        //qDebug()<<"test tacka"<<QPointF(100, 200)/2;
+        lopta->setIndexBoje(game->zabica->loptaUsta->indexBoje);
         qDebug()<<"pozicija nove"<<lopta->pos();
         lopta->krajnja=l->krajnja;
+
         lopte.insert(indeks, lopta);
         scene()->addItem(lopta);
 
     for(int j=0; j<lopte.size(); j++){
          // QPointF poz = lopte[j]->pos();
-         if(j<indeks){
+         if(j<=indeks){
              lopte[j]->move_back(-1);
+             //lopte[j]->timer->stop();
          }else{
-             lopte[j]->move_back(1);
+             //lopte[j]->move_back(1);
          }
     }
+
+    ind_udareno=false;
+
+
     timer = new QTimer(this);
 
 

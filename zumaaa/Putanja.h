@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <QPainter>
 #include "Lopta.h"
+#include "LoptaUUstima.h"
 
 class Putanja: public QGraphicsObject {
     Q_OBJECT
@@ -37,6 +38,7 @@ private:
     int count = 0;
     int maxSize;
     int precnik;
+    bool ind_udareno=false;
 };
 
 

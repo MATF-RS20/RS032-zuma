@@ -49,18 +49,18 @@ private:
     int index_u_nizu;
     double size;
     double pocetna_dim;
-    char smer='v';
-    char orij;
     void generisi_boju();
     int korak=2;
     int id1=1;
     int id2=1;
+    QVector <QPixmap> niz_slika{QPixmap(":/images/roze.png"), QPixmap(":/images/plava.png")};  //dodaj druge boje
 public:
     //indeks preko kog se porde boje, mozda neki geter i seter bi bilo bolje da se koristi
     int indexBoje=0;
     bool u_koliziji = false;
     void move_back(int id);
     bool isDeleted = false;
+    void setIndexBoje(int indeks);
 
 
 };

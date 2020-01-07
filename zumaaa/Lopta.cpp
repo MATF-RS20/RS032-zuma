@@ -98,6 +98,7 @@ void Lopta::move()
     // ako smo napravili loptu iz putanje onda imamo sigurno vise od 2 tacke
     kolizija_crna_rupa();
 
+
     //ako lopta ide unatrag proveravamo dal je udarila u neku koja ide napred i resetujemo indikatore
     if(ideUnatrag){
         QList<QGraphicsItem *> colliding_items= collidingItems();
@@ -171,8 +172,8 @@ void Lopta::move_back(int id)
     //QPointF transliraj(id*size/2, 0);
     rotateToPoint(tacke[index-1]);
     double theta = rotation();
-    double dy = size/2 * qSin(qDegreesToRadians(theta));
-    double dx = size/2 * qCos(qDegreesToRadians(theta));
+    double dy = size * qSin(qDegreesToRadians(theta));
+    double dx = size * qCos(qDegreesToRadians(theta));
 
     setPos(x()+id*dx, y()+id*dy);
     rotateToPoint(krajnja);
@@ -180,6 +181,12 @@ void Lopta::move_back(int id)
     //setPos(x()+id*size/2, y());
     qDebug()<<"posle "<<pos();
 
+
+}
+
+void Lopta::setIndexBoje(int indeks)
+{
+   boja = niz_slika[indeks];
 
 }
 
@@ -195,10 +202,10 @@ QRectF Lopta::boundingRect() const
 
 void Lopta::generisi_boju()
 {
-    QVector <QPixmap> niz_slika;
-    niz_slika.resize(4);
-    niz_slika[0]=QPixmap(":/images/roze.png");
-    niz_slika[1]=QPixmap(":/images/plava.png");
+   // QVector <QPixmap> niz_slika;
+   // niz_slika.resize(4);
+   // niz_slika[0]=QPixmap(":/images/roze.png");
+    //niz_slika[1]=QPixmap(":/images/plava.png");
    // niz_slika[2]=QPixmap(":/images/zelena.png");
   //  niz_slika[3]=QPixmap(":/images/ljubicasta.png");
     indexBoje = rand() % 2;
