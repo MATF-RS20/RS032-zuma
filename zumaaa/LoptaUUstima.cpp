@@ -71,7 +71,7 @@ void LoptaUUstima::move()
                 qDebug()<<"nisu iste boje";
                 //static_cast<Lopta*>(x)->move_back();
                 emit sudar(static_cast<Lopta*>(x));
-               // delete this;
+                //delete this;
                 continue;
             }
 

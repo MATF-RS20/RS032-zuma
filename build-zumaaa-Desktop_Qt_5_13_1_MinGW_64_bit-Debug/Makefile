@@ -211,6 +211,7 @@ Makefile: ../zumaaa/zumaaa.pro D:/5.13.1/mingw73_64/mkspecs/win32-g++/qmake.conf
 		D:/5.13.1/mingw73_64/mkspecs/features/qt_config.prf \
 		D:/5.13.1/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		D:/5.13.1/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/5.13.1/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		D:/5.13.1/mingw73_64/mkspecs/features/toolchain.prf \
 		D:/5.13.1/mingw73_64/mkspecs/features/default_pre.prf \
@@ -234,8 +235,10 @@ Makefile: ../zumaaa/zumaaa.pro D:/5.13.1/mingw73_64/mkspecs/win32-g++/qmake.conf
 		D:/5.13.1/mingw73_64/mkspecs/features/yacc.prf \
 		D:/5.13.1/mingw73_64/mkspecs/features/lex.prf \
 		../zumaaa/zumaaa.pro \
+		D:/5.13.1/mingw73_64/lib/Qt5Multimedia.prl \
 		D:/5.13.1/mingw73_64/lib/Qt5Widgets.prl \
 		D:/5.13.1/mingw73_64/lib/Qt5Gui.prl \
+		D:/5.13.1/mingw73_64/lib/Qt5Network.prl \
 		D:/5.13.1/mingw73_64/lib/Qt5Core.prl \
 		D:/5.13.1/mingw73_64/lib/qtmain.prl
 	$(QMAKE) -o Makefile ..\zumaaa\zumaaa.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -387,6 +390,7 @@ D:/5.13.1/mingw73_64/mkspecs/features/qt_functions.prf:
 D:/5.13.1/mingw73_64/mkspecs/features/qt_config.prf:
 D:/5.13.1/mingw73_64/mkspecs/win32-g++/qmake.conf:
 D:/5.13.1/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/5.13.1/mingw73_64/mkspecs/features/exclusive_builds.prf:
 D:/5.13.1/mingw73_64/mkspecs/features/toolchain.prf:
 D:/5.13.1/mingw73_64/mkspecs/features/default_pre.prf:
@@ -410,8 +414,10 @@ D:/5.13.1/mingw73_64/mkspecs/features/exceptions.prf:
 D:/5.13.1/mingw73_64/mkspecs/features/yacc.prf:
 D:/5.13.1/mingw73_64/mkspecs/features/lex.prf:
 ../zumaaa/zumaaa.pro:
+D:/5.13.1/mingw73_64/lib/Qt5Multimedia.prl:
 D:/5.13.1/mingw73_64/lib/Qt5Widgets.prl:
 D:/5.13.1/mingw73_64/lib/Qt5Gui.prl:
+D:/5.13.1/mingw73_64/lib/Qt5Network.prl:
 D:/5.13.1/mingw73_64/lib/Qt5Core.prl:
 D:/5.13.1/mingw73_64/lib/qtmain.prl:
 qmake: FORCE

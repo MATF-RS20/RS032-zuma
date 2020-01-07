@@ -9,6 +9,7 @@ debug/Zivot.o
 debug/main.o
 debug/mainwindow.o
 debug/qrc_images.o
+debug/qrc_sounds.o
 debug/moc_CrnaRupa.o
 debug/moc_Game.o
 debug/moc_Lopta.o

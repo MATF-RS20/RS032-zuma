@@ -84,8 +84,10 @@ void Putanja::dodaj_loptu(Lopta * l)
          if(j<indeks){
              lopte[j]->move_back(-1);
          }else{
-             lopte[j]->move_back(1);
+             lopte[j]->move_back(+1);
          }
+
+
     }
     timer = new QTimer(this);
 

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Lopta_t {
-    QByteArrayData data[5];
-    char stringdata0[28];
+    QByteArrayData data[6];
+    char stringdata0[34];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,13 +33,14 @@ struct qt_meta_stringdata_Lopta_t {
 static const qt_meta_stringdata_Lopta_t qt_meta_stringdata_Lopta = {
     {
 QT_MOC_LITERAL(0, 0, 5), // "Lopta"
-QT_MOC_LITERAL(1, 6, 4), // "move"
-QT_MOC_LITERAL(2, 11, 0), // ""
-QT_MOC_LITERAL(3, 12, 9), // "move_back"
-QT_MOC_LITERAL(4, 22, 5) // "tacka"
+QT_MOC_LITERAL(1, 6, 5), // "sudar"
+QT_MOC_LITERAL(2, 12, 0), // ""
+QT_MOC_LITERAL(3, 13, 4), // "move"
+QT_MOC_LITERAL(4, 18, 9), // "move_back"
+QT_MOC_LITERAL(5, 28, 5) // "tacka"
 
     },
-    "Lopta\0move\0\0move_back\0tacka"
+    "Lopta\0sudar\0\0move\0move_back\0tacka"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,20 +50,26 @@ static const uint qt_meta_data_Lopta[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a /* Public */,
-       3,    1,   25,    2, 0x0a /* Public */,
+       3,    0,   32,    2, 0x0a /* Public */,
+       4,    1,   33,    2, 0x0a /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::QPointF,    2,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPointF,    4,
+    QMetaType::Void, QMetaType::QPointF,    5,
 
        0        // eod
 };
@@ -73,9 +80,19 @@ void Lopta::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         auto *_t = static_cast<Lopta *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->move(); break;
-        case 1: _t->move_back((*reinterpret_cast< QPointF(*)>(_a[1]))); break;
+        case 0: _t->sudar((*reinterpret_cast< QPointF(*)>(_a[1]))); break;
+        case 1: _t->move(); break;
+        case 2: _t->move_back((*reinterpret_cast< QPointF(*)>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (Lopta::*)(QPointF );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Lopta::sudar)) {
+                *result = 0;
+                return;
+            }
         }
     }
 }
@@ -109,15 +126,22 @@ int Lopta::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void Lopta::sudar(QPointF _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

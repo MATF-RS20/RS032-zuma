@@ -168,7 +168,7 @@ void Lopta::move_back(int id)
 {
     //tacka koja ide unatrag vraca se ka prethodnoj tacki dok ne udari u lopte sa putanje
     //qDebug()<<tacka<<this;
-    //QPointF transliraj(id*size/2, 0);
+    QPointF transliraj(id*size/2, 0);
     rotateToPoint(tacke[index-1]);
     double theta = rotation();
     double dy = size/2 * qSin(qDegreesToRadians(theta));

@@ -13,13 +13,13 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -g -Wall -W -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++11 -Wall -W -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\zumaaa -I. -ID:\5.13.1\mingw73_64\include -ID:\5.13.1\mingw73_64\include\QtWidgets -ID:\5.13.1\mingw73_64\include\QtGui -ID:\5.13.1\mingw73_64\include\QtANGLE -ID:\5.13.1\mingw73_64\include\QtCore -Idebug -I. -I/include -ID:\5.13.1\mingw73_64\mkspecs\win32-g++ 
+INCPATH       = -I..\zumaaa -I. -ID:\5.13.1\mingw73_64\include -ID:\5.13.1\mingw73_64\include\QtMultimedia -ID:\5.13.1\mingw73_64\include\QtWidgets -ID:\5.13.1\mingw73_64\include\QtGui -ID:\5.13.1\mingw73_64\include\QtANGLE -ID:\5.13.1\mingw73_64\include\QtNetwork -ID:\5.13.1\mingw73_64\include\QtCore -Idebug -I. -I/include -ID:\5.13.1\mingw73_64\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        D:\5.13.1\mingw73_64\lib\libQt5Widgetsd.a D:\5.13.1\mingw73_64\lib\libQt5Guid.a D:\5.13.1\mingw73_64\lib\libQt5Cored.a  -lmingw32 D:\5.13.1\mingw73_64\lib\libqtmaind.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
+LIBS        =        D:\5.13.1\mingw73_64\lib\libQt5Multimediad.a D:\5.13.1\mingw73_64\lib\libQt5Widgetsd.a D:\5.13.1\mingw73_64\lib\libQt5Guid.a D:\5.13.1\mingw73_64\lib\libQt5Networkd.a D:\5.13.1\mingw73_64\lib\libQt5Cored.a  -lmingw32 D:\5.13.1\mingw73_64\lib\libqtmaind.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
 QMAKE         = D:\5.13.1\mingw73_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -57,6 +57,7 @@ SOURCES       = ..\zumaaa\CrnaRupa.cpp \
 		..\zumaaa\Zivot.cpp \
 		..\zumaaa\main.cpp \
 		..\zumaaa\mainwindow.cpp debug\qrc_images.cpp \
+		debug\qrc_sounds.cpp \
 		debug\moc_CrnaRupa.cpp \
 		debug\moc_Game.cpp \
 		debug\moc_Lopta.cpp \
@@ -75,6 +76,7 @@ OBJECTS       = debug/CrnaRupa.o \
 		debug/main.o \
 		debug/mainwindow.o \
 		debug/qrc_images.o \
+		debug/qrc_sounds.o \
 		debug/moc_CrnaRupa.o \
 		debug/moc_Game.o \
 		debug/moc_Lopta.o \
@@ -111,7 +113,7 @@ DESTDIR_TARGET = debug\zumaaa.exe
 first: all
 all: Makefile.Debug  debug/zumaaa.exe
 
-debug/zumaaa.exe: D:/5.13.1/mingw73_64/lib/libQt5Widgetsd.a D:/5.13.1/mingw73_64/lib/libQt5Guid.a D:/5.13.1/mingw73_64/lib/libQt5Cored.a D:/5.13.1/mingw73_64/lib/libqtmaind.a ui_mainwindow.h $(OBJECTS) 
+debug/zumaaa.exe: D:/5.13.1/mingw73_64/lib/libQt5Multimediad.a D:/5.13.1/mingw73_64/lib/libQt5Widgetsd.a D:/5.13.1/mingw73_64/lib/libQt5Guid.a D:/5.13.1/mingw73_64/lib/libQt5Networkd.a D:/5.13.1/mingw73_64/lib/libQt5Cored.a D:/5.13.1/mingw73_64/lib/libqtmaind.a ui_mainwindow.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @object_script.zumaaa.Debug  $(LIBS)
 
 qmake: FORCE
@@ -120,10 +122,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) zumaaa.zip $(SOURCES) $(DIST) ..\zumaaa\zumaaa.pro D:\5.13.1\mingw73_64\mkspecs\features\spec_pre.prf D:\5.13.1\mingw73_64\mkspecs\qdevice.pri D:\5.13.1\mingw73_64\mkspecs\features\device_config.prf D:\5.13.1\mingw73_64\mkspecs\common\sanitize.conf D:\5.13.1\mingw73_64\mkspecs\common\gcc-base.conf D:\5.13.1\mingw73_64\mkspecs\common\g++-base.conf D:\5.13.1\mingw73_64\mkspecs\common\angle.conf D:\5.13.1\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf D:\5.13.1\mingw73_64\mkspecs\common\windows-vulkan.conf D:\5.13.1\mingw73_64\mkspecs\common\g++-win32.conf D:\5.13.1\mingw73_64\mkspecs\common\windows-desktop.conf D:\5.13.1\mingw73_64\mkspecs\qconfig.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3drender.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axbase.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axserver.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_core.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_core_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_dbus.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_designer.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gui.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_help.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_help_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_location.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_location_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_network.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_network_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_nfc.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_opengl.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioning.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qml.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quick.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_repparser.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_scxml.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sensors.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialport.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sql.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_svg.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_testlib.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_uitools.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_websockets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_widgets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_winextras.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xml.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\5.13.1\mingw73_64\mkspecs\features\qt_functions.prf D:\5.13.1\mingw73_64\mkspecs\features\qt_config.prf D:\5.13.1\mingw73_64\mkspecs\win32-g++\qmake.conf D:\5.13.1\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash D:\5.13.1\mingw73_64\mkspecs\features\exclusive_builds.prf D:\5.13.1\mingw73_64\mkspecs\features\toolchain.prf D:\5.13.1\mingw73_64\mkspecs\features\default_pre.prf D:\5.13.1\mingw73_64\mkspecs\features\win32\default_pre.prf D:\5.13.1\mingw73_64\mkspecs\features\resolve_config.prf D:\5.13.1\mingw73_64\mkspecs\features\exclusive_builds_post.prf D:\5.13.1\mingw73_64\mkspecs\features\default_post.prf D:\5.13.1\mingw73_64\mkspecs\features\build_pass.prf D:\5.13.1\mingw73_64\mkspecs\features\qml_debug.prf D:\5.13.1\mingw73_64\mkspecs\features\precompile_header.prf D:\5.13.1\mingw73_64\mkspecs\features\warn_on.prf D:\5.13.1\mingw73_64\mkspecs\features\qt.prf D:\5.13.1\mingw73_64\mkspecs\features\resources.prf D:\5.13.1\mingw73_64\mkspecs\features\moc.prf D:\5.13.1\mingw73_64\mkspecs\features\win32\opengl.prf D:\5.13.1\mingw73_64\mkspecs\features\uic.prf D:\5.13.1\mingw73_64\mkspecs\features\qmake_use.prf D:\5.13.1\mingw73_64\mkspecs\features\file_copies.prf D:\5.13.1\mingw73_64\mkspecs\features\win32\windows.prf D:\5.13.1\mingw73_64\mkspecs\features\testcase_targets.prf D:\5.13.1\mingw73_64\mkspecs\features\exceptions.prf D:\5.13.1\mingw73_64\mkspecs\features\yacc.prf D:\5.13.1\mingw73_64\mkspecs\features\lex.prf ..\zumaaa\zumaaa.pro ..\zumaaa\images.qrc D:\5.13.1\mingw73_64\lib\Qt5Widgetsd.prl D:\5.13.1\mingw73_64\lib\Qt5Guid.prl D:\5.13.1\mingw73_64\lib\Qt5Cored.prl D:\5.13.1\mingw73_64\lib\qtmaind.prl   ..\zumaaa\images.qrc D:\5.13.1\mingw73_64\mkspecs\features\data\dummy.cpp ..\zumaaa\CrnaRupa.h ..\zumaaa\Game.h ..\zumaaa\Lopta.h ..\zumaaa\LoptaUUstima.h ..\zumaaa\Putanja.h ..\zumaaa\Score.h ..\zumaaa\Zabica.h ..\zumaaa\Zivot.h ..\zumaaa\mainwindow.h  ..\zumaaa\CrnaRupa.cpp ..\zumaaa\Game.cpp ..\zumaaa\Lopta.cpp ..\zumaaa\LoptaUUstima.cpp ..\zumaaa\Putanja.cpp ..\zumaaa\Score.cpp ..\zumaaa\Zabica.cpp ..\zumaaa\Zivot.cpp ..\zumaaa\main.cpp ..\zumaaa\mainwindow.cpp ..\zumaaa\mainwindow.ui    
+	$(ZIP) zumaaa.zip $(SOURCES) $(DIST) ..\zumaaa\zumaaa.pro D:\5.13.1\mingw73_64\mkspecs\features\spec_pre.prf D:\5.13.1\mingw73_64\mkspecs\qdevice.pri D:\5.13.1\mingw73_64\mkspecs\features\device_config.prf D:\5.13.1\mingw73_64\mkspecs\common\sanitize.conf D:\5.13.1\mingw73_64\mkspecs\common\gcc-base.conf D:\5.13.1\mingw73_64\mkspecs\common\g++-base.conf D:\5.13.1\mingw73_64\mkspecs\common\angle.conf D:\5.13.1\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf D:\5.13.1\mingw73_64\mkspecs\common\windows-vulkan.conf D:\5.13.1\mingw73_64\mkspecs\common\g++-win32.conf D:\5.13.1\mingw73_64\mkspecs\common\windows-desktop.conf D:\5.13.1\mingw73_64\mkspecs\qconfig.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3drender.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axbase.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axserver.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_core.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_core_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_dbus.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_designer.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gui.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_help.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_help_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_location.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_location_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_network.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_network_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_nfc.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_opengl.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioning.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qml.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quick.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_repparser.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_scxml.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sensors.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialport.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sql.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_svg.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_testlib.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_uitools.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_websockets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_widgets.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_winextras.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xml.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri D:\5.13.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\5.13.1\mingw73_64\mkspecs\features\qt_functions.prf D:\5.13.1\mingw73_64\mkspecs\features\qt_config.prf D:\5.13.1\mingw73_64\mkspecs\win32-g++\qmake.conf D:\5.13.1\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash D:\5.13.1\mingw73_64\mkspecs\features\exclusive_builds.prf D:\5.13.1\mingw73_64\mkspecs\features\toolchain.prf D:\5.13.1\mingw73_64\mkspecs\features\default_pre.prf D:\5.13.1\mingw73_64\mkspecs\features\win32\default_pre.prf D:\5.13.1\mingw73_64\mkspecs\features\resolve_config.prf D:\5.13.1\mingw73_64\mkspecs\features\exclusive_builds_post.prf D:\5.13.1\mingw73_64\mkspecs\features\default_post.prf D:\5.13.1\mingw73_64\mkspecs\features\build_pass.prf D:\5.13.1\mingw73_64\mkspecs\features\qml_debug.prf D:\5.13.1\mingw73_64\mkspecs\features\precompile_header.prf D:\5.13.1\mingw73_64\mkspecs\features\warn_on.prf D:\5.13.1\mingw73_64\mkspecs\features\qt.prf D:\5.13.1\mingw73_64\mkspecs\features\resources.prf D:\5.13.1\mingw73_64\mkspecs\features\moc.prf D:\5.13.1\mingw73_64\mkspecs\features\win32\opengl.prf D:\5.13.1\mingw73_64\mkspecs\features\uic.prf D:\5.13.1\mingw73_64\mkspecs\features\qmake_use.prf D:\5.13.1\mingw73_64\mkspecs\features\file_copies.prf D:\5.13.1\mingw73_64\mkspecs\features\win32\windows.prf D:\5.13.1\mingw73_64\mkspecs\features\testcase_targets.prf D:\5.13.1\mingw73_64\mkspecs\features\exceptions.prf D:\5.13.1\mingw73_64\mkspecs\features\yacc.prf D:\5.13.1\mingw73_64\mkspecs\features\lex.prf ..\zumaaa\zumaaa.pro ..\zumaaa\images.qrc ..\zumaaa\sounds.qrc D:\5.13.1\mingw73_64\lib\Qt5Multimediad.prl D:\5.13.1\mingw73_64\lib\Qt5Widgetsd.prl D:\5.13.1\mingw73_64\lib\Qt5Guid.prl D:\5.13.1\mingw73_64\lib\Qt5Networkd.prl D:\5.13.1\mingw73_64\lib\Qt5Cored.prl D:\5.13.1\mingw73_64\lib\qtmaind.prl   ..\zumaaa\images.qrc ..\zumaaa\sounds.qrc D:\5.13.1\mingw73_64\mkspecs\features\data\dummy.cpp ..\zumaaa\CrnaRupa.h ..\zumaaa\Game.h ..\zumaaa\Lopta.h ..\zumaaa\LoptaUUstima.h ..\zumaaa\Putanja.h ..\zumaaa\Score.h ..\zumaaa\Zabica.h ..\zumaaa\Zivot.h ..\zumaaa\mainwindow.h  ..\zumaaa\CrnaRupa.cpp ..\zumaaa\Game.cpp ..\zumaaa\Lopta.cpp ..\zumaaa\LoptaUUstima.cpp ..\zumaaa\Putanja.cpp ..\zumaaa\Score.cpp ..\zumaaa\Zabica.cpp ..\zumaaa\Zivot.cpp ..\zumaaa\main.cpp ..\zumaaa\mainwindow.cpp ..\zumaaa\mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\CrnaRupa.o debug\Game.o debug\Lopta.o debug\LoptaUUstima.o debug\Putanja.o debug\Score.o debug\Zabica.o debug\Zivot.o debug\main.o debug\mainwindow.o debug\qrc_images.o debug\moc_CrnaRupa.o debug\moc_Game.o debug\moc_Lopta.o debug\moc_LoptaUUstima.o debug\moc_Putanja.o debug\moc_Zabica.o debug\moc_mainwindow.o
+	-$(DEL_FILE) debug\CrnaRupa.o debug\Game.o debug\Lopta.o debug\LoptaUUstima.o debug\Putanja.o debug\Score.o debug\Zabica.o debug\Zivot.o debug\main.o debug\mainwindow.o debug\qrc_images.o debug\qrc_sounds.o debug\moc_CrnaRupa.o debug\moc_Game.o debug\moc_Lopta.o debug\moc_LoptaUUstima.o debug\moc_Putanja.o debug\moc_Zabica.o debug\moc_mainwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -140,20 +142,28 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all: debug/qrc_images.cpp
+compiler_rcc_make_all: debug/qrc_images.cpp debug/qrc_sounds.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) debug\qrc_images.cpp
+	-$(DEL_FILE) debug\qrc_images.cpp debug\qrc_sounds.cpp
 debug/qrc_images.cpp: ../zumaaa/images.qrc \
 		D:/5.13.1/mingw73_64/bin/rcc.exe \
 		../zumaaa/images/roze.png \
 		../zumaaa/images/plava.png \
+		../zumaaa/images/square.jpg \
+		../zumaaa/images/crna_rupa.png \
 		../zumaaa/images/zelena.png \
 		../zumaaa/images/ljubicasta.png \
 		../zumaaa/images/zabica_ljubicasta.png \
 		../zumaaa/images/zabica_plava.png \
 		../zumaaa/images/zabica_zelena.png \
-		../zumaaa/images/zabica_roze.png
+		../zumaaa/images/zabica_roze.png \
+		../zumaaa/images/level1.txt
 	D:\5.13.1\mingw73_64\bin\rcc.exe -name images ..\zumaaa\images.qrc -o debug\qrc_images.cpp
+
+debug/qrc_sounds.cpp: ../zumaaa/sounds.qrc \
+		D:/5.13.1/mingw73_64/bin/rcc.exe \
+		../zumaaa/sounds/Zuma.mp3
+	D:\5.13.1\mingw73_64\bin\rcc.exe -name sounds ..\zumaaa\sounds.qrc -o debug\qrc_sounds.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
 compiler_moc_predefs_clean:
@@ -256,7 +266,7 @@ debug/moc_CrnaRupa.cpp: ../zumaaa/CrnaRupa.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\CrnaRupa.h -o debug\moc_CrnaRupa.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\CrnaRupa.h -o debug\moc_CrnaRupa.cpp
 
 debug/moc_Game.cpp: ../zumaaa/Game.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
@@ -378,29 +388,29 @@ debug/moc_Game.cpp: ../zumaaa/Game.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
 		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
-		D:/5.13.1/mingw73_64/include/QtGui/QList \
-		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
 		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
 		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
-		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
-		../zumaaa/Lopta.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/CrnaRupa.h \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Game.h -o debug\moc_Game.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Game.h -o debug\moc_Game.cpp
 
 debug/moc_Lopta.cpp: ../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
@@ -516,7 +526,7 @@ debug/moc_Lopta.cpp: ../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Lopta.h -o debug\moc_Lopta.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Lopta.h -o debug\moc_Lopta.cpp
 
 debug/moc_LoptaUUstima.cpp: ../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
@@ -619,9 +629,24 @@ debug/moc_LoptaUUstima.cpp: ../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qvector2d.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qtouchdevice.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qbrush.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontinfo.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfont.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontmetrics.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\LoptaUUstima.h -o debug\moc_LoptaUUstima.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\LoptaUUstima.h -o debug\moc_LoptaUUstima.cpp
 
 debug/moc_Putanja.cpp: ../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
@@ -742,7 +767,7 @@ debug/moc_Putanja.cpp: ../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Putanja.h -o debug\moc_Putanja.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Putanja.h -o debug\moc_Putanja.cpp
 
 debug/moc_Zabica.cpp: ../zumaaa/Zabica.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
@@ -853,12 +878,23 @@ debug/moc_Zabica.cpp: ../zumaaa/Zabica.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Zabica.h -o debug\moc_Zabica.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Zabica.h -o debug\moc_Zabica.cpp
 
 debug/moc_mainwindow.cpp: ../zumaaa/mainwindow.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QMainWindow \
@@ -969,7 +1005,7 @@ debug/moc_mainwindow.cpp: ../zumaaa/mainwindow.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qicon.h \
 		debug/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
-	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\mainwindow.h -o debug\moc_mainwindow.cpp
+	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\mainwindow.h -o debug\moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1116,24 +1152,24 @@ debug/CrnaRupa.o: ../zumaaa/CrnaRupa.cpp ../zumaaa/CrnaRupa.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
 		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
-		D:/5.13.1/mingw73_64/include/QtGui/QList \
-		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
 		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
-		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
-		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
-		../zumaaa/Lopta.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QVector
+		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\CrnaRupa.o ..\zumaaa\CrnaRupa.cpp
 
 debug/Game.o: ../zumaaa/Game.cpp ../zumaaa/Game.h \
@@ -1256,29 +1292,48 @@ debug/Game.o: ../zumaaa/Game.cpp ../zumaaa/Game.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
 		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
-		D:/5.13.1/mingw73_64/include/QtGui/QList \
-		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
 		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
 		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
-		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
-		../zumaaa/Lopta.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/CrnaRupa.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QFont \
 		D:/5.13.1/mingw73_64/include/QtCore/QtMath \
-		D:/5.13.1/mingw73_64/include/QtCore/qmath.h
+		D:/5.13.1/mingw73_64/include/QtCore/qmath.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/QMediaPlayer \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qmediaplayer.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qmediaobject.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qtmultimedia-config.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qmultimedia.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qmediacontent.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qmediaresource.h \
+		D:/5.13.1/mingw73_64/include/QtNetwork/qnetworkrequest.h \
+		D:/5.13.1/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
+		D:/5.13.1/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QSharedDataPointer \
+		D:/5.13.1/mingw73_64/include/QtCore/QString \
+		D:/5.13.1/mingw73_64/include/QtCore/QUrl \
+		D:/5.13.1/mingw73_64/include/QtCore/QVariant \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qmediaenumdebug.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qmetaobject.h \
+		D:/5.13.1/mingw73_64/include/QtMultimedia/qaudio.h \
+		D:/5.13.1/mingw73_64/include/QtNetwork/qnetworkconfiguration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Game.o ..\zumaaa\Game.cpp
 
 debug/Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
@@ -1401,9 +1456,28 @@ debug/Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
 		../zumaaa/CrnaRupa.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
-		D:/5.13.1/mingw73_64/include/QtCore/QDir \
-		D:/5.13.1/mingw73_64/include/QtCore/qdir.h \
-		D:/5.13.1/mingw73_64/include/QtCore/qfileinfo.h
+		../zumaaa/Putanja.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QLine \
+		../zumaaa/Game.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsview.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qframe.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qwidget.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpalette.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
+		../zumaaa/Zabica.h \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
+		../zumaaa/Zivot.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Lopta.o ..\zumaaa\Lopta.cpp
 
 debug/LoptaUUstima.o: ../zumaaa/LoptaUUstima.cpp ../zumaaa/LoptaUUstima.h \
@@ -1507,22 +1581,29 @@ debug/LoptaUUstima.o: ../zumaaa/LoptaUUstima.cpp ../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qvector2d.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qtouchdevice.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qbrush.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontinfo.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfont.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontmetrics.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
 		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
 		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qbrush.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qfont.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
-		D:/5.13.1/mingw73_64/include/QtGui/QList \
 		../zumaaa/Game.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsview.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qfontinfo.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qfontmetrics.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qscrollarea.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qframe.h \
@@ -1536,15 +1617,8 @@ debug/LoptaUUstima.o: ../zumaaa/LoptaUUstima.cpp ../zumaaa/LoptaUUstima.h \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
-		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
-		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
-		../zumaaa/Lopta.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/CrnaRupa.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QtMath \
 		D:/5.13.1/mingw73_64/include/QtCore/qmath.h
@@ -1669,7 +1743,28 @@ debug/Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QDebug
+		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
+		D:/5.13.1/mingw73_64/include/QtCore/QFile \
+		../zumaaa/Game.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsview.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qframe.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qwidget.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpalette.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
+		../zumaaa/Zabica.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		../zumaaa/LoptaUUstima.h \
+		../zumaaa/Score.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
+		../zumaaa/Zivot.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Putanja.o ..\zumaaa\Putanja.cpp
 
 debug/Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h \
@@ -1762,7 +1857,57 @@ debug/Score.o: ../zumaaa/Score.cpp ../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qpixelformat.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qtransform.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QFont \
-		D:/5.13.1/mingw73_64/include/QtGui/qfont.h
+		D:/5.13.1/mingw73_64/include/QtGui/qfont.h \
+		../zumaaa/Game.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsview.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qbrush.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontinfo.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontmetrics.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qframe.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qwidget.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpalette.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qkeysequence.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qevent.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qurl.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qurlquery.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qfile.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qfiledevice.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qvector2d.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtouchdevice.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
+		../zumaaa/Zabica.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
+		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
+		../zumaaa/LoptaUUstima.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QObject \
+		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
+		../zumaaa/Zivot.h \
+		../zumaaa/Putanja.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QLine \
+		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
+		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Score.o ..\zumaaa\Score.cpp
 
 debug/Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
@@ -1874,21 +2019,28 @@ debug/Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		D:/5.13.1/mingw73_64/include/QtGui/QKeyEvent \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QPoint \
 		D:/5.13.1/mingw73_64/include/QtCore/QtMath \
 		D:/5.13.1/mingw73_64/include/QtCore/qmath.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QFont \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
-		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
-		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
-		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
 		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
 		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
@@ -1902,15 +2054,8 @@ debug/Zabica.o: ../zumaaa/Zabica.cpp ../zumaaa/Zabica.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qframe.h \
 		../zumaaa/Score.h \
 		../zumaaa/Zivot.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
-		D:/5.13.1/mingw73_64/include/QtGui/QList \
-		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
-		../zumaaa/Lopta.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Zabica.o ..\zumaaa\Zabica.cpp
 
@@ -2004,7 +2149,57 @@ debug/Zivot.o: ../zumaaa/Zivot.cpp ../zumaaa/Zivot.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qpixelformat.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qtransform.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QFont \
-		D:/5.13.1/mingw73_64/include/QtGui/qfont.h
+		D:/5.13.1/mingw73_64/include/QtGui/qfont.h \
+		../zumaaa/Game.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsview.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qbrush.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontinfo.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qfontmetrics.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qframe.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qwidget.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpalette.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qkeysequence.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qevent.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qurl.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qurlquery.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qfile.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qfiledevice.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qvector2d.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtouchdevice.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
+		../zumaaa/Zabica.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
+		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
+		../zumaaa/LoptaUUstima.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QObject \
+		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
+		../zumaaa/Score.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
+		../zumaaa/Putanja.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QLine \
+		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
+		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
+		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Zivot.o ..\zumaaa\Zivot.cpp
 
 debug/main.o: ../zumaaa/main.cpp ../zumaaa/mainwindow.h \
@@ -2139,25 +2334,25 @@ debug/main.o: ../zumaaa/main.cpp ../zumaaa/mainwindow.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
 		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		../zumaaa/LoptaUUstima.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QObject \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
+		../zumaaa/Lopta.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
-		D:/5.13.1/mingw73_64/include/QtGui/QList \
-		D:/5.13.1/mingw73_64/include/QtCore/QPointF \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsEllipseItem \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsObject \
 		D:/5.13.1/mingw73_64/include/QtCore/QTimer \
 		D:/5.13.1/mingw73_64/include/QtCore/qtimer.h \
 		D:/5.13.1/mingw73_64/include/QtCore/qbasictimer.h \
-		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
-		../zumaaa/Lopta.h \
-		D:/5.13.1/mingw73_64/include/QtCore/QVector \
 		../zumaaa/CrnaRupa.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\zumaaa\main.cpp
 
@@ -2268,11 +2463,41 @@ debug/mainwindow.o: ../zumaaa/mainwindow.cpp ../zumaaa/mainwindow.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qtouchdevice.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qtabwidget.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QVariant \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QApplication \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qapplication.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qcoreapplication.h \
+		D:/5.13.1/mingw73_64/include/QtCore/qeventloop.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qguiapplication.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qinputmethod.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QMenuBar \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qmenubar.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qmenu.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qaction.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qactiongroup.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QStatusBar \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qstatusbar.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QDesktopWidget \
+		D:/5.13.1/mingw73_64/include/QtGui/QPalette \
+		D:/5.13.1/mingw73_64/include/QtGui/QPainter \
+		D:/5.13.1/mingw73_64/include/QtGui/qpainter.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qtextoption.h \
+		D:/5.13.1/mingw73_64/include/QtGui/qpen.h \
+		D:/5.13.1/mingw73_64/include/QtGui/QList \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QDialog \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qdialog.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QMessageBox \
+		D:/5.13.1/mingw73_64/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\zumaaa\mainwindow.cpp
 
 debug/qrc_images.o: debug/qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_images.o debug\qrc_images.cpp
+
+debug/qrc_sounds.o: debug/qrc_sounds.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_sounds.o debug\qrc_sounds.cpp
 
 debug/moc_CrnaRupa.o: debug/moc_CrnaRupa.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_CrnaRupa.o debug\moc_CrnaRupa.cpp
