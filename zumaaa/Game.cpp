@@ -52,10 +52,10 @@ Game::Game(QWidget *parent)
     connect(this, SIGNAL(mouseMoveEvent(QMouseEvent*)), zabica, SLOT(rotiraj(QMouseEvent*)));
    // connect(, SIGNAL(sudar), putanja, SLOT(dodaj_loptu()))
 
-    /*QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("Users/katar/git_zabica/RS032-zuma/zumaaa/sounds/Zuma.mp3"));
+    QMediaPlayer *player = new QMediaPlayer;
+    player->setMedia(QUrl("https://raw.githubusercontent.com/MATF-RS20/RS032-zuma/master/zumaaa/sounds/Zuma.wav"));
     player->setVolume(50);
-    player->play();*/
+    player->play();
 
     show();
 
