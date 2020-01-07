@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../zumaaa -I. -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../zumaaa -I. -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++
 QMAKE         = /opt/Qt/5.12.5/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = zumaaa1.0.0
 DISTDIR = /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/.tmp/zumaaa1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/opt/Qt/5.12.5/gcc_64/lib
-LIBS          = $(SUBLIBS) /opt/Qt/5.12.5/gcc_64/lib/libQt5Widgets.so /opt/Qt/5.12.5/gcc_64/lib/libQt5Gui.so /opt/Qt/5.12.5/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /opt/Qt/5.12.5/gcc_64/lib/libQt5Multimedia.so /opt/Qt/5.12.5/gcc_64/lib/libQt5Widgets.so /opt/Qt/5.12.5/gcc_64/lib/libQt5Gui.so /opt/Qt/5.12.5/gcc_64/lib/libQt5Network.so /opt/Qt/5.12.5/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -62,6 +62,7 @@ SOURCES       = ../zumaaa/CrnaRupa.cpp \
 		../zumaaa/Zivot.cpp \
 		../zumaaa/main.cpp \
 		../zumaaa/mainwindow.cpp qrc_images.cpp \
+		qrc_sounds.cpp \
 		moc_CrnaRupa.cpp \
 		moc_Game.cpp \
 		moc_Lopta.cpp \
@@ -80,6 +81,7 @@ OBJECTS       = CrnaRupa.o \
 		main.o \
 		mainwindow.o \
 		qrc_images.o \
+		qrc_sounds.o \
 		moc_CrnaRupa.o \
 		moc_Game.o \
 		moc_Lopta.o \
@@ -505,7 +507,8 @@ Makefile: ../zumaaa/zumaaa.pro /opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.con
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/yacc.prf \
 		/opt/Qt/5.12.5/gcc_64/mkspecs/features/lex.prf \
 		../zumaaa/zumaaa.pro \
-		../zumaaa/images.qrc
+		../zumaaa/images.qrc \
+		../zumaaa/sounds.qrc
 	$(QMAKE) -o Makefile ../zumaaa/zumaaa.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/spec_pre.prf:
 /opt/Qt/5.12.5/gcc_64/mkspecs/common/unix.conf:
@@ -703,6 +706,7 @@ Makefile: ../zumaaa/zumaaa.pro /opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.con
 /opt/Qt/5.12.5/gcc_64/mkspecs/features/lex.prf:
 ../zumaaa/zumaaa.pro:
 ../zumaaa/images.qrc:
+../zumaaa/sounds.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../zumaaa/zumaaa.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
@@ -717,7 +721,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../zumaaa/images.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../zumaaa/images.qrc ../zumaaa/sounds.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/Qt/5.12.5/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../zumaaa/CrnaRupa.h ../zumaaa/Game.h ../zumaaa/Lopta.h ../zumaaa/LoptaUUstima.h ../zumaaa/Putanja.h ../zumaaa/Score.h ../zumaaa/Zabica.h ../zumaaa/Zivot.h ../zumaaa/mainwindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../zumaaa/CrnaRupa.cpp ../zumaaa/Game.cpp ../zumaaa/Lopta.cpp ../zumaaa/LoptaUUstima.cpp ../zumaaa/Putanja.cpp ../zumaaa/Score.cpp ../zumaaa/Zabica.cpp ../zumaaa/Zivot.cpp ../zumaaa/main.cpp ../zumaaa/mainwindow.cpp $(DISTDIR)/
@@ -745,9 +749,9 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_images.cpp
+compiler_rcc_make_all: qrc_images.cpp qrc_sounds.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_images.cpp
+	-$(DEL_FILE) qrc_images.cpp qrc_sounds.cpp
 qrc_images.cpp: ../zumaaa/images.qrc \
 		/opt/Qt/5.12.5/gcc_64/bin/rcc \
 		../zumaaa/images/roze.png \
@@ -762,6 +766,11 @@ qrc_images.cpp: ../zumaaa/images.qrc \
 		../zumaaa/images/zabica_roze.png \
 		../zumaaa/images/level1.txt
 	/opt/Qt/5.12.5/gcc_64/bin/rcc -name images ../zumaaa/images.qrc -o qrc_images.cpp
+
+qrc_sounds.cpp: ../zumaaa/sounds.qrc \
+		/opt/Qt/5.12.5/gcc_64/bin/rcc \
+		../zumaaa/sounds/Zuma.mp3
+	/opt/Qt/5.12.5/gcc_64/bin/rcc -name sounds ../zumaaa/sounds.qrc -o qrc_sounds.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
@@ -864,7 +873,7 @@ moc_CrnaRupa.cpp: ../zumaaa/CrnaRupa.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QObject \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/CrnaRupa.h -o moc_CrnaRupa.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/CrnaRupa.h -o moc_CrnaRupa.cpp
 
 moc_Game.cpp: ../zumaaa/Game.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsView \
@@ -1008,7 +1017,7 @@ moc_Game.cpp: ../zumaaa/Game.h \
 		../zumaaa/CrnaRupa.h \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Game.h -o moc_Game.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Game.h -o moc_Game.cpp
 
 moc_Lopta.cpp: ../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsEllipseItem \
@@ -1124,7 +1133,7 @@ moc_Lopta.cpp: ../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsObject \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Lopta.h -o moc_Lopta.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Lopta.h -o moc_Lopta.cpp
 
 moc_LoptaUUstima.cpp: ../zumaaa/LoptaUUstima.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
@@ -1244,7 +1253,7 @@ moc_LoptaUUstima.cpp: ../zumaaa/LoptaUUstima.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsObject \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/LoptaUUstima.h -o moc_LoptaUUstima.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/LoptaUUstima.h -o moc_LoptaUUstima.cpp
 
 moc_Putanja.cpp: ../zumaaa/Putanja.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QObject \
@@ -1363,9 +1372,13 @@ moc_Putanja.cpp: ../zumaaa/Putanja.h \
 		../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPixmap \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVector \
+		../zumaaa/LoptaUUstima.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Putanja.h -o moc_Putanja.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Putanja.h -o moc_Putanja.cpp
 
 moc_Zabica.cpp: ../zumaaa/Zabica.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
@@ -1492,7 +1505,7 @@ moc_Zabica.cpp: ../zumaaa/Zabica.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVector \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Zabica.h -o moc_Zabica.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/Zabica.h -o moc_Zabica.cpp
 
 moc_mainwindow.cpp: ../zumaaa/mainwindow.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QMainWindow \
@@ -1603,7 +1616,7 @@ moc_mainwindow.cpp: ../zumaaa/mainwindow.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		/opt/Qt/5.12.5/gcc_64/bin/moc
-	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/mainwindow.h -o moc_mainwindow.cpp
+	/opt/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include /home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/build-zumaaa-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa -I/opt/Qt/5.12.5/gcc_64/include -I/opt/Qt/5.12.5/gcc_64/include/QtMultimedia -I/opt/Qt/5.12.5/gcc_64/include/QtWidgets -I/opt/Qt/5.12.5/gcc_64/include/QtGui -I/opt/Qt/5.12.5/gcc_64/include/QtNetwork -I/opt/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../zumaaa/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1910,7 +1923,26 @@ Game.o: ../zumaaa/Game.cpp ../zumaaa/Game.h \
 		../zumaaa/CrnaRupa.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QFont \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QtMath \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/qmath.h
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qmath.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/QMediaPlayer \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaobject.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmultimedia.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediacontent.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaresource.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QSharedDataPointer \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QString \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QUrl \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVariant \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qmetaobject.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qaudio.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qnetworkconfiguration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Game.o ../zumaaa/Game.cpp
 
 Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
@@ -2035,6 +2067,9 @@ Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
 		../zumaaa/Putanja.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QLine \
+		../zumaaa/LoptaUUstima.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
 		../zumaaa/Game.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsView \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsview.h \
@@ -2049,9 +2084,6 @@ Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsScene \
 		../zumaaa/Zabica.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
-		../zumaaa/LoptaUUstima.h \
 		../zumaaa/Score.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h
@@ -2318,6 +2350,10 @@ Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		../zumaaa/Lopta.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPixmap \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVector \
+		../zumaaa/LoptaUUstima.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsScene \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QDebug \
@@ -2334,10 +2370,6 @@ Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qcursor.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
 		../zumaaa/Zabica.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsRectItem \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/QMouseEvent \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/QEvent \
-		../zumaaa/LoptaUUstima.h \
 		../zumaaa/Score.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \
@@ -2930,7 +2962,26 @@ main.o: ../zumaaa/main.cpp ../zumaaa/mainwindow.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/QTimer \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/qtimer.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtCore/qbasictimer.h \
-		../zumaaa/CrnaRupa.h
+		../zumaaa/CrnaRupa.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/QMediaPlayer \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaobject.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmultimedia.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediacontent.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaresource.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QSharedDataPointer \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QString \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QUrl \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVariant \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qmetaobject.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtMultimedia/qaudio.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtNetwork/qnetworkconfiguration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../zumaaa/main.cpp
 
 mainwindow.o: ../zumaaa/mainwindow.cpp ../zumaaa/mainwindow.h \
@@ -3041,19 +3092,28 @@ mainwindow.o: ../zumaaa/mainwindow.cpp ../zumaaa/mainwindow.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QDesktopWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/QVariant \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QApplication \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtCore/qeventloop.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtGui/qinputmethod.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QMenuBar \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qmenubar.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qmenu.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qaction.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QStatusBar \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qstatusbar.h \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QDesktopWidget \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPalette \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QPainter \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpainter.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qtextoption.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/qpen.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QApplication \
-		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qapplication.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtCore/qeventloop.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/qguiapplication.h \
-		/opt/Qt/5.12.5/gcc_64/include/QtGui/qinputmethod.h \
 		/opt/Qt/5.12.5/gcc_64/include/QtGui/QList \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/QDialog \
 		/opt/Qt/5.12.5/gcc_64/include/QtWidgets/qdialog.h \
@@ -3063,6 +3123,9 @@ mainwindow.o: ../zumaaa/mainwindow.cpp ../zumaaa/mainwindow.h \
 
 qrc_images.o: qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp
+
+qrc_sounds.o: qrc_sounds.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_sounds.o qrc_sounds.cpp
 
 moc_CrnaRupa.o: moc_CrnaRupa.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CrnaRupa.o moc_CrnaRupa.cpp
