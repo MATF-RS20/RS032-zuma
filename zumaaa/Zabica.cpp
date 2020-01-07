@@ -15,6 +15,7 @@
 #include <QTimer>
 #include <QSignalMapper>
 #include "Game.h"
+#include <QtMultimedia/QMediaPlayer>
 
 
 extern QGraphicsScene * scene;
@@ -105,6 +106,13 @@ void Zabica::klik(QMouseEvent * event)
         scene()->addItem(loptaUsta);
         QObject::connect(timer, SIGNAL(timeout()), loptaUsta, SLOT(move()));
         timer->start(50);
+
+        ///TODO: Proveriti da li se cuje zvuk
+
+        QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl("qrc:/sounds/sounds/ispaljena1.ogg"));
+        player->setVolume(40);
+        player->play();
 
         promeni_boju();
 

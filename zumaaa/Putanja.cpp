@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <QFile>
 #include "Game.h"
+#include <QtMultimedia/QMediaPlayer>
 
 extern QGraphicsScene *scene;
 extern Game* game;
@@ -36,6 +37,20 @@ Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(create()));
 
     timer->start(800);
+
+    ///TODO: Proveriti da li se cuje zvuk
+    // Ideja je bila da se cuje kotrljanje loptica pre pravljenja prve loptice,
+    // i onda da se pojave loptice.
+    // Deluje mi da je ovo mesto na kom se poziva pravljenje prve lopte
+
+    QMediaPlayer *player = new QMediaPlayer;
+    player->setMedia(QUrl("qrc:/sounds/sounds/rolling.ogg"));
+    player->setVolume(40);
+    player->play();
+
+
+
+
 }
 
 QRectF Putanja::boundingRect() const
@@ -85,6 +100,14 @@ void Putanja::dodaj_loptu(Lopta * l)
 
         lopte.insert(indeks, lopta);
         scene()->addItem(lopta);
+
+        ///TODO: Proveriti da li se cuje zvuk
+
+        QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl("qrc:/sounds/sounds/ubacena.ogg"));
+        player->setVolume(40);
+        player->play();
+
 
     for(int j=0; j<lopte.size(); j++){
          // QPointF poz = lopte[j]->pos();
@@ -180,6 +203,16 @@ Lopta* Putanja::susedne(Lopta *lopta)
             unisti_loptu(lopte[j]);
      }
 
+
+     ///TODO: Proveriti da li se cuje zvuk
+     // Trebalo bi da moze ovako jer valjda ne bi dosao do ovde da nema lopti za brisanje :/
+
+     QMediaPlayer *player = new QMediaPlayer;
+     player->setMedia(QUrl("qrc:/sounds/sounds/pogodjene.ogg"));
+     player->setVolume(40);
+     player->play();
+
+
      indeksi.clear();
      for(int j=0; j<lopte.size(); j++){
         if(j<indeks_prve && !lopte[j]->isDeleted){
@@ -223,4 +256,12 @@ void Putanja:: unisti_loptu(Lopta* lopta )
     lopta->isDeleted = true;
     delete lopta;
     game->score->increase();
+}
+
+bool Putanja:: prazneLopte()
+{
+    for(int i =0; i<lopte.size(); i++)
+        if(!lopte[i]->isDeleted)
+            return false;
+    return true;
 }

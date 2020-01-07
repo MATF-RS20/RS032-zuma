@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/sounds">
         <file alias="Zuma.wav">sounds/Zuma.wav</file>
+        <file>sounds/ispaljena1.ogg</file>
+        <file>sounds/ispaljena2.ogg</file>
+        <file>sounds/kraj.ogg</file>
+        <file>sounds/pogodjene.ogg</file>
+        <file>sounds/rolling.ogg</file>
+        <file>sounds/ubacena.ogg</file>
     </qresource>
 </RCC>

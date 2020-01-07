@@ -57,6 +57,10 @@ Game::Game(QWidget *parent)
     player->setVolume(40);
     player->play();
 
+
+    //qDebug()<<"Player error state-> " <<player->error();
+    //qDebug()<<"Media supported state-> "<<QMediaPlayer::hasSupport("wav");
+
     show();
 
 

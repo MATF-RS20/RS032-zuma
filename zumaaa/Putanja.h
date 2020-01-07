@@ -25,6 +25,7 @@ public:
     Lopta* susedne(Lopta * lopta);
     void resetuj_kolizije_lopti();
     void unisti_loptu(Lopta*lopta);
+    bool prazneLopte();
 signals:
     void pomeri_se(QPointF);
 public slots:
@@ -39,6 +40,9 @@ private:
     int maxSize;
     int precnik;
     bool ind_udareno=false;
+
+public:
+
 };
 
 

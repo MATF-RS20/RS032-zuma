@@ -162,7 +162,13 @@ release/qrc_images.cpp: ../zumaaa/images.qrc \
 
 release/qrc_sounds.cpp: ../zumaaa/sounds.qrc \
 		D:/5.13.1/mingw73_64/bin/rcc.exe \
-		../zumaaa/sounds/Zuma.mp3
+		../zumaaa/sounds/Zuma.wav \
+		../zumaaa/sounds/rolling.ogg \
+		../zumaaa/sounds/pogodjene.ogg \
+		../zumaaa/sounds/ubacena.ogg \
+		../zumaaa/sounds/ispaljena2.ogg \
+		../zumaaa/sounds/kraj.ogg \
+		../zumaaa/sounds/ispaljena1.ogg
 	D:\5.13.1\mingw73_64\bin\rcc.exe -name sounds ..\zumaaa\sounds.qrc -o release\qrc_sounds.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -765,6 +771,10 @@ release/moc_Putanja.cpp: ../zumaaa/Putanja.h \
 		../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
 		D:/5.13.1/mingw73_64/include/QtCore/QVector \
+		../zumaaa/LoptaUUstima.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		release/moc_predefs.h \
 		D:/5.13.1/mingw73_64/bin/moc.exe
 	D:\5.13.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/katar/git_zabica/RS032-zuma/build-zumaaa-Desktop_Qt_5_13_1_MinGW_64_bit-Debug/release/moc_predefs.h -ID:/5.13.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/katar/git_zabica/RS032-zuma/zumaaa -ID:/5.13.1/mingw73_64/include -ID:/5.13.1/mingw73_64/include/QtMultimedia -ID:/5.13.1/mingw73_64/include/QtWidgets -ID:/5.13.1/mingw73_64/include/QtGui -ID:/5.13.1/mingw73_64/include/QtANGLE -ID:/5.13.1/mingw73_64/include/QtNetwork -ID:/5.13.1/mingw73_64/include/QtCore -I. -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Tools/mingw730_64/x86_64-w64-mingw32/include ..\zumaaa\Putanja.h -o release\moc_Putanja.cpp
@@ -1458,6 +1468,9 @@ release/Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
 		../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QLine \
+		../zumaaa/LoptaUUstima.h \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		../zumaaa/Game.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsView \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsview.h \
@@ -1472,9 +1485,6 @@ release/Lopta.o: ../zumaaa/Lopta.cpp ../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
 		../zumaaa/Zabica.h \
-		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
-		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
-		../zumaaa/LoptaUUstima.h \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h
@@ -1741,6 +1751,10 @@ release/Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		../zumaaa/Lopta.h \
 		D:/5.13.1/mingw73_64/include/QtGui/QPixmap \
 		D:/5.13.1/mingw73_64/include/QtCore/QVector \
+		../zumaaa/LoptaUUstima.h \
+		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
+		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsScene \
 		D:/5.13.1/mingw73_64/include/QtWidgets/qgraphicsscene.h \
 		D:/5.13.1/mingw73_64/include/QtCore/QDebug \
@@ -1757,10 +1771,6 @@ release/Putanja.o: ../zumaaa/Putanja.cpp ../zumaaa/Putanja.h \
 		D:/5.13.1/mingw73_64/include/QtGui/qcursor.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QWidget \
 		../zumaaa/Zabica.h \
-		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsRectItem \
-		D:/5.13.1/mingw73_64/include/QtGui/QMouseEvent \
-		D:/5.13.1/mingw73_64/include/QtCore/QEvent \
-		../zumaaa/LoptaUUstima.h \
 		../zumaaa/Score.h \
 		D:/5.13.1/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		../zumaaa/Zivot.h \

@@ -7,6 +7,7 @@
 #include "CrnaRupa.h"
 #include "Putanja.h"
 #include "Game.h"
+#include <QtMultimedia/QMediaPlayer>
 
 extern Game * game;
 
@@ -63,18 +64,45 @@ void Lopta::kolizija_crna_rupa()
     for(int i = 0; i < items.size(); ++i) {
         if(typeid(*(items[i])) == typeid(CrnaRupa)) {
 
-            //smanjujemo broj zivota za svaku lopticu kojs udje u rupu
-            game->zivot->decrease();
+            game->putanja->ubrzaj(6);
 
             if(size > pocetna_dim/4) {
                 setScale(size/pocetna_dim); /// TODO pored scale mozda neki kontrast, da izgleda sve tamnije kako sve vise upada
                 size -= 1;
+
             }
             else {
+                isDeleted = true;
                 delete this;
+                if(game->putanja->prazneLopte())
+                {
+                    ///TODO: Proveriti da li se cuje zvuk
+
+                    QMediaPlayer *player = new QMediaPlayer;
+                    player->setMedia(QUrl("qrc:/sounds/sounds/kraj.ogg"));
+                    player->setVolume(40);
+                    player->play();
+
+                    game->zivot->decrease();
+                }
             }
+
+
         }
     }
+
+
+    //if(game->putanja->prazneLopte())
+    //{
+       /* QMediaPlayer *player = new QMediaPlayer;
+        player->setMedia(QUrl("qrc:/sounds/sounds/kraj.ogg"));
+        player->setVolume(40);
+        player->play();
+
+        game->zivot->decrease();*/
+
+    //}
+
 }
 // funkcija koja se poziva pri timeru
 void Lopta::move()
