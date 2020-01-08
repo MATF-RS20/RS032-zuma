@@ -184,6 +184,7 @@ Lopta* Putanja::susedne(Lopta *lopta)
     if(broj_obrisanih<2) {
         indeksi.clear();
         lopta->u_koliziji = false;
+        game->putanja->resetuj_kolizije_lopti();
         return lopta;
     }
 
@@ -206,12 +207,11 @@ Lopta* Putanja::susedne(Lopta *lopta)
      ///TODO: Proveriti da li se cuje zvuk
      // Trebalo bi da moze ovako jer valjda ne bi dosao do ovde da nema lopti za brisanje :/
 
-//     QMediaPlayer *player = new QMediaPlayer;
-//     player->setMedia(QUrl("qrc:/sounds/sounds/pogodjene.ogg"));
-//     player->setVolume(40);
-//     player->play();
+     QMediaPlayer *player = new QMediaPlayer;
+     player->setMedia(QUrl("qrc:/sounds/sounds/pogodjene.ogg"));
+     player->setVolume(40);
+     player->play();
 
-     indeksi.clear();
      if(indeks_posle_poslednje < lopte.size()) // ne vracaj ako iza nema nista
          for(int j=0; j<lopte.size(); j++){
             if(j<indeks_prve && !lopte[j]->isDeleted){
@@ -221,6 +221,7 @@ Lopta* Putanja::susedne(Lopta *lopta)
          }
 
 
+     indeksi.clear();
 
  /*   foreach(auto &j, indeksi){
         if(j+broj_obrisanih>=n){
@@ -241,6 +242,8 @@ Lopta* Putanja::susedne(Lopta *lopta)
     // vector<Lopta*>::const_iterator last = lopte.end();
     //lopte.reserve(n-broj_obrisanih);
 
+
+     game->putanja->resetuj_kolizije_lopti();
     return poslednja;
 
 }
@@ -248,7 +251,8 @@ Lopta* Putanja::susedne(Lopta *lopta)
 void Putanja::resetuj_kolizije_lopti()
 {
     for(auto &l: lopte)
-        static_cast<Lopta*>(l)->u_koliziji = false;
+        if(!static_cast<Lopta*>(l)->isDeleted)
+            static_cast<Lopta*>(l)->u_koliziji = false;
 }
 
 void Putanja:: unisti_loptu(Lopta* lopta )

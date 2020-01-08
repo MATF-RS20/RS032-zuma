@@ -124,15 +124,15 @@ void Lopta::move()
        // qDebug()<<colliding_items.size();
 
         foreach(auto &x ,colliding_items){
-           if(typeid(*x)==typeid(Lopta) && static_cast<Lopta*>(x)->ideUnatrag==false && !static_cast<Lopta*>(x)->isDeleted){
+           if(typeid(*x)==typeid(Lopta) && !static_cast<Lopta*>(x)->isDeleted){
                krajnja=tacke[index];
                id1=1;
                id2=1;
                ideUnatrag=false;
-               if(static_cast<Lopta*>(x)->indexBoje==this->indexBoje){
-                   qDebug()<<"iste boje kasniji sudar";
-                   //Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
-               }
+//               if(static_cast<Lopta*>(x)->indexBoje==this->indexBoje){
+//                   qDebug()<<"iste boje kasniji sudar";
+//                   //Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
+//               }
 
            }
         }

@@ -43,7 +43,7 @@ void LoptaUUstima::move()
 
 
     foreach(auto &x ,colliding_items){
-
+        if(static_cast<Lopta*>(x)->isDeleted) break;
 
         //ovde ima greska, tj pukne program kad udari u dve umesto samo u jednu, vrv jer nesto obrise, pa posle hocemo da pristupimo
         if(typeid(*x)==typeid(Lopta)){
@@ -60,7 +60,7 @@ void LoptaUUstima::move()
             if(indexBoje==static_cast<Lopta*>(x)->indexBoje){
                 qDebug()<<"iste su boje";
                 Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
-                if(poslednja==static_cast<Lopta*>(x))
+                if(poslednja==static_cast<Lopta*>(x) && !static_cast<Lopta*>(x)->isDeleted)
                     emit sudar(static_cast<Lopta*>(x));
 
                 //delete x;
@@ -158,5 +158,5 @@ void LoptaUUstima :: setBoja(int indeks)
 
 LoptaUUstima::~LoptaUUstima()
 {
-    game->putanja->resetuj_kolizije_lopti();
+//    game->putanja->resetuj_kolizije_lopti();
 }
