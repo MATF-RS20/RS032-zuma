@@ -43,11 +43,7 @@ Putanja::Putanja(int precnik, int brojLopti, QGraphicsItem *parent)
     // i onda da se pojave loptice.
     // Deluje mi da je ovo mesto na kom se poziva pravljenje prve lopte
 
-    QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl("qrc:/sounds/sounds/rolling.ogg"));
-    player->setVolume(40);
-    player->play();
-
+    // Premesteno u Lopta.cpp i povezano sa timerom
 
 
 
@@ -212,14 +208,15 @@ Lopta* Putanja::susedne(Lopta *lopta)
      player->setVolume(40);
      player->play();
 
-
      indeksi.clear();
-     for(int j=0; j<lopte.size(); j++){
-        if(j<indeks_prve && !lopte[j]->isDeleted){
-            //lopte[j]->indeks_u_nizu=j-broj_obrisanih;
-            lopte[j]->move_back(poslednja->pos());
-        }
-     }
+     if(indeks_posle_poslednje+1 < lopte.size()) // ne vracaj ako iza nema nista
+         for(int j=0; j<lopte.size(); j++){
+            if(j<indeks_prve && !lopte[j]->isDeleted){
+                //lopte[j]->indeks_u_nizu=j-broj_obrisanih;
+                lopte[j]->move_back(poslednja->pos());
+            }
+         }
+
 
 
  /*   foreach(auto &j, indeksi){
@@ -254,6 +251,7 @@ void Putanja::resetuj_kolizije_lopti()
 void Putanja:: unisti_loptu(Lopta* lopta )
 {
     lopta->isDeleted = true;
+    lopta->stopTimer();
     delete lopta;
     game->score->increase();
 }

@@ -423,7 +423,13 @@ qrc_images.cpp: images.qrc \
 
 qrc_sounds.cpp: sounds.qrc \
 		/usr/lib/qt5/bin/rcc \
-		sounds/Zuma.wav
+		sounds/Zuma.wav \
+		sounds/rolling.ogg \
+		sounds/pogodjene.ogg \
+		sounds/ubacena.ogg \
+		sounds/ispaljena2.ogg \
+		sounds/kraj.ogg \
+		sounds/ispaljena1.ogg
 	/usr/lib/qt5/bin/rcc -name sounds sounds.qrc -o qrc_sounds.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

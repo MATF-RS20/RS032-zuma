@@ -41,6 +41,13 @@ Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(50);
+
+    QMediaPlayer *player = new QMediaPlayer;
+    player->setMedia(QUrl("qrc:/sounds/sounds/rolling.ogg"));
+    player->setVolume(10);
+//    player->play();
+    connect(timer, SIGNAL(timeout()), player, SLOT(play()));
+
 }
 /*
 Lopta::Lopta(const Lopta &l2)
@@ -200,6 +207,11 @@ void Lopta::setIndexBoje(int indeks)
 {
    boja = niz_slika[indeks];
 
+}
+
+void Lopta::stopTimer()
+{
+ timer->stop();
 }
 
 void Lopta::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

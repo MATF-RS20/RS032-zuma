@@ -61,6 +61,7 @@ public:
     void move_back(int id);
     bool isDeleted = false;
     void setIndexBoje(int indeks);
+    void stopTimer();
 
 
 };
