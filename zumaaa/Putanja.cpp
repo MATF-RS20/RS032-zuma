@@ -172,10 +172,13 @@ Lopta* Putanja::susedne(Lopta *lopta)
     }
     qDebug()<<indeksi;
     int indeks_prve=(*std::min_element(indeksi.begin(), indeksi.end()));
-    int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()));
+    int indeks_posle_poslednje=(*std::max_element(indeksi.begin(), indeksi.end()))+1;
     //vracamo se ka onoj koja je najdalja u nizu, tj onoj koja ima najveci indeks
 
-    poslednja=lopte[indeks_posle_poslednje];
+    if(indeks_posle_poslednje < lopte.size())
+        poslednja=lopte[indeks_posle_poslednje];
+    else
+        poslednja=lopte[indeks_prve]; // indkes pre prve
     int broj_obrisanih=indeksi.size();
     qDebug()<<indeks_posle_poslednje;
     if(broj_obrisanih<2) {
@@ -203,13 +206,13 @@ Lopta* Putanja::susedne(Lopta *lopta)
      ///TODO: Proveriti da li se cuje zvuk
      // Trebalo bi da moze ovako jer valjda ne bi dosao do ovde da nema lopti za brisanje :/
 
-     QMediaPlayer *player = new QMediaPlayer;
-     player->setMedia(QUrl("qrc:/sounds/sounds/pogodjene.ogg"));
-     player->setVolume(40);
-     player->play();
+//     QMediaPlayer *player = new QMediaPlayer;
+//     player->setMedia(QUrl("qrc:/sounds/sounds/pogodjene.ogg"));
+//     player->setVolume(40);
+//     player->play();
 
      indeksi.clear();
-     if(indeks_posle_poslednje+1 < lopte.size()) // ne vracaj ako iza nema nista
+     if(indeks_posle_poslednje < lopte.size()) // ne vracaj ako iza nema nista
          for(int j=0; j<lopte.size(); j++){
             if(j<indeks_prve && !lopte[j]->isDeleted){
                 //lopte[j]->indeks_u_nizu=j-broj_obrisanih;
