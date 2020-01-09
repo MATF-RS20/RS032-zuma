@@ -46,11 +46,9 @@ Game::Game(QWidget *parent)
     zivot->setPos(score->x(), score->y()+20);
     scene->addItem(zivot);
 
-    //// FUN FACT: ako iskljucimo da se ne prikazuje zivot i score ne radi rotacija!!!
 
     connect(this, SIGNAL(mousePressEvent(QMouseEvent*)), zabica, SLOT(klik(QMouseEvent*)));
     connect(this, SIGNAL(mouseMoveEvent(QMouseEvent*)), zabica, SLOT(rotiraj(QMouseEvent*)));
-   // connect(, SIGNAL(sudar), putanja, SLOT(dodaj_loptu()))
 
     QMediaPlayer *player = new QMediaPlayer;
     player->setMedia(QUrl("qrc:/sounds/Zuma.wav"));

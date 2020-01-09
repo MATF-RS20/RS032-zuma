@@ -15,7 +15,7 @@
 class Putanja: public QGraphicsObject {
     Q_OBJECT
 public:
-    Putanja(int precnik, int brojLopti, QGraphicsItem *parent=0);
+    Putanja(int precnik, int brojLopti, QGraphicsObject *parent=0);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
     void ubrzaj(int k);
@@ -40,9 +40,6 @@ private:
     int maxSize;
     int precnik;
     bool ind_udareno=false;
-
-public:
-
 };
 
 

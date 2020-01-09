@@ -22,7 +22,8 @@ public:
     Putanja * putanja;
     Lopta * lopta;
     CrnaRupa * crna_rupa;
-    int precnik = 35;
+    int precnik = 35; // precnik lopte, ovo se odnosi i na loptu u ustima
+                      // i na loptu iz putanje
 
 
 signals:

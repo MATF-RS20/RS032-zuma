@@ -11,53 +11,44 @@
 
 extern Game * game;
 
-Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsItem *parent)
-: QGraphicsObject(parent)
-,size(precnik)
-,ideUnatrag(false)
-,pocetniStop(false)
-,doUdara(false)
+Lopta::Lopta(int precnik, QList<QPointF> tacke_, QGraphicsObject *parent)
+: QGraphicsObject(parent),
+  size(precnik),
+  tacke(tacke_)
 {
-    //Q_UNUSED(parent);
+    // generisemo boju lopte
     generisi_boju();
-    // inicijalizujemo tacke
-    tacke = tacke_;
+    // inicijalizujemo parametre
+    ideUnatrag = false;
+    pocetniStop = false;
+    doUdara = false;
     index = 0;
     pocetna_dim = size;
 
     setPos(tacke[0]); // pocetna tacka nase lopte je prva tacka iz liste tacke
     index++;
     krajnja = tacke[index]; // ovim samo kazemo da je destinacija naredna tacka
-    //size = 50; // velicina je je precnik ili u nasem slucaju visina = sirina = precnik
-    //boja = QPixmap("/home/tetejesandra/Desktop/Fax/zuma/RS032-zuma/zumaaa/images/roze.png");
+
     // inicijalizujemo da se sve transformacije odnose na centar lopte
     setTransformOriginPoint(precnik/2, precnik/2);
 
     // rotiramo da se krecemo ka prvoj tacki
     // trenutnu destinaciju, kao ciljnaTacka
     rotateToPoint(krajnja);
+
     // dodat timer
-    ///TODO: timer da bude privatna promenljiva, tako da mozemo da kazemo lopta->timer->stop()
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(50);
 
+    // Ubacivanje zvuka kotrljanja lopti
     QMediaPlayer *player = new QMediaPlayer;
     player->setMedia(QUrl("qrc:/sounds/sounds/rolling.ogg"));
     player->setVolume(10);
-//    player->play();
     connect(timer, SIGNAL(timeout()), player, SLOT(play()));
 
 }
-/*
-Lopta::Lopta(const Lopta &l2)
-{
-    size=l2.size;
-    tacke=l2.tacke;
-    index=l2.index;
-    krajnja=l2.krajnja;
-    setPos(l2.pos());
-}*/
+
 // funkcija rotacije ka ciljnoj tacki
 void Lopta::rotateToPoint(QPointF p)
 {
@@ -67,24 +58,23 @@ void Lopta::rotateToPoint(QPointF p)
 
 void Lopta::kolizija_crna_rupa()
 {
-    QList<QGraphicsItem *> items = collidingItems(); // kako da proverim da li je unutar a ne samo presek?
+    QList<QGraphicsItem *> items = collidingItems();
     for(int i = 0; i < items.size(); ++i) {
         if(typeid(*(items[i])) == typeid(CrnaRupa)) {
 
             game->putanja->ubrzaj(6);
 
             if(size > pocetna_dim/4) {
-                setScale(size/pocetna_dim); /// TODO pored scale mozda neki kontrast, da izgleda sve tamnije kako sve vise upada
+                setScale(size/pocetna_dim);
                 size -= 1;
 
             }
             else {
                 isDeleted = true;
-                delete this;
+//                delete this;
                 if(game->putanja->prazneLopte())
                 {
-                    ///TODO: Proveriti da li se cuje zvuk
-
+                    // postavljanje zvuka upadanja lopte
                     QMediaPlayer *player = new QMediaPlayer;
                     player->setMedia(QUrl("qrc:/sounds/sounds/kraj.ogg"));
                     player->setVolume(40);
@@ -93,30 +83,14 @@ void Lopta::kolizija_crna_rupa()
                     game->zivot->decrease();
                 }
             }
-
-
         }
     }
-
-
-    //if(game->putanja->prazneLopte())
-    //{
-       /* QMediaPlayer *player = new QMediaPlayer;
-        player->setMedia(QUrl("qrc:/sounds/sounds/kraj.ogg"));
-        player->setVolume(40);
-        player->play();
-
-        game->zivot->decrease();*/
-
-    //}
 
 }
 // funkcija koja se poziva pri timeru
 void Lopta::move()
 {
-    // ako smo napravili loptu iz putanje onda imamo sigurno vise od 2 tacke
     kolizija_crna_rupa();
-
 
     //ako lopta ide unatrag proveravamo dal je udarila u neku koja ide napred i resetujemo indikatore
     if(ideUnatrag){
@@ -124,15 +98,15 @@ void Lopta::move()
        // qDebug()<<colliding_items.size();
 
         foreach(auto &x ,colliding_items){
-           if(typeid(*x)==typeid(Lopta) && !static_cast<Lopta*>(x)->isDeleted){
+           if(typeid(*x)==typeid(Lopta) && !static_cast<Lopta*>(x)->ideUnatrag){
                krajnja=tacke[index];
                id1=1;
                id2=1;
                ideUnatrag=false;
-//               if(static_cast<Lopta*>(x)->indexBoje==this->indexBoje){
-//                   qDebug()<<"iste boje kasniji sudar";
-//                   //Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
-//               }
+               if(static_cast<Lopta*>(x)->indexBoje==this->indexBoje){
+                   qDebug()<<"iste boje kasniji sudar";
+                   //Lopta* poslednja=game->putanja->susedne(static_cast<Lopta*>(x));
+               }
 
            }
         }
@@ -146,10 +120,8 @@ void Lopta::move()
             index++;
         else
             index--;
-        if(index < 0) index = 0;
-        // ako vise nemamo tacaka stajemo
-        // S obzirom da je crna rupa na kraju putanje, tj na kraju indeksa tacaka
-        // i mi unistavamo loptu kad dodje do crne rupe ova provera nam vise ne treba :)
+//        if(index < 0) index = 0; // za svaki slucaj xD
+
         if (index >= tacke.size()){
             return;
         }
@@ -169,26 +141,19 @@ void Lopta::move()
 
 void Lopta::move_back(QPointF tacka)
 {
+    Q_UNUSED(tacka);
     //tacka koja ide unatrag vraca se ka prethodnoj tacki dok ne udari u lopte sa putanje
-//    qDebug()<<tacka<<this;
-//    qDebug() << index;
 
     ideUnatrag=true;
-//    if(index > 0)
-        krajnja=tacke[index-1];
-//    else
-//        krajnja=tacke[0];
+    krajnja=tacke[index-1];
     id1=-1;
     id2=-1;
-
-
 }
 
 void Lopta::move_back(int id)
 {
     //tacka koja ide unatrag vraca se ka prethodnoj tacki dok ne udari u lopte sa putanje
-    //qDebug()<<tacka<<this;
-    QPointF transliraj(id*size/2, 0);
+//    QPointF transliraj(id*size/2, 0);
     rotateToPoint(tacke[index-1]);
     double theta = rotation();
     double dy = size * qSin(qDegreesToRadians(theta));
@@ -197,7 +162,7 @@ void Lopta::move_back(int id)
     setPos(x()+id*dx, y()+id*dy);
     rotateToPoint(krajnja);
     qDebug()<<"pre "<<pos();
-    //setPos(x()+id*size/2, y());
+//    setPos(x()+id*size/2, y());
     qDebug()<<"posle "<<pos();
 
 
@@ -226,12 +191,6 @@ QRectF Lopta::boundingRect() const
 
 void Lopta::generisi_boju()
 {
-   // QVector <QPixmap> niz_slika;
-   // niz_slika.resize(4);
-   // niz_slika[0]=QPixmap(":/images/roze.png");
-    //niz_slika[1]=QPixmap(":/images/plava.png");
-   // niz_slika[2]=QPixmap(":/images/zelena.png");
-  //  niz_slika[3]=QPixmap(":/images/ljubicasta.png");
     indexBoje = rand() % 4;
     boja=niz_slika[indexBoje];
 }
@@ -265,6 +224,7 @@ bool Lopta::poredi(const Lopta *other)
 {
     if(this->indexBoje==other->indexBoje)
         return true;
+    return false;
 }
 
 

@@ -21,15 +21,12 @@
 extern QGraphicsScene * scene;
 extern Game * game;
 
-
-
-Zabica::Zabica(int x, int y, int size, int precnik, QGraphicsItem *parent)
+Zabica::Zabica(int x, int y, int size, int precnik, QGraphicsObject* parent)
 :x(x)
 ,y(y)
 ,size(size)
 ,precnik(precnik)
 ,centar(QPointF(x + size/2, y + size/2))
-//,lopta(new LoptaUUstima(x + height/2-precnik/2, y+weight/2-precnik/2, 25, pos()))
 {
     Q_UNUSED(parent);
 
@@ -76,13 +73,7 @@ void Zabica::klik(QMouseEvent * event)
 {
     if(event->buttons() & Qt::RightButton){
         promeni_boju();
-        qDebug()<<"Promenio sam boju lopte";
-
-        //auto x_ = centar.x() - precnik/2;
-        //auto y_ = centar.y() - precnik/2;
-        //lopta= new LoptaUUstima(centar.x(), centar.y(), precnik, pos());
-        //lopta->promeni_boju();
-
+//        qDebug()<<"Promenio sam boju lopte";
     }
     // na levi klik se kreira lopta u ustima
     else if(event->buttons() & Qt::LeftButton){
@@ -107,8 +98,7 @@ void Zabica::klik(QMouseEvent * event)
         QObject::connect(timer, SIGNAL(timeout()), loptaUsta, SLOT(move()));
         timer->start(50);
 
-        ///TODO: Proveriti da li se cuje zvuk
-
+        // postavlja se zvuk pucanja
         QMediaPlayer *player = new QMediaPlayer;
         player->setMedia(QUrl("qrc:/sounds/sounds/ispaljena1.ogg"));
         player->setVolume(40);

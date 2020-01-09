@@ -11,9 +11,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
 private:
-    int x;
-    int y;
-    int size;
+    int x; // x koordinata pozicije
+    int y; // y koordinata pozicije
+    int size; // dimenzija crne rupe
 };
 
 #endif // CRNARUPA_H
