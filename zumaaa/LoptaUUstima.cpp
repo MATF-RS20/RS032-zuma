@@ -152,7 +152,7 @@ void LoptaUUstima :: setBoja(int indeks)
     niz_slika[1]=QPixmap(":/images/plava.png");
    // niz_slika[2]=QPixmap(":/images/zelena.png");
    // niz_slika[3]=QPixmap(":/images/ljubicasta.png");
-    boja= niz_slika[indeks%2]; /// TODO skoliniti %2 kada se vrati na staro prikazivanje svih boja
+    boja= niz_slika[indeks%4];
     indexBoje=indeks;
 }
 

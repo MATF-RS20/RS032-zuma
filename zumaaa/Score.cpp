@@ -11,7 +11,7 @@ Score::Score(QGraphicsItem *parent): QGraphicsTextItem(parent){
     score =0;
     //crtamo ga
     setPlainText(QString("Score: ")+QString::number(score));
-    setDefaultTextColor(Qt::blue);
+    setDefaultTextColor(Qt::white);
     setFont(QFont("times", 16));
 }
 
@@ -22,7 +22,7 @@ void Score::increase()
     score += scoreIncrease;
 
     setPlainText(QString("Score: ")+QString::number(score));
-    setDefaultTextColor(Qt::blue);
+    setDefaultTextColor(Qt::white);
     setFont(QFont("times", 16));
 
 

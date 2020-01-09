@@ -232,7 +232,7 @@ void Lopta::generisi_boju()
     //niz_slika[1]=QPixmap(":/images/plava.png");
    // niz_slika[2]=QPixmap(":/images/zelena.png");
   //  niz_slika[3]=QPixmap(":/images/ljubicasta.png");
-    indexBoje = rand() % 2;
+    indexBoje = rand() % 4;
     boja=niz_slika[indexBoje];
 }
 
